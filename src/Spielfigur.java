@@ -1,14 +1,13 @@
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class spielfigur implements KeyListener {
+public class Spielfigur implements KeyListener {
 
-	public spielfigur() {
+	public Spielfigur() {
 		addKeyListener(this);
 	}
 
-	private void addKeyListener(spielfigur spielfigur) {
+	private void addKeyListener(Spielfigur Spielfigur) {
 
 	}
 

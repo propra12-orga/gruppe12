@@ -24,7 +24,7 @@ public class StartMenu extends JFrame implements ActionListener {
 
 	// ...ebenso das Titelpanel
 	JPanel titlepanel = new JPanel();
-	JLabel titel = new JLabel("Ganz schön dolles Spiel");
+	JLabel title = new JLabel("Ganz schön dolles Spiel");
 
 	// Konstruktor
 	public StartMenu() {
@@ -33,7 +33,7 @@ public class StartMenu extends JFrame implements ActionListener {
 				new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
 		// Buttons den Panels hinzufuegen
-		titlepanel.add(titel);
+		titlepanel.add(title);
 
 		startpanel.add(start);
 

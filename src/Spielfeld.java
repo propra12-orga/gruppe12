@@ -1,11 +1,10 @@
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class Spielfeld extends JPanel {
-
 
 	@Override
 	protected void paintComponent(Graphics g) // ueberschreiben der
@@ -21,7 +20,8 @@ public class Spielfeld extends JPanel {
 				Register[x][y] = 1; // leeres Feld entspricht int 1
 			}
 		}
-		Register[3][0] = 2; // Beispiel um z.z. dass auf einzelne Bloecke zugegriffen werden kann
+		Register[3][0] = 2; // Beispiel um z.z. dass auf einzelne Bloecke
+							// zugegriffen werden kann
 		for (int y = 0; y < 20; y++) {
 			for (int x = 0; x < 20; x++) {
 				if (Register[x][y] == 1) { // if-Abfrage: welches Objekt soll
@@ -31,8 +31,9 @@ public class Spielfeld extends JPanel {
 			}
 
 		}
-		if (Register[3][0] == 2)    // Beispiel: Block an der Stelle (3,0) wird dunkel eingefaerbt 
-			{
+		if (Register[3][0] == 2) // Beispiel: Block an der Stelle (3,0) wird
+									// dunkel eingefaerbt
+		{
 			g2d.fillRect(3 * 20, 0 * 20, 20, 20);
 		}
 
