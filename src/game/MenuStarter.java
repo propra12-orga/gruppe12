@@ -12,6 +12,8 @@ public class MenuStarter {
 										// Klasse "WindowQuitter"
 
 		frame.setSize(400, 225); // Einstellung der Fenstergröße
+		frame.setResizable(false);
+		frame.setLocationByPlatform(true);
 		frame.setVisible(true); // Sichtbarmachen
 	}
 }

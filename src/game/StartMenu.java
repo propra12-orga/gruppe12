@@ -11,6 +11,9 @@ import javax.swing.JPanel;
 
 public class StartMenu extends JFrame implements ActionListener {
 
+	// Wahrheitswert sagt aus, ob bereits ein Spiel läuft
+	public static boolean gamerunning = false;
+
 	// Panels und zugehoerige Buttons initialisieren
 	JPanel startpanel = new JPanel();
 	JButton start = new JButton("Start(WIP)");
@@ -72,11 +75,16 @@ public class StartMenu extends JFrame implements ActionListener {
 
 	// ActionLister: Hier werden den Buttones Aktionen zugeordnet.
 	public void actionPerformed(ActionEvent evt) {
-		if (evt.getActionCommand().equals("start")) { // Startet das Spiel
+		if (evt.getActionCommand().equals("start") && gamerunning == false) { // Startet
+																				// das
+																				// Spiel
 
 		}
-		if (evt.getActionCommand().equals("test")) { // Startet den Testrun
+		if (evt.getActionCommand().equals("test") && gamerunning == false) { // Startet
+																				// den
+																				// Testrun
 			RunTester.go();
+			gamerunning = true;
 		}
 		if (evt.getActionCommand().equals("sets")) { // Oeffnet ein neues
 														// Fenster: "Settings"

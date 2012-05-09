@@ -16,9 +16,9 @@ public class Spielflaeche extends JPanel {
 		// src > import...>file system>pfad suchen > Datei importieren
 
 		Image gras = Toolkit.getDefaultToolkit().getImage(
-				getClass().getResource("bg.jpg"));
+				getClass().getResource("/ressources/grafics/bg.jpg"));
 		Image mauer = Toolkit.getDefaultToolkit().getImage(
-				getClass().getResource("images.jpg"));
+				getClass().getResource("/ressources/grafics/images.jpg"));
 		Spielfeld play = new Spielfeld(20, 20); // intern wird das spielfeld als
 												// array implementiert
 
