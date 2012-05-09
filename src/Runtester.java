@@ -3,8 +3,8 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Runtester extends JPanel {
-	public static void main(String[] args) {
+public class Runtester  {
+	public static void go() {
 		JFrame opener = new JFrame("Graphicstester");
 		
 		opener.setLocation(400, 25);

@@ -74,7 +74,7 @@ public class StartMenu extends JFrame implements ActionListener {
 
 		}
 		if (evt.getActionCommand().equals("test")) { // Startet den Testrun
-			TestRun.go();
+			Runtester.go();
 		}
 		if (evt.getActionCommand().equals("sets")) { // Oeffnet ein neues
 														// Fenster: "Settings"
