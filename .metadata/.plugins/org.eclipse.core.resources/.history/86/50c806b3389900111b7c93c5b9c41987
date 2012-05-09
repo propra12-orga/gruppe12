@@ -1,0 +1,13 @@
+public class starter {
+	public static void main(String[] args) {
+		Spielfeld play = new Spielfeld(200, 200);
+		for(int x=0;x<20;x++){
+			for(int y=0;y<20;y++){
+				play.fill(x,y,1);
+			}
+		}
+		
+		
+		System.out.println(play.getX(0, 0));
+	}
+}

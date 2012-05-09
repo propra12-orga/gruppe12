@@ -1,0 +1,19 @@
+import java.awt.Toolkit;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Runtester extends JPanel {
+	public static void main(String[] args) {
+		JFrame opener = new JFrame("Graphicstester");
+		
+		opener.setLocation(380, 100);
+		opener.setVisible(true);
+		opener.setSize(500, 600);
+		opener.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		opener.add(new Spielflaeche());
+
+		
+	}
+
+}

@@ -1,0 +1,15 @@
+
+public interface Objekte {
+	
+	
+	/* Set und Get Methoden sind fuer die Kollisionsabfrage und Settings gut geeignet */
+	/* das muss ein Objekt können*/
+	
+	public int getX(int x,int y);
+	public int getY(int x,int y);
+	
+	public int setX();
+	public int setY();
+	
+	
+}

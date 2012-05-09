@@ -1,0 +1,6 @@
+public class starter {
+	public static void main(String[] args) {
+		Spielfeld play = new Spielfeld(20, 20);
+		play.RegCheck(1, 5, 1);
+	}
+}

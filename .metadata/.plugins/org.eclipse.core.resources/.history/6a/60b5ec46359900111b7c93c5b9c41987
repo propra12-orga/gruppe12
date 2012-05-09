@@ -1,0 +1,9 @@
+public class starter {
+	public static void main(String[] args) {
+		Spielfeld play = new Spielfeld(20, 20);
+		if (play.RegCheck(1, 1,1)) {
+			System.out.println("Bla");
+		} else
+			System.out.println("blub");
+	}
+}

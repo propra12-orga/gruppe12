@@ -1,0 +1,40 @@
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
+
+public class Spielflaeche extends JPanel {
+	
+	@Override
+	public void paint(Graphics g) {
+		Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("bg.jpg"));
+
+		Spielfeld play = new Spielfeld(15, 15);
+		for (int x = 0; x < 15; x++) { // befuellt das Array mit einem neutralen
+										// Element 1
+			for (int y = 0; y < 15; y++) {
+				play.fill(x, y, 1);
+			}
+		}
+		
+					
+		
+		
+		for (int x = 0; x < 15; x++) {
+			for (int y = 0; y < 15; y++) {
+				if (play.getObj(x, y) == 1) { // zeichnet die Objekte 1
+
+					g.drawImage(img, x*15 , y*15 ,getWidth(),getHeight(), null);
+				}
+
+			}
+		}
+		
+	
+	}
+}

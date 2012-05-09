@@ -1,0 +1,64 @@
+public class Spielfeld implements Objekte {
+	public int Breite, Hoehe;
+	public int Register[][];
+
+	public Spielfeld(int Breite, int Hoehe) { // Konstruker der Breite & Hoehe
+												// entgegennimmt
+		Hoehe = this.Hoehe;
+		Breite = this.Breite;
+
+	}
+
+	public void fill(int Obj) {
+		int Register[][] = new int[Breite][Hoehe]; // Initialisierung des
+		// Registers
+		for (int x = 0; x < Breite; x++) {
+			for (int y = 0; y < Hoehe; y++) {
+				Register[x][y] = 1; // Register 1 bedeutet Grasuntergrund
+			}
+		}
+
+	}
+
+	public boolean RegCheck(int RegX, int RegY, int Obj) {
+
+		if (Register[RegX][RegY] == Obj) {
+			return true;
+		} else
+			return false;
+	}
+
+	public void setObject(int RegX, int RegY, int Objecttype) {
+		Register[RegX][RegY] = Objecttype;
+
+	}
+	public int returnObj(int RegX,int RegY){
+		
+		return Register[RegX][RegY];
+		
+	}
+
+	@Override
+	public int getX(int RegX, int RegY) {
+
+		return RegX ;
+	}
+
+	@Override
+	public int getY(int RegX, int RegY) {
+
+		return 0;
+	}
+
+	@Override
+	public int setX() {
+
+		return 0;
+	}
+
+	@Override
+	public int setY() {
+
+		return 0;
+	}
+}

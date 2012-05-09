@@ -1,42 +1,55 @@
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+public class Spielfeld implements Objekte {
+	
+	// Register- Zahlen: 
+	/* 0 = Startfeld (nicht implementiert)
+	 * 1 = begehbares Gras
+	 * 2 = unzerstoerbare Mauer
+	 * 3 = zerstoerbare Mauer (nicht implementiert)
+	 * 4 = Ausgang (nicht implementiert)
+	 */
+	
+	
+	int Hoehe, Breite;
+	int Register[][];
 
-import javax.swing.JPanel;
+	public Spielfeld(int Breite, int Hoehe) { // initialisiert Register
+		Register = new int[Breite][Hoehe];
+	}
 
-@SuppressWarnings("serial")
-public class Spielfeld extends JPanel {
+	public void fill(int RegX, int RegY, int Obj) { // Methode zum befuellen des
+													// Arrays an der Stelle
+													// RegX,RegY mit Objekt Obj
+		Register[RegX][RegY] = Obj;
+	}
+
+	public int getObj(int RegX, int RegY) { // gibt das Objekt an der Stelle
+											// RegX,RegY aus dem Register wieder
+		return Register[RegX][RegY];
+	}
+
+	/* Rest noch zu editieren */
 
 	@Override
-	protected void paintComponent(Graphics g) // ueberschreiben der
-												// paintComponent Methode
-	{
+	public int getX() {
+		return 0;
+	}
 
-		Graphics2D g2d = (Graphics2D) g;
+	@Override
+	public int getY() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-		int[][] Register = new int[20][20]; // Register fuer versch. Objekte
+	@Override
+	public int setX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-		for (int x = 0; x < 20; x++) {
-			for (int y = 0; y < 20; y++) {
-				Register[x][y] = 1; // leeres Feld entspricht int 1
-			}
-		}
-		Register[3][0] = 2; // Beispiel um z.z. dass auf einzelne Bloecke
-							// zugegriffen werden kann
-		for (int y = 0; y < 20; y++) {
-			for (int x = 0; x < 20; x++) {
-				if (Register[x][y] == 1) { // if-Abfrage: welches Objekt soll
-					g2d.drawRect(x * 20, y * 20, 20, 20); // gezeichnet werden?
-
-				}
-			}
-
-		}
-		if (Register[3][0] == 2) // Beispiel: Block an der Stelle (3,0) wird
-									// dunkel eingefaerbt
-		{
-			g2d.fillRect(3 * 20, 0 * 20, 20, 20);
-		}
-
+	@Override
+	public int setY() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

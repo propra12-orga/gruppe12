@@ -1,0 +1,24 @@
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Runtester extends JPanel {
+	public static void main(String[] args) {
+		JFrame opener = new JFrame("Graphicstester");
+
+		opener.setVisible(true);
+		opener.setSize(500, 500);
+		opener.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		opener.add(new Graphicstester());
+
+		int a = 1;
+		for (int x = 0; x <= 2; x++) {
+			System.out.println("not");
+			for (int y = 0; y < 5; y++) {
+				if (a == 1) {
+					System.out.println(("bla" + a));
+
+				}
+			}
+		}
+	}
+}
