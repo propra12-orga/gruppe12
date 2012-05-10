@@ -41,15 +41,15 @@ public class Spielfeld implements Objekte {
 	}
 
 	@Override
-	public int setX() {
+	public void setX(int x) {
 		// TODO Auto-generated method stub
-		return 0;
+
 	}
 
 	@Override
-	public int setY() {
+	public void setY(int y) {
 		// TODO Auto-generated method stub
-		return 0;
+
 	}
 
 }

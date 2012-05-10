@@ -12,8 +12,8 @@ public interface Objekte {
 
 	public int getY();
 
-	public int setX();
+	public void setX(int x);
 
-	public int setY();
+	public void setY(int y);
 
 }

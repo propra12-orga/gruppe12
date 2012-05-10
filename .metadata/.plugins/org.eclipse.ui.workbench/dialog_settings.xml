@@ -10,9 +10,12 @@
 			<item value="/home"/>
 		</list>
 	</section>
+	<section name="ZipFileImportWizard">
+	</section>
 	<section name="NewWizardAction">
 	</section>
-	<section name="ZipFileImportWizard">
+	<section name="EditorSelectionDialog">
+		<item value="true" key="EditorSelectionDialog.STORE_ID_INTERNAL_EXTERNAL"/>
 	</section>
 	<section name="FileSystemExportWizard">
 		<item value="false" key="WizardFileSystemResourceExportPage1.STORE_OVERWRITE_EXISTING_FILES_ID"/>
@@ -21,9 +24,6 @@
 			<item value="/home/tony/workspace/gruppe12/src"/>
 			<item value="/home/tony/workspace/gruppe12/dumm/src"/>
 		</list>
-	</section>
-	<section name="EditorSelectionDialog">
-		<item value="true" key="EditorSelectionDialog.STORE_ID_INTERNAL_EXTERNAL"/>
 	</section>
 	<section name="ImportExportAction">
 		<item value="org.eclipse.ui.wizards.import.FileSystem" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
