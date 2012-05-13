@@ -1,4 +1,4 @@
-bekannte Bugs:
+﻿bekannte Bugs:
 
 Bitte das Format zwecks Uebersichtlichkeit beibehalten.
 
@@ -6,3 +6,9 @@ Spielfeld:
 	- 	Das Spielfeld welches unter der Menueoption "TestRun" erzeugt wird, ist bei mir erst beim zweiten Aufruf zu sehen. 	(Micha, 09.05.'12: 19:27)
 		Mir ist außerdem aufgefallen, dass ab und zu bereits die Wände, nicht aber die Grasfelder sichtbar sind.
 		Beim zweiten Aufruf uebers Menue funktioniert es immer.
+
+
+
+Bombe:
+    -          Die Klasse Bombe implementiert ein Interface namens Objekte. Das ist allerdings eine Klasse und kein Interface. Beim versuchten
+               umschreiben kamen allerdings haufenweise Fehlermedlungen von Eclipse somit füge ich es hier bei den bugs ein.           ( markus,13.5.'12: 18:45)

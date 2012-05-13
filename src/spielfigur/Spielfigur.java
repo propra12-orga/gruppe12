@@ -7,32 +7,37 @@ import spielfeld.Bombe;
 
 public class Spielfigur implements KeyListener {
 
-	private int xpos;
-	private int ypos;
+	// Dekleration von Variabeln
+
+	public int xPosition;
+	public int yPosition;
+	protected int width;
+	protected int height;
+	protected String pic;
 
 	public Spielfigur() {
 		addKeyListener(this);
 	}
 
-	public Spielfigur(int xpos, int ypos) {
-		this.ypos = ypos;
-		this.xpos = xpos;
+	public Spielfigur(int xPosition, int yPosition) {
+		this.yPosition = yPosition;
+		this.xPosition = xPosition;
 	}
 
 	private int getxPosition() {
-		return xpos;
+		return xPosition;
 	}
 
-	private void setxPosition(int xpos) {
-		this.xpos = xpos;
+	private void setxPosition(int xPosition) {
+		this.xPosition = xPosition;
 	}
 
 	private int getyPosition() {
-		return ypos;
+		return yPosition;
 	}
 
-	private void setyPosition(int ypos) {
-		this.xpos = ypos;
+	private void setyPosition(int yPosition) {
+		this.yPosition = yPosition;
 	}
 
 	public void bombeLegen() {
