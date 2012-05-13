@@ -40,15 +40,18 @@ public class Spielfigur implements KeyListener {
 		this.yPosition = yPosition;
 	}
 
+	// Bombe
+
 	public void bombeLegen() {
-		Bombe b = new Bombe(1, 2);// statt 1,2 müssen hier x und y position vom
-									// bomberman übergeben werden.
+		Bombe b = new Bombe(this.xPosition, this.yPosition);
 
 	}
 
 	private void addKeyListener(Spielfigur Spielfigur) {
 
 	}
+
+	// Hier werden die Bewegungen mit der Tastatur geregelt
 
 	public void keyTyped(KeyEvent e) {
 
@@ -60,7 +63,7 @@ public class Spielfigur implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 
 		if (key.getKeyCode() == Key.VK_UP) {
-
+			this.yPosition = yPosition - 1;
 		}
 
 		if (Key.getKeyCode() == Key.VK_LEFT) {
