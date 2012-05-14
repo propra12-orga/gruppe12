@@ -8,7 +8,3 @@ Spielfeld:
 		Beim zweiten Aufruf uebers Menue funktioniert es immer.
 
 
-
-Bombe:
-    -          Die Klasse Bombe implementiert ein Interface namens Objekte. Das ist allerdings eine Klasse und kein Interface. Beim versuchten
-               umschreiben kamen allerdings haufenweise Fehlermedlungen von Eclipse somit füge ich es hier bei den bugs ein.           ( markus,13.5.'12: 18:45)
