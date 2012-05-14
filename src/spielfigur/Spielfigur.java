@@ -24,6 +24,8 @@ public class Spielfigur implements KeyListener {
 		this.xPosition = xPosition;
 	}
 
+	// get und set methoden
+
 	private int getxPosition() {
 		return xPosition;
 	}
