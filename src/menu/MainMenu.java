@@ -2,6 +2,7 @@ package menu;
 
 import game.TestRun;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -44,15 +45,23 @@ public class MainMenu extends JFrame implements ActionListener {
 		getContentPane().setLayout(
 				new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
+		getContentPane().setBackground(Color.BLACK);
+
 		// Buttons den Panels hinzufuegen
+		titlepanel.setBackground(null);
+		title.setForeground(Color.WHITE);
 		titlepanel.add(title);
 
+		startpanel.setBackground(null);
 		startpanel.add(start);
 
+		testpanel.setBackground(null);
 		testpanel.add(test);
 
+		setspanel.setBackground(null);
 		setspanel.add(sets);
 
+		exitpanel.setBackground(null);
 		exitpanel.add(exit);
 
 		// Panels dem Oberpanel hinzufuegen
