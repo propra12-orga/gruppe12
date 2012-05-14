@@ -3,8 +3,6 @@ package spielfigur;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import spielfeld.Bombe;
-
 public class Spielfigur implements KeyListener {
 
 	// Dekleration von Variabeln
@@ -45,7 +43,7 @@ public class Spielfigur implements KeyListener {
 	// Bombe
 
 	public void bombeLegen() {
-		Bombe b = new Bombe(this.xPosition, this.yPosition);
+		// Bombe b = new Bombe(this.xPosition, this.yPosition);
 
 	}
 
@@ -64,19 +62,19 @@ public class Spielfigur implements KeyListener {
 
 	public void keyPressed(KeyEvent e) {
 
-		if (key.getKeyCode() == Key.VK_UP) {
+		if (e.getKeyCode() == e.VK_UP) {
 			this.yPosition = yPosition - 1;
 		}
 
-		if (Key.getKeyCode() == Key.VK_LEFT) {
+		if (e.getKeyCode() == e.VK_LEFT) {
 
 		}
 
-		if (Key.getKeyCode() == Key.VK_RIGHT) {
+		if (e.getKeyCode() == e.VK_RIGHT) {
 			;
 		}
 
-		if (Key.getKeyCode() == Key.VK_DOWN) {
+		if (e.getKeyCode() == e.VK_DOWN) {
 
 		}
 

@@ -1,6 +1,6 @@
 package spielfeld;
 
-public class Spielfeld implements Objekte {
+public class Spielfeld {
 
 	// Register- Zahlen:
 	/*
@@ -28,28 +28,4 @@ public class Spielfeld implements Objekte {
 	}
 
 	/* Rest noch zu editieren */
-
-	@Override
-	public int getX() {
-		return 0;
-	}
-
-	@Override
-	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setX(int x) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setY(int y) {
-		// TODO Auto-generated method stub
-
-	}
-
 }
