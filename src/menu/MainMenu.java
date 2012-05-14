@@ -1,4 +1,6 @@
-package game;
+package menu;
+
+import game.TestRun;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class StartMenu extends JFrame implements ActionListener {
+public class MainMenu extends JFrame implements ActionListener {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	// Wahrheitswert sagt aus, ob bereits ein Spiel läuft
 	public static boolean gamerunning = false;
@@ -32,7 +39,7 @@ public class StartMenu extends JFrame implements ActionListener {
 	JLabel title = new JLabel("Ganz schön dolles Spiel");
 
 	// Konstruktor
-	public StartMenu() {
+	public MainMenu() {
 
 		getContentPane().setLayout(
 				new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -83,7 +90,7 @@ public class StartMenu extends JFrame implements ActionListener {
 		if (evt.getActionCommand().equals("test") && gamerunning == false) { // Startet
 																				// den
 																				// Testrun
-			RunTester.go();
+			TestRun.go();
 			gamerunning = true;
 		}
 		if (evt.getActionCommand().equals("sets")) { // Oeffnet ein neues

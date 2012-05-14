@@ -8,6 +8,11 @@ import javax.swing.JPanel;
 
 public class Spielflaeche extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void paint(Graphics g) {
 

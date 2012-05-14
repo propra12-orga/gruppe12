@@ -1,4 +1,4 @@
-package game;
+package tools;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;

@@ -1,9 +1,11 @@
-package game;
+package menu;
+
+import tools.WindowQuitter;
 
 public class MenuStarter {
 
-	public static void main(String[] args) {
-		StartMenu frame = new StartMenu(); // Erzeugt ein Objekt von StartMenu
+	public static void openmainmenu() {
+		MainMenu frame = new MainMenu(); // Erzeugt ein Objekt von StartMenu
 
 		WindowQuitter wquit = new WindowQuitter(); // Erzeugt einen
 													// WindowQuitter

@@ -2,9 +2,12 @@ package game;
 
 import javax.swing.JFrame;
 
-import spielfeld.Spielflaeche;
+import menu.MainMenu;
 
-public class RunTester {
+import spielfeld.Spielflaeche;
+import tools.GameQuitter;
+
+public class TestRun {
 	public static void go() {
 		JFrame opener = new JFrame("Graphicstester");
 		GameQuitter gQuit = new GameQuitter(opener); // Erzeugt WindowListener
@@ -17,7 +20,7 @@ public class RunTester {
 
 		opener.add(new Spielflaeche());
 		opener.setVisible(true);
-		StartMenu.gamerunning = false; // teilt StartMenu mit, dass das Spiel
+		MainMenu.gamerunning = false; // teilt StartMenu mit, dass das Spiel
 										// läuft.
 	}
 
