@@ -21,7 +21,7 @@ public class Spielflaeche extends JPanel {
 		// auslesen einer Bilddatei, wichtig: vorher muss sie in Source Code in
 		// Eclipse importiert werden!
 		// src > import...>file system>pfad suchen > Datei importieren
-		super.paint(g);
+		// super.paint(g);
 		Image gras = Toolkit.getDefaultToolkit().getImage(
 				getClass().getResource("/ressources/grafics/gras.jpg"));
 		Image mauer = Toolkit.getDefaultToolkit().getImage(
@@ -33,7 +33,7 @@ public class Spielflaeche extends JPanel {
 		for (int x = 0; x < 20; x++) { // befuellt das Array mit einem neutralen
 										// Element 1, hier: Gras
 			for (int y = 0; y < 20; y++) {
-				play.fill(x, y, 1);
+				play.fill(x, y, 0);
 			}
 		}
 		for (int y = 0; y < 20; y++) {
@@ -54,11 +54,11 @@ public class Spielflaeche extends JPanel {
 				// wichtig: Register Zahlen befinden sich in der Klasse
 				// Spielfeld.java
 
-				if (play.getObj(x, y) == 1) { // zeichnet die Objekte 1
+				if (play.getObj(x, y) == 0) { // zeichnet die Objekte 1
 					g.drawImage(gras, x * (getWidth() / 20), y
 							* (getHeight() / 20), getWidth() / 20 + 1,
 							(getHeight() / 20) + 1, null); // hier wird das bild
-															// "bg.jpg"
+															// "gras.jpg"
 															// gezeichnet, also
 															// Grasflaeche
 
@@ -72,7 +72,7 @@ public class Spielflaeche extends JPanel {
 
 			}
 		}
-
+		repaint();
 	}
 
 }

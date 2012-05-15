@@ -3,8 +3,6 @@
 Bitte das Format zwecks Uebersichtlichkeit beibehalten.
 
 Spielfeld:
-	- 	Das Spielfeld welches unter der Menueoption "TestRun" erzeugt wird, ist bei mir erst beim zweiten Aufruf zu sehen. 	(Micha, 09.05.'12: 19:27)
-		Mir ist außerdem aufgefallen, dass ab und zu bereits die Wände, nicht aber die Grasfelder sichtbar sind.
-		Beim zweiten Aufruf uebers Menue funktioniert es immer.
-		#	Ersetzen durch kleinere Texturen hat nichts gebracht.	(Micha, 14.05.'12: 23:15)
+	- 	Dynamische Skalierung vom Spielfeld funktioniert nicht richtig, untere und rechte Bande werden breiter gemacht und ab einem bestimmten Maß wieder quadratisch.
+		(einfach das Spielfeld mal um wenige Pixel vergrößern/verkleinern)	(Micha, 15.05.'12 ; 13:33)
 
