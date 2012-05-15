@@ -749,3 +749,11 @@ org.eclipse.core.internal.resources.ResourceException: The project description f
 
 !ENTRY org.eclipse.core.resources 4 567 2012-05-09 19:35:40.687
 !MESSAGE The project description file (.project) for 'Graphicstester' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+
+!ENTRY org.eclipse.jdt.core 4 0 2012-05-15 09:41:46.274
+!MESSAGE Invalid ZIP archive: src/gruenes_gras.jpg [in Graphicstester]
+
+!ENTRY org.eclipse.core.resources 2 2 2012-05-15 09:46:26.531
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2012-05-15 09:46:26.531
+!MESSAGE The project description file (.project) for 'Spielfeld' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
