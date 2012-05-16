@@ -7,10 +7,13 @@ import spielfeld.Spielflaeche;
 import tools.GameQuitter;
 
 public class Dummy extends Thread {
+	public static Spielflaeche game;
+
 	public Dummy() { // Konstruktor erzeugt Frame mit Spielfeld
 		final JFrame opener = new JFrame("Graphicstester");
 		GameQuitter gQuit = new GameQuitter(opener); // Erzeugt WindowListener
-		opener.add(new Spielflaeche());
+		game = new Spielflaeche();
+		opener.add(game);
 		opener.setLocation(400, 25);
 		opener.setSize(800, 600);
 		opener.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -20,6 +23,7 @@ public class Dummy extends Thread {
 
 			@Override
 			public void run() { // der Thread zeichnet durchgehend neu
+				// game.paint();
 				opener.repaint();
 				opener.setVisible(true);
 			}

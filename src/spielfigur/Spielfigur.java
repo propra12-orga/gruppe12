@@ -3,6 +3,11 @@ package spielfigur;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import spielfeld.Spielflaeche;
+import bombe.BombType;
+import bombe.Bombe;
+import bombe.NormalBomb;
+
 public class Spielfigur implements KeyListener {
 
 	// Dekleration von Variabeln
@@ -12,6 +17,8 @@ public class Spielfigur implements KeyListener {
 	protected int width;
 	protected int height;
 	protected String pic;
+	private boolean bombPlanted = false;
+	private BombType bomb = new NormalBomb();
 
 	public Spielfigur() {
 		addKeyListener(this);
@@ -24,26 +31,38 @@ public class Spielfigur implements KeyListener {
 
 	// get und set methoden
 
-	private int getxPosition() {
+	public int getxPosition() {
 		return xPosition;
 	}
 
-	private void setxPosition(int xPosition) {
+	public void setxPosition(int xPosition) {
 		this.xPosition = xPosition;
 	}
 
-	private int getyPosition() {
+	public int getyPosition() {
 		return yPosition;
 	}
 
-	private void setyPosition(int yPosition) {
+	public void setyPosition(int yPosition) {
 		this.yPosition = yPosition;
+	}
+
+	public BombType getBombType() {
+		return bomb;
+	}
+
+	public void setBombType(BombType bomb) {
+		this.bomb = bomb;
 	}
 
 	// Bombe
 
 	public void bombeLegen() {
-		// Bombe b = new Bombe(this.xPosition, this.yPosition);
+		if (bombPlanted == false) {
+			Bombe b = new Bombe(xPosition, yPosition, width, height, bomb);
+			Spielflaeche.play.fill(xPosition, yPosition, 4);
+			bombPlanted = true;
+		}
 
 	}
 

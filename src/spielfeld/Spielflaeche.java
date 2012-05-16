@@ -11,9 +11,8 @@ import javax.swing.JPanel;
 
 public class Spielflaeche extends JPanel {
 
-	/**
-	 * 
-	 */
+	public static Spielfeld play;
+
 	private static final long serialVersionUID = 1L;
 
 	public void paint(Graphics g) {
@@ -26,12 +25,14 @@ public class Spielflaeche extends JPanel {
 				getClass().getResource("/ressources/grafics/gras.jpg"));
 		Image mauer = Toolkit.getDefaultToolkit().getImage(
 				getClass().getResource("/ressources/grafics/brick.jpg"));
+		Image exit = Toolkit.getDefaultToolkit().getImage(
+				getClass().getResource("/ressources/grafics/ausgang.jpg"));
 
-		Spielfeld play = new Spielfeld(20, 20); // intern wird das spielfeld als
-												// array implementiert
+		play = new Spielfeld(20, 20); // intern wird das spielfeld als
+										// array implementiert
 
 		for (int x = 0; x < 20; x++) { // befuellt das Array mit einem neutralen
-										// Element 1, hier: Gras
+										// Element 0, hier: Gras
 			for (int y = 0; y < 20; y++) {
 				play.fill(x, y, 0);
 			}
@@ -48,6 +49,7 @@ public class Spielflaeche extends JPanel {
 		for (int x = 0; x < 20; x++) {
 			play.fill(x, 19, 2);
 		}
+		play.fill(18, 18, 1);
 
 		for (int x = 0; x < 20; x++) {
 			for (int y = 0; y < 20; y++) {
@@ -70,6 +72,11 @@ public class Spielflaeche extends JPanel {
 				} // +19 um die Groeße an Frame anzupassen, /20 weil es 20
 					// Bilder sind die sich den Frame teilen
 
+				if (play.getObj(x, y) == 1) {
+					g.drawImage(exit, x * (getWidth() / 20), y
+							* (getHeight() / 20), getWidth() / 20 + 19,
+							(getHeight() / 20) + 19, null);
+				}
 			}
 		}
 		repaint();

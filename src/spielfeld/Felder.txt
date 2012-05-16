@@ -1,0 +1,11 @@
+Objekte-Register:
+
+0	-	freies Feld/Gras
+1	-	Ausgang
+2	-	unzerstörbare Mauer
+3	-	zerstörbare Mauer
+4	-	Bombe
+
+10	-	Spieler-Reserviert
+...
+19	-	Spieler-Reserviert

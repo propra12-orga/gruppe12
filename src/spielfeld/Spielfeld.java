@@ -4,9 +4,7 @@ public class Spielfeld {
 
 	// Register- Zahlen:
 	/*
-	 * 0 = Startfeld (nicht implementiert) 1 = begehbares Gras 2 =
-	 * unzerstoerbare Mauer 3 = zerstoerbare Mauer (nicht implementiert) 4 =
-	 * Ausgang (nicht implementiert)
+	 * siehe Felder.txt
 	 */
 
 	int Hoehe, Breite;
