@@ -1,7 +1,0 @@
-public class starter {
-	public static void main(String[] args) {
-		Spielfeld play = new Spielfeld(200, 200);
-		play.fill(5);
-		System.out.println(play.getX(0, 0));
-	}
-}
