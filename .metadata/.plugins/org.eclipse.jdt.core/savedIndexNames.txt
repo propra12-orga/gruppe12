@@ -1,4 +1,0 @@
-INDEX VERSION 1.126+/home/tony/workspace/gruppe12/.metadata/.plugins/org.eclipse.jdt.core
-1639647839.index
-1933635941.index
-1142026749.index

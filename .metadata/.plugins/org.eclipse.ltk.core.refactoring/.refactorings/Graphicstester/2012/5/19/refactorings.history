@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Move element &apos;gruenes_gras.jpg&apos; to &apos;Graphicstester/src/(default package)&apos;&#x0A;- Original project: &apos;Graphicstester&apos;&#x0A;- Destination element: &apos;Graphicstester/src/(default package)&apos;&#x0A;- Original element: &apos;gruenes_gras.jpg&apos;&#x0A;- Update references to refactored element" description="Move file" destination="/src&lt;" element1="src/tony/gruenes_gras.jpg" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1336555368653" units="0" version="1.0"/>
-</session>
