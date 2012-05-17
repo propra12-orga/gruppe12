@@ -15,7 +15,7 @@ public class Dummy extends Thread {
 		game = new Spielflaeche();
 		opener.add(game);
 		opener.setLocation(400, 25);
-		opener.setSize(800, 600);
+		opener.setSize(600, 600);
 		opener.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		opener.addWindowListener(gQuit);
 

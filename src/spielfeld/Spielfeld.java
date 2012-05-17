@@ -88,5 +88,14 @@ public class Spielfeld extends JPanel {
 			return false;
 	}
 
+	public boolean equalsBomb(int x, int y) {
+		// TODO Auto-generated method stub
+		if (Register[x][y] == 4)
+			return true;
+		else
+			return false;
+
+	}
+
 	/* Rest noch zu editieren */
 }
