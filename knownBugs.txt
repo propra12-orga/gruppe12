@@ -5,7 +5,6 @@ Bitte das Format zwecks Uebersichtlichkeit beibehalten.
 Spielfeld:
 	- 	Dynamische Skalierung vom Spielfeld funktioniert nicht richtig, untere und rechte Bande werden breiter gemacht und ab einem bestimmten Maß wieder quadratisch.
 		(einfach das Spielfeld mal um wenige Pixel vergrößern/verkleinern)	(Micha, 15.05.'12 ; 13:33)
-	-	Skylierung der Texturen ebenfalls fehlerhaft, vgl. ausgang.jpg mit dargestelltem Ausgang.	(Micha, 16.05.'12 ; 15:33)
-	
+
 Dummy:
 	~	Kein Bug aber verwirrend, bitte umbenennen/ersetzen/anpassen!	(Micha, 16.05.'12 ; 15:53)
