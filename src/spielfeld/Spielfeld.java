@@ -38,6 +38,7 @@ public class Spielfeld extends JPanel {
 		}
 		for (int x = 0; x < 20; x++) {
 			Register[x][19] = 2;
+
 		}
 
 	}
@@ -91,6 +92,15 @@ public class Spielfeld extends JPanel {
 	public boolean equalsBomb(int x, int y) {
 		// TODO Auto-generated method stub
 		if (Register[x][y] == 4)
+			return true;
+		else
+			return false;
+
+	}
+
+	public boolean equalsMan(int x, int y) {
+		// TODO Auto-generated method stub
+		if (Register[x][y] == 10)
 			return true;
 		else
 			return false;

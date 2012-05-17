@@ -14,8 +14,8 @@ public class Spielfigur implements KeyListener {
 
 	public int xPosition;
 	public int yPosition;
-	protected int width;
-	protected int height;
+	protected int width = 20;
+	protected int height = 20;
 	protected String pic;
 	private boolean bombPlanted = false;
 	private BombType bomb = new NormalBomb();
@@ -82,21 +82,25 @@ public class Spielfigur implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 
 		if (e.getKeyCode() == e.VK_UP) {
-			this.yPosition = yPosition - 1;
+			Spielflaeche.play.fill(xPosition, yPosition + 1, 10);
 		}
 
 		if (e.getKeyCode() == e.VK_LEFT) {
-
+			Spielflaeche.play.fill(xPosition - 1, yPosition + 1, 10);
 		}
 
 		if (e.getKeyCode() == e.VK_RIGHT) {
-			;
+			Spielflaeche.play.fill(xPosition + 1, yPosition, 10);
+
 		}
 
 		if (e.getKeyCode() == e.VK_DOWN) {
-
+			Spielflaeche.play.fill(xPosition, yPosition - 1, 10);
 		}
 
+		if (e.getKeyCode() == e.VK_SPACE) {
+			this.bombeLegen();
+		}
 	}
 
 }

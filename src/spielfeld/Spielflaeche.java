@@ -5,12 +5,15 @@ import java.awt.Image;
 
 import javax.swing.JPanel;
 
+import spielfigur.Spielfigur;
+
 /* *** Update ***/
 /* neue Version mit dynamischer Vergroeßerung der Bilder */
 
 public class Spielflaeche extends JPanel {
 
 	public static Spielfeld play;
+	public static Spielfigur bman;
 
 	private static final long serialVersionUID = 1L;
 
@@ -24,10 +27,12 @@ public class Spielflaeche extends JPanel {
 		Image mauer = play.loadImg("/ressources/grafics/brick.jpg");
 		Image exit = play.loadImg("/ressources/grafics/ausgang.jpg");
 		Image bomb = play.loadImg("/ressources/grafics/bombe.gif");
+		Image man = play.loadImg("/ressources/grafics/brick.jpg");
 
 		play.Randfuellen(); // Befuellt die Raender mit Mauer
 		play.fill(18, 18, 1); // Ausgang
 		play.fill(2, 2, 4); // Testbombe
+		play.fill(6, 6, 10); // Testfigur
 
 		for (int x = 0; x < 20; x++) {
 			for (int y = 0; y < 20; y++) {
@@ -56,6 +61,12 @@ public class Spielflaeche extends JPanel {
 					g.drawImage(bomb, x * arrayWidth, y * arrayHeight,
 							arrayWidth, arrayHeight, null);// Zeichnet
 					// Bombe
+
+					if (play.equalsMan(x, y)) {
+						g.drawImage(man, x * arrayWidth, y * arrayHeight,
+								arrayWidth, arrayHeight, null);// Zeichnet
+						// Spielfigur
+					}
 
 				}
 			}
