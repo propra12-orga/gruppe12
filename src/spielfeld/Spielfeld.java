@@ -13,6 +13,10 @@ public class Spielfeld extends JPanel {
 	 * siehe Felder.txt
 	 */
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int Hoehe, Breite;
 	int Register[][];
 
@@ -26,22 +30,49 @@ public class Spielfeld extends JPanel {
 
 	}
 
-	public void Randfuellen() {
-		for (int y = 0; y < 20; y++) {
+	public void feldfuellen() {// Feste Mauern, Kisten und Ausgang werden
+								// bestimmt.
+		for (int y = 0; y < 21; y++) {
 			Register[0][y] = 2;
+			Register[20][y] = 2;
+			Register[y][0] = 2;
+			Register[y][20] = 2;
 		} // Raender mit Mauer befuellen
-		for (int y = 0; y < 20; y++) {
-			Register[19][y] = 2;
-		}
-		for (int x = 0; x < 20; x++) {
-			Register[x][0] = 2;
-		}
-		for (int x = 0; x < 20; x++) {
-			Register[x][19] = 2;
+		for (int i = 2; i < 20; i = i + 2) {
+			for (int j = 2; j < 20; j = j + 2) {
+				Register[i][j] = 2;
+			}
+		}// Feste Mauern einfügen
+		Register[1][3] = 3;
+		Register[3][1] = 3;
 
+		// alles was noch nicht Mauer ist wird eventuell eine kiste.
+		for (int i = 3; i < 20; i = i + 2) {
+			for (int j = 1; j < 20; j++) {
+				int k = (int) (Math.random() + 0.2);
+				if (k == 1)
+					Register[i][j] = 3;
+			}
+		}
+		for (int i = 3; i < 20; i = i + 2) {
+			for (int j = 1; j < 20; j++) {
+				int k = (int) (Math.random() + 0.2);
+				if (k == 1)
+					Register[j][i] = 3;
+			}
 		}
 
-	}
+		for (int j = 3; j < 20; j++) {
+			int k = (int) (Math.random() + 0.2);
+			if (k == 1)
+				Register[1][j] = 3;
+
+			int l = (int) (Math.random() + 0.2);
+			if (l == 1)
+				Register[j][1] = 3;
+		}
+
+	}// feldfuellen
 
 	public void fill(int RegX, int RegY, int Obj) { // Methode zum befuellen des
 													// Arrays an der Stelle
@@ -105,6 +136,13 @@ public class Spielfeld extends JPanel {
 		else
 			return false;
 
+	}
+
+	public boolean equalsKiste(int x, int y) {
+		if (Register[x][y] == 3)
+			return true;
+		else
+			return false;
 	}
 
 	/* Rest noch zu editieren */

@@ -62,6 +62,7 @@ public class Spielfigur implements KeyListener {
 			Bombe b = new Bombe(xPosition, yPosition, width, height, bomb);
 			Spielflaeche.play.fill(xPosition, yPosition, 4);
 			bombPlanted = true;
+
 		}
 
 	}
@@ -81,24 +82,24 @@ public class Spielfigur implements KeyListener {
 
 	public void keyPressed(KeyEvent e) {
 
-		if (e.getKeyCode() == e.VK_UP) {
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			Spielflaeche.play.fill(xPosition, yPosition + 1, 10);
 		}
 
-		if (e.getKeyCode() == e.VK_LEFT) {
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			Spielflaeche.play.fill(xPosition - 1, yPosition + 1, 10);
 		}
 
-		if (e.getKeyCode() == e.VK_RIGHT) {
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			Spielflaeche.play.fill(xPosition + 1, yPosition, 10);
 
 		}
 
-		if (e.getKeyCode() == e.VK_DOWN) {
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			Spielflaeche.play.fill(xPosition, yPosition - 1, 10);
 		}
 
-		if (e.getKeyCode() == e.VK_SPACE) {
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			this.bombeLegen();
 		}
 	}

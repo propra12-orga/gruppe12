@@ -13,29 +13,30 @@ import spielfigur.Spielfigur;
 public class Spielflaeche extends JPanel {
 
 	public static Spielfeld play;
-	public static Spielfigur bman;
+	public static Spielfigur bman = new Spielfigur();
 
 	private static final long serialVersionUID = 1L;
 
 	public void paint(Graphics g) {
-		play = new Spielfeld(20, 20); // intern wird das spielfeld als
-										// array implementiert und direkt
-										// befuellt mit 0
-		int arrayWidth = getWidth() / 20;
-		int arrayHeight = getHeight() / 20;
+
+		play = new Spielfeld(21, 21);
+
+		play.feldfuellen(); // Befuellt die Raender mit Mauer
+		play.fill(19, 19, 1); // Ausgang
+		play.fill(1, 2, 4); // Testbombe
+		play.fill(1, 1, 10); // Testfigur
+
+		int arrayWidth = getWidth() / 21 + 1;
+		int arrayHeight = getHeight() / 21 + 1;
 		Image gras = play.loadImg("/ressources/grafics/gras.gif");
 		Image mauer = play.loadImg("/ressources/grafics/brick.jpg");
 		Image exit = play.loadImg("/ressources/grafics/ausgang.jpg");
 		Image bomb = play.loadImg("/ressources/grafics/Bombe.gif");
 		Image man = play.loadImg("/ressources/grafics/gras.jpg");
+		Image kiste = play.loadImg("/ressources/grafics/kiste.png");
 
-		play.Randfuellen(); // Befuellt die Raender mit Mauer
-		play.fill(18, 18, 1); // Ausgang
-		play.fill(1, 2, 4); // Testbombe
-		play.fill(1, 1, 10); // Testfigur
-
-		for (int x = 0; x < 20; x++) {
-			for (int y = 0; y < 20; y++) {
+		for (int x = 0; x < 21; x++) {
+			for (int y = 0; y < 21; y++) {
 
 				if (play.equalsGras(x, y)) {
 
@@ -68,10 +69,14 @@ public class Spielflaeche extends JPanel {
 							arrayWidth, arrayHeight, null);// Zeichnet
 					// Spielfigur
 				}
+				if (play.equalsKiste(x, y)) {
+					g.drawImage(kiste, x * arrayWidth, y * arrayHeight,
+							arrayWidth, arrayHeight, null);// Zeichnet
+					// Spielfigur
+				}
 
 			}
 		}
 		repaint();
 	}
-
 }
