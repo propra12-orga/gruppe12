@@ -30,7 +30,7 @@ public class Spielflaeche extends JPanel {
 	public void paint(Graphics g) {
 
 		if (1 == 1) {
-			Spielfeld.Register[bman.xPosition][bman.yPosition] = 10; // Figur
+			Spielfeld.register[bman.xPosition][bman.yPosition] = 10; // Figur
 																		// dort
 																		// gezeichnet
 																		// wo
