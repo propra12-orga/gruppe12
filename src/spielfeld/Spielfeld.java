@@ -18,7 +18,7 @@ public class Spielfeld extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	int Hoehe, Breite;
-	int Register[][];
+	public static int Register[][];
 
 	public Spielfeld(int Breite, int Hoehe) { // initialisiert Register
 		Register = new int[Breite][Hoehe];

@@ -1,14 +1,11 @@
 package spielfigur;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import spielfeld.Spielflaeche;
 import bombe.BombType;
 import bombe.Bombe;
 import bombe.NormalBomb;
 
-public class Spielfigur implements KeyListener {
+public class Spielfigur {
 
 	// Dekleration von Variabeln
 
@@ -20,8 +17,18 @@ public class Spielfigur implements KeyListener {
 	private boolean bombPlanted = false;
 	private BombType bomb = new NormalBomb();
 
+	public boolean rechts = false;
+	public boolean links = false;
+	public boolean runter = false;
+	public boolean hoch = false;
+
 	public Spielfigur() {
 		addKeyListener(this);
+	}
+
+	private void addKeyListener(Spielfigur spielfigur) {
+		// TODO Auto-generated method stub
+
 	}
 
 	public Spielfigur(int xPosition, int yPosition) {
@@ -65,43 +72,6 @@ public class Spielfigur implements KeyListener {
 
 		}
 
-	}
-
-	private void addKeyListener(Spielfigur Spielfigur) {
-
-	}
-
-	// Hier werden die Bewegungen mit der Tastatur geregelt
-
-	public void keyTyped(KeyEvent e) {
-
-	}
-
-	public void keyReleased(KeyEvent e) {
-	}
-
-	public void keyPressed(KeyEvent e) {
-
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			Spielflaeche.play.fill(xPosition, yPosition + 1, 10);
-		}
-
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			Spielflaeche.play.fill(xPosition - 1, yPosition + 1, 10);
-		}
-
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			Spielflaeche.play.fill(xPosition + 1, yPosition, 10);
-
-		}
-
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			Spielflaeche.play.fill(xPosition, yPosition - 1, 10);
-		}
-
-		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			this.bombeLegen();
-		}
 	}
 
 }
