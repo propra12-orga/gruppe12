@@ -17,15 +17,16 @@ public class Spielflaeche extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	public void paint(Graphics g) {
-
+	public Spielflaeche() {
 		play = new Spielfeld(21, 21);
 
 		play.feldfuellen(); // Befuellt die Raender mit Mauer
 		play.fill(19, 19, 1); // Ausgang
 		play.fill(1, 2, 4); // Testbombe
 		play.fill(1, 1, 10); // Testfigur
+	}
 
+	public void paint(Graphics g) {
 		int arrayWidth = getWidth() / 21 + 1;
 		int arrayHeight = getHeight() / 21 + 1;
 		Image gras = play.loadImg("/ressources/grafics/gras.gif");

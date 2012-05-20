@@ -42,32 +42,32 @@ public class Spielfeld extends JPanel {
 			for (int j = 2; j < 20; j = j + 2) {
 				Register[i][j] = 2;
 			}
-		}// Feste Mauern einfügen
+		}// Feste Mauern einfï¿½gen
 		Register[1][3] = 3;
 		Register[3][1] = 3;
 
 		// alles was noch nicht Mauer ist wird eventuell eine kiste.
 		for (int i = 3; i < 20; i = i + 2) {
 			for (int j = 1; j < 20; j++) {
-				int k = (int) (Math.random() + 0.2);
+				int k = (int) (Math.random() + 0.5);
 				if (k == 1)
 					Register[i][j] = 3;
 			}
 		}
 		for (int i = 3; i < 20; i = i + 2) {
 			for (int j = 1; j < 20; j++) {
-				int k = (int) (Math.random() + 0.2);
+				int k = (int) (Math.random() + 0.5);
 				if (k == 1)
 					Register[j][i] = 3;
 			}
 		}
 
 		for (int j = 3; j < 20; j++) {
-			int k = (int) (Math.random() + 0.2);
+			int k = (int) (Math.random() + 0.5);
 			if (k == 1)
 				Register[1][j] = 3;
 
-			int l = (int) (Math.random() + 0.2);
+			int l = (int) (Math.random() + 0.5);
 			if (l == 1)
 				Register[j][1] = 3;
 		}
