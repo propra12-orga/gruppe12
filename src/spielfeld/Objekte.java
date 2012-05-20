@@ -76,4 +76,12 @@ public class Objekte extends Thread {
 		return type;
 	}
 
+	public void warten(int millisToWait) {// diese Methode wartet eine
+											// übergebene anzahl an
+											// Millisekunden.
+		long millis = System.currentTimeMillis();
+		while ((System.currentTimeMillis() - millis) < millisToWait) {
+			// mache nichts
+		}
+	}
 }
