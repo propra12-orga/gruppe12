@@ -5,6 +5,7 @@ Objekte-Register:
 2	-	unzerstörbare Mauer
 3	-	zerstörbare Mauer
 4	-	Bombe
+5	- 	Explosion
 
 10	-	Spielfigur
 19	-	Spieler-Reserviert

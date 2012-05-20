@@ -16,8 +16,14 @@ public class gameKeyListener implements KeyListener {
 					Spielflaeche.bman.yPosition - 1)) {
 				Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
 						Spielflaeche.bman.yPosition, 0);
+				if (Spielflaeche.bman.bombeLiegt) {
+					Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
+							Spielflaeche.bman.yPosition, 4);
+					Spielflaeche.bman.bombeLiegt = false;
+				}
 				Spielflaeche.bman.xPosition = Spielflaeche.bman.xPosition;
 				Spielflaeche.bman.yPosition = Spielflaeche.bman.yPosition - 1;
+
 			} else if (Spielflaeche.play.equalsExit(
 					Spielflaeche.bman.xPosition,
 					Spielflaeche.bman.yPosition - 1)) {
@@ -36,8 +42,14 @@ public class gameKeyListener implements KeyListener {
 					Spielflaeche.bman.yPosition)) {
 				Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
 						Spielflaeche.bman.yPosition, 0);
+				if (Spielflaeche.bman.bombeLiegt) {
+					Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
+							Spielflaeche.bman.yPosition, 4);
+					Spielflaeche.bman.bombeLiegt = false;
+				}
 				Spielflaeche.bman.xPosition = Spielflaeche.bman.xPosition - 1;
 				Spielflaeche.bman.yPosition = Spielflaeche.bman.yPosition;
+
 			}
 
 			else if (Spielflaeche.play.equalsExit(
@@ -60,8 +72,14 @@ public class gameKeyListener implements KeyListener {
 
 				Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
 						Spielflaeche.bman.yPosition, 0);
+				if (Spielflaeche.bman.bombeLiegt) {
+					Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
+							Spielflaeche.bman.yPosition, 4);
+					Spielflaeche.bman.bombeLiegt = false;
+				}
 				Spielflaeche.bman.xPosition = Spielflaeche.bman.xPosition + 1;
 				Spielflaeche.bman.yPosition = Spielflaeche.bman.yPosition;
+
 			} else if (Spielflaeche.play.equalsExit(
 					Spielflaeche.bman.xPosition + 1,
 					Spielflaeche.bman.yPosition)) {
@@ -81,8 +99,14 @@ public class gameKeyListener implements KeyListener {
 					Spielflaeche.bman.yPosition + 1)) {
 				Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
 						Spielflaeche.bman.yPosition, 0);
+				if (Spielflaeche.bman.bombeLiegt) {
+					Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
+							Spielflaeche.bman.yPosition, 4);
+					Spielflaeche.bman.bombeLiegt = false;
+				}
 				Spielflaeche.bman.xPosition = Spielflaeche.bman.xPosition;
 				Spielflaeche.bman.yPosition = Spielflaeche.bman.yPosition + 1;
+
 			}
 
 			else if (Spielflaeche.play.equalsExit(Spielflaeche.bman.xPosition,

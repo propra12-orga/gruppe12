@@ -21,6 +21,7 @@ public class Spielfigur {
 	public boolean links = false;
 	public boolean runter = false;
 	public boolean hoch = false;
+	public boolean bombeLiegt;
 
 	public Spielfigur() {
 		addKeyListener(this);
@@ -73,7 +74,7 @@ public class Spielfigur {
 			new Bombe(xPosition, yPosition, width, height, bomb).start();
 			Spielflaeche.play.fill(xPosition, yPosition, 4);
 			bombPlanted = true;
-
+			bombeLiegt = true;
 		}
 
 	}
