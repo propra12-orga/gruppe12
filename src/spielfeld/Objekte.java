@@ -1,6 +1,6 @@
 package spielfeld;
 
-public class Objekte {
+public class Objekte extends Thread {
 
 	// Dekleration von Variabeln
 	protected int xPosition;

@@ -14,8 +14,8 @@ public class Spielfigur implements KeyListener {
 
 	public int xPosition;
 	public int yPosition;
-	protected int width = 20;
-	protected int height = 20;
+	protected int width = 200;
+	protected int height = 200;
 	protected String pic;
 	private boolean bombPlanted = false;
 	private BombType bomb = new NormalBomb();
@@ -59,7 +59,7 @@ public class Spielfigur implements KeyListener {
 
 	public void bombeLegen() {
 		if (bombPlanted == false) {
-			Bombe b = new Bombe(xPosition, yPosition, width, height, bomb);
+			new Bombe(xPosition, yPosition, width, height, bomb).explodieren();
 			Spielflaeche.play.fill(xPosition, yPosition, 4);
 			bombPlanted = true;
 
