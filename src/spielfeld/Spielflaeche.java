@@ -48,6 +48,7 @@ public class Spielflaeche extends JPanel {
 		Image bomb = play.loadImg("/ressources/grafics/Bombe.gif");
 		Image man = play.loadImg("/ressources/grafics/e.gif");
 		Image kiste = play.loadImg("/ressources/grafics/kiste.png");
+		Image explo = play.loadImg("/ressources/grafics/expl.gif");
 
 		for (int x = 0; x < 21; x++) {
 			for (int y = 0; y < 21; y++) {
@@ -85,6 +86,11 @@ public class Spielflaeche extends JPanel {
 				}
 				if (play.equalsKiste(x, y)) {
 					g.drawImage(kiste, x * arrayWidth, y * arrayHeight,
+							arrayWidth, arrayHeight, null);// Zeichnet
+					// Spielfigur
+				}
+				if (play.equalsExplosion(x, y)) {
+					g.drawImage(explo, x * arrayWidth, y * arrayHeight,
 							arrayWidth, arrayHeight, null);// Zeichnet
 					// Spielfigur
 				}

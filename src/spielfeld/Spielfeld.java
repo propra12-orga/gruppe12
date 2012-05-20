@@ -151,5 +151,12 @@ public class Spielfeld extends JPanel {
 			return false;
 	}
 
+	public boolean equalsExplosion(int x, int y) {
+		if (register[x][y] == 5)
+			return true;
+		else
+			return false;
+	}
+
 	/* Rest noch zu editieren */
 }

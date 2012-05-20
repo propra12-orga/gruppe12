@@ -62,16 +62,19 @@ public class Spielfigur {
 		this.bomb = bomb;
 	}
 
+	public void setBombPlanted(boolean b) {
+		bombPlanted = b;
+	}
+
 	// Bombe
 
 	public void bombeLegen() {
 		if (bombPlanted == false) {
-			new Bombe(xPosition, yPosition, width, height, bomb).explodieren();
+			new Bombe(xPosition, yPosition, width, height, bomb).start();
 			Spielflaeche.play.fill(xPosition, yPosition, 4);
 			bombPlanted = true;
 
 		}
 
 	}
-
 }
