@@ -19,6 +19,9 @@ public class Dummy extends Thread {
 		opener.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		opener.addWindowListener(gQuit);
 
+		gameKeyListener gkl = new gameKeyListener();
+		opener.addKeyListener(gkl);
+
 		Runnable gui = new Runnable() {
 
 			@Override
@@ -32,5 +35,4 @@ public class Dummy extends Thread {
 		SwingUtilities.invokeLater(gui); // wartet bis ausgefuehrt
 
 	}
-
 }
