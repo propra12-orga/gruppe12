@@ -18,8 +18,17 @@ public class gameKeyListener implements KeyListener {
 						Spielflaeche.bman.yPosition, 0);
 				Spielflaeche.bman.xPosition = Spielflaeche.bman.xPosition;
 				Spielflaeche.bman.yPosition = Spielflaeche.bman.yPosition - 1;
-			}
+			} else if (Spielflaeche.play.equalsExit(
+					Spielflaeche.bman.xPosition,
+					Spielflaeche.bman.yPosition - 1)) {
 
+				Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
+						Spielflaeche.bman.yPosition, 0);
+				Spielflaeche.bman.xPosition = Spielflaeche.bman.xPosition;
+				Spielflaeche.bman.yPosition = Spielflaeche.bman.yPosition - 1;
+				Dummy.opener.dispose();
+				menu.MainMenu.gamerunning = false;
+			}
 		}
 
 		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -29,6 +38,18 @@ public class gameKeyListener implements KeyListener {
 						Spielflaeche.bman.yPosition, 0);
 				Spielflaeche.bman.xPosition = Spielflaeche.bman.xPosition - 1;
 				Spielflaeche.bman.yPosition = Spielflaeche.bman.yPosition;
+			}
+
+			else if (Spielflaeche.play.equalsExit(
+					Spielflaeche.bman.xPosition - 1,
+					Spielflaeche.bman.yPosition)) {
+
+				Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
+						Spielflaeche.bman.yPosition, 0);
+				Spielflaeche.bman.xPosition = Spielflaeche.bman.xPosition - 1;
+				Spielflaeche.bman.yPosition = Spielflaeche.bman.yPosition;
+				Dummy.opener.dispose();
+				menu.MainMenu.gamerunning = false;
 			}
 		}
 
@@ -62,6 +83,17 @@ public class gameKeyListener implements KeyListener {
 						Spielflaeche.bman.yPosition, 0);
 				Spielflaeche.bman.xPosition = Spielflaeche.bman.xPosition;
 				Spielflaeche.bman.yPosition = Spielflaeche.bman.yPosition + 1;
+			}
+
+			else if (Spielflaeche.play.equalsExit(Spielflaeche.bman.xPosition,
+					Spielflaeche.bman.yPosition + 1)) {
+
+				Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
+						Spielflaeche.bman.yPosition, 0);
+				Spielflaeche.bman.xPosition = Spielflaeche.bman.xPosition;
+				Spielflaeche.bman.yPosition = Spielflaeche.bman.yPosition + 1;
+				Dummy.opener.dispose();
+				menu.MainMenu.gamerunning = false;
 			}
 		}
 
