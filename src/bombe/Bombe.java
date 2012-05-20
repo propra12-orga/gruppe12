@@ -155,6 +155,7 @@ public class Bombe extends Objekte {
 		for (int i = 0; i < nachRechts; i++) {
 			Spielflaeche.play.fill(intBombeX + i, intBombeY, 0);
 		}
+		Spielflaeche.bman.bombeLiegt = false;
 		Spielflaeche.bman.setBombPlanted(false);
 	}// bombeexplodieren
 }

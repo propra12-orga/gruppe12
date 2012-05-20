@@ -28,16 +28,13 @@ public class Spielflaeche extends JPanel {
 
 	public void paint(Graphics g) {
 
-		if (1 == 1) {
-			Spielfeld.register[bman.xPosition][bman.yPosition] = 10; // Figur
-																		// dort
-																		// gezeichnet
-																		// wo
-			// objekt
-			// bman
-			// ist
-
-		}
+		Spielfeld.register[bman.xPosition][bman.yPosition] = 10; // Figur
+																	// dort
+																	// gezeichnet
+																	// wo
+		// objekt
+		// bman
+		// ist
 
 		int arrayWidth = getWidth() / 21 + 1;
 		int arrayHeight = getHeight() / 21 + 1;
