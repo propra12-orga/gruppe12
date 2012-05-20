@@ -31,7 +31,7 @@ public class Spielfeld extends JPanel {
 	}
 
 	public void feldfuellen() {// Feste Mauern, Kisten und Ausgang werden
-								// bestimmt.
+		// bestimmt.
 		for (int y = 0; y < 21; y++) {
 			Register[0][y] = 2;
 			Register[20][y] = 2;
@@ -43,45 +43,45 @@ public class Spielfeld extends JPanel {
 				Register[i][j] = 2;
 			}
 		}// Feste Mauern einf�gen
-		Register[1][3] = 3;
-		Register[3][1] = 3;
+		// Register[1][3] = 3;
+		// Register[3][1] = 3;
 
 		// alles was noch nicht Mauer ist wird eventuell eine kiste.
-		for (int i = 3; i < 20; i = i + 2) {
-			for (int j = 1; j < 20; j++) {
-				int k = (int) (Math.random() + 0.5);
-				if (k == 1)
-					Register[i][j] = 3;
-			}
-		}
-		for (int i = 3; i < 20; i = i + 2) {
-			for (int j = 1; j < 20; j++) {
-				int k = (int) (Math.random() + 0.5);
-				if (k == 1)
-					Register[j][i] = 3;
-			}
-		}
-
-		for (int j = 3; j < 20; j++) {
-			int k = (int) (Math.random() + 0.5);
-			if (k == 1)
-				Register[1][j] = 3;
-
-			int l = (int) (Math.random() + 0.5);
-			if (l == 1)
-				Register[j][1] = 3;
-		}
+		// for (int i = 3; i < 20; i = i + 2) {
+		// for (int j = 1; j < 20; j++) {
+		// int k = (int) (Math.random() + 0.5);
+		// if (k == 1)
+		// Register[i][j] = 3;
+		// }
+		// }
+		// for (int i = 3; i < 20; i = i + 2) {
+		// for (int j = 1; j < 20; j++) {
+		// int k = (int) (Math.random() + 0.5);
+		// if (k == 1)
+		// Register[j][i] = 3;
+		// }
+		// }
+		//
+		// for (int j = 3; j < 20; j++) {
+		// int k = (int) (Math.random() + 0.5);
+		// if (k == 1)
+		// Register[1][j] = 3;
+		//
+		// int l = (int) (Math.random() + 0.5);
+		// if (l == 1)
+		// Register[j][1] = 3;
+		// }
 
 	}// feldfuellen
 
 	public void fill(int RegX, int RegY, int Obj) { // Methode zum befuellen des
-													// Arrays an der Stelle
-													// RegX,RegY mit Objekt Obj
+		// Arrays an der Stelle
+		// RegX,RegY mit Objekt Obj
 		Register[RegX][RegY] = Obj;
 	}
 
 	public int getObj(int RegX, int RegY) { // gibt das Objekt an der Stelle
-											// RegX,RegY aus dem Register wieder
+		// RegX,RegY aus dem Register wieder
 		return Register[RegX][RegY];
 	}
 

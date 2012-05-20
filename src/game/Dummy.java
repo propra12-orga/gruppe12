@@ -8,9 +8,10 @@ import tools.GameQuitter;
 
 public class Dummy extends Thread {
 	public static Spielflaeche game;
+	public static JFrame opener;
 
 	public Dummy() { // Konstruktor erzeugt Frame mit Spielfeld
-		final JFrame opener = new JFrame("Graphicstester");
+		opener = new JFrame("Graphicstester");
 		GameQuitter gQuit = new GameQuitter(opener); // Erzeugt WindowListener
 		game = new Spielflaeche();
 		opener.add(game);

@@ -22,30 +22,30 @@ public class Bombe extends Objekte {
 		int radius = bomb.radius;
 		boolean boolMauer = true;
 		int nachUnten, nachOben, nachRechts, nachLinks;
-		// zunächst warten bis die Bombe explodieren soll.
+		// zunaechst warten bis die Bombe explodieren soll.
 		warten(2000);
 
 		// in alle 4 richtungen explodieren bis zu einer mauer, kiste oder
 		// rechts
 		for (int i = 0; (i < radius) && (boolMauer); i++) {
 			if (Spielflaeche.play.equalsMauer(intBombeX + i, intBombeY) == false) {// keine
-																					// Mauer
+				// Mauer
 				if (Spielflaeche.play.equalsKiste(intBombeX + i, intBombeY) == false) {// keine
-																						// Kiste
+					// Kiste
 
 					Spielflaeche.play.fill(intBombeX + i, intBombeY, 5);// explosion
-																		// anzeigen
+					// anzeigen
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt
-				} else {// wird eine Kiste getroffen soll diese zerstört werden
-						// und es soll nicht weiter explodieren
+				} else {// wird eine Kiste getroffen soll diese zerstï¿½rt werden
+					// und es soll nicht weiter explodieren
 
 					boolMauer = false;
 					Spielflaeche.play.fill(intBombeX + i, intBombeY, 5);
 					nachRechts = i;
 				}
 			} else {
-				// Mauer=> explosion in diese richtung hört auf.
+				// Mauer=> explosion in diese richtung hï¿½rt auf.
 				boolMauer = false;
 				nachRechts = i;
 			}
@@ -54,23 +54,23 @@ public class Bombe extends Objekte {
 		// links
 		for (int i = 0; (i < radius) && (boolMauer); i++) {
 			if (Spielflaeche.play.equalsMauer(intBombeX - i, intBombeY) == false) {// keine
-																					// Mauer
+				// Mauer
 				if (Spielflaeche.play.equalsKiste(intBombeX - i, intBombeY) == false) {// keine
-																						// Kiste
+					// Kiste
 
 					Spielflaeche.play.fill(intBombeX - i, intBombeY, 5);// explosion
-																		// anzeigen
+					// anzeigen
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt
-				} else {// wird eine Kiste getroffen soll diese zerstört werden
-						// und es soll nicht weiter explodieren
+				} else {// wird eine Kiste getroffen soll diese zerstï¿½rt werden
+					// und es soll nicht weiter explodieren
 
 					boolMauer = false;
 					Spielflaeche.play.fill(intBombeX - i, intBombeY, 5);
 					nachLinks = i;
 				}
 			} else {
-				// Mauer=> explosion in diese richtung hört auf.
+				// Mauer=> explosion in diese richtung hï¿½rt auf.
 				boolMauer = false;
 				nachLinks = i;
 			}
@@ -80,23 +80,23 @@ public class Bombe extends Objekte {
 		// oben
 		for (int i = 0; (i < radius) && (boolMauer); i++) {
 			if (Spielflaeche.play.equalsMauer(intBombeX, intBombeY + i) == false) {// keine
-																					// Mauer
+				// Mauer
 				if (Spielflaeche.play.equalsKiste(intBombeX, intBombeY + i) == false) {// keine
-																						// Kiste
+					// Kiste
 
 					Spielflaeche.play.fill(intBombeX, intBombeY + i, 5);// explosion
-																		// anzeigen
+					// anzeigen
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt
-				} else {// wird eine Kiste getroffen soll diese zerstört werden
-						// und es soll nicht weiter explodieren
+				} else {// wird eine Kiste getroffen soll diese zerstï¿½rt werden
+					// und es soll nicht weiter explodieren
 
 					boolMauer = false;
 					Spielflaeche.play.fill(intBombeX, intBombeY + i, 5);
 					nachOben = i;
 				}
 			} else {
-				// Mauer=> explosion in diese richtung hört auf.
+				// Mauer=> explosion in diese richtung hï¿½rt auf.
 				boolMauer = false;
 				nachOben = i;
 			}
@@ -106,23 +106,23 @@ public class Bombe extends Objekte {
 		// unten
 		for (int i = 0; (i < radius) && (boolMauer); i++) {
 			if (Spielflaeche.play.equalsMauer(intBombeX, intBombeY - i) == false) {// keine
-																					// Mauer
+				// Mauer
 				if (Spielflaeche.play.equalsKiste(intBombeX, intBombeY - i) == false) {// keine
-																						// Kiste
+					// Kiste
 
 					Spielflaeche.play.fill(intBombeX, intBombeY - i, 5);// explosion
-																		// anzeigen
+					// anzeigen
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt
-				} else {// wird eine Kiste getroffen soll diese zerstört werden
-						// und es soll nicht weiter explodieren
+				} else {// wird eine Kiste getroffen soll diese zerstï¿½rt werden
+					// und es soll nicht weiter explodieren
 
 					boolMauer = false;
 					Spielflaeche.play.fill(intBombeX, intBombeY - i, 5);
 					nachUnten = i;
 				}
 			} else {
-				// Mauer=> explosion in diese richtung hört auf.
+				// Mauer=> explosion in diese richtung hï¿½rt auf.
 				boolMauer = false;
 				nachUnten = i;
 			}
