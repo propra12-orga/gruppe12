@@ -32,8 +32,7 @@ public class gameKeyListener implements KeyListener {
 						Spielflaeche.bman.yPosition, 0);
 				Spielflaeche.bman.xPosition = Spielflaeche.bman.xPosition;
 				Spielflaeche.bman.yPosition = Spielflaeche.bman.yPosition - 1;
-				Dummy.opener.dispose();
-				menu.MainMenu.gamerunning = false;
+				Game.restartGame();
 			}
 		}
 
@@ -60,8 +59,7 @@ public class gameKeyListener implements KeyListener {
 						Spielflaeche.bman.yPosition, 0);
 				Spielflaeche.bman.xPosition = Spielflaeche.bman.xPosition - 1;
 				Spielflaeche.bman.yPosition = Spielflaeche.bman.yPosition;
-				Dummy.opener.dispose();
-				menu.MainMenu.gamerunning = false;
+				Game.restartGame();
 			}
 		}
 
@@ -88,8 +86,7 @@ public class gameKeyListener implements KeyListener {
 						Spielflaeche.bman.yPosition, 0);
 				Spielflaeche.bman.xPosition = Spielflaeche.bman.xPosition + 1;
 				Spielflaeche.bman.yPosition = Spielflaeche.bman.yPosition;
-				Dummy.opener.dispose();
-				menu.MainMenu.gamerunning = false;
+				Game.restartGame();
 			}
 
 		}
@@ -116,8 +113,7 @@ public class gameKeyListener implements KeyListener {
 						Spielflaeche.bman.yPosition, 0);
 				Spielflaeche.bman.xPosition = Spielflaeche.bman.xPosition;
 				Spielflaeche.bman.yPosition = Spielflaeche.bman.yPosition + 1;
-				Dummy.opener.dispose();
-				menu.MainMenu.gamerunning = false;
+				Game.restartGame();
 			}
 		}
 
