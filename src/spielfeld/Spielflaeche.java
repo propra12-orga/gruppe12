@@ -19,7 +19,22 @@ public class Spielflaeche extends JPanel {
 
 	public Spielflaeche() {
 		play = new Spielfeld(21, 21);
-		bman = new Spielfigur();
+		bman = new Spielfigur(1, 1);
+
+		// Vergleich der Objektposition
+		bman.xPosition = Spielfeld.WIDTH;
+		bman.yPosition = Spielfeld.HEIGHT; // Läuft net Rund. Meine Idee war das
+											// er die xpos und ypos mit den
+											// array werten x, y bzw i j gleich
+											// -setzt und dann im Register[i][j]
+											// = 10 setzt + durch die equalman
+											// methode sofort zeichnet
+
+		if (bman.xPosition == Spielfeld.WIDTH
+				&& bman.yPosition == Spielfeld.HEIGHT) {
+			play.Register[x][y] = 10;
+
+		}
 
 		play.feldfuellen(); // Befuellt die Raender mit Mauer
 		play.fill(19, 19, 1); // Ausgang
@@ -82,4 +97,5 @@ public class Spielflaeche extends JPanel {
 		}
 		repaint();
 	}
+
 }
