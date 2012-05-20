@@ -44,7 +44,7 @@ public class Spielfeld extends JPanel {
 			}
 		}
 		// Zufallsgenerator deaktiviert.
-		// randomGen(0.5);
+		randomGen(0.5);
 
 	}// feldfuellen
 

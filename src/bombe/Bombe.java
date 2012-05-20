@@ -33,7 +33,7 @@ public class Bombe extends Objekte {
 				// Mauer
 				if (Spielflaeche.play.equalsKiste(intBombeX + i, intBombeY) == false) {// keine
 					// Kiste
-
+					nachRechts++;
 					Spielflaeche.play.fill(intBombeX + i, intBombeY, 5);// explosion
 					// anzeigen
 					// Animation von Bombe + Bomberman stirbt + kiste geht
@@ -44,6 +44,8 @@ public class Bombe extends Objekte {
 
 					boolMauer = false;
 					Spielflaeche.play.fill(intBombeX + i, intBombeY, 5);
+					nachRechts++;
+					// nachRechts++;
 
 				}
 			} else {
@@ -51,8 +53,7 @@ public class Bombe extends Objekte {
 				boolMauer = false;
 
 			}
-			if (boolMauer)
-				nachRechts = i;
+
 		}
 		boolMauer = true;
 		// links
@@ -61,8 +62,9 @@ public class Bombe extends Objekte {
 				// Mauer
 				if (Spielflaeche.play.equalsKiste(intBombeX - i, intBombeY) == false) {// keine
 					// Kiste
-
-					Spielflaeche.play.fill(intBombeX - i, intBombeY, 5);// explosion
+					nachLinks++;
+					Spielflaeche.play.fill(intBombeX - i, intBombeY, 5);
+					// explosion
 					// anzeigen
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt
@@ -72,6 +74,7 @@ public class Bombe extends Objekte {
 
 					boolMauer = false;
 					Spielflaeche.play.fill(intBombeX - i, intBombeY, 5);
+					nachLinks++;
 
 				}
 			} else {
@@ -79,8 +82,7 @@ public class Bombe extends Objekte {
 				boolMauer = false;
 
 			}
-			if (boolMauer)
-				nachLinks = i;
+
 		}
 		boolMauer = true;
 
@@ -90,7 +92,7 @@ public class Bombe extends Objekte {
 				// Mauer
 				if (Spielflaeche.play.equalsKiste(intBombeX, intBombeY + i) == false) {// keine
 					// Kiste
-
+					nachOben++;
 					Spielflaeche.play.fill(intBombeX, intBombeY + i, 5);// explosion
 					// anzeigen
 					// Animation von Bombe + Bomberman stirbt + kiste geht
@@ -101,13 +103,13 @@ public class Bombe extends Objekte {
 
 					boolMauer = false;
 					Spielflaeche.play.fill(intBombeX, intBombeY + i, 5);
+					nachOben++;
 				}
 			} else {
 				// Mauer=> explosion in diese richtung h�rt auf.
 				boolMauer = false;
 			}
-			if (boolMauer)
-				nachOben = i;
+
 		}
 		boolMauer = true;
 
@@ -117,7 +119,7 @@ public class Bombe extends Objekte {
 				// Mauer
 				if (Spielflaeche.play.equalsKiste(intBombeX, intBombeY - i) == false) {// keine
 					// Kiste
-
+					nachUnten++;
 					Spielflaeche.play.fill(intBombeX, intBombeY - i, 5);// explosion
 					// anzeigen
 					// Animation von Bombe + Bomberman stirbt + kiste geht
@@ -128,6 +130,7 @@ public class Bombe extends Objekte {
 
 					boolMauer = false;
 					Spielflaeche.play.fill(intBombeX, intBombeY - i, 5);
+					nachUnten++;
 
 				}
 			} else {
@@ -135,21 +138,21 @@ public class Bombe extends Objekte {
 				boolMauer = false;
 
 			}
-			if (boolMauer)
-				nachUnten = i;
+
 		}
+
 		boolMauer = true;
 		warten(750);
-		for (int i = 0; i <= nachUnten; i++) {
+		for (int i = 0; i < nachUnten; i++) {
 			Spielflaeche.play.fill(intBombeX, intBombeY - i, 0);
 		}
-		for (int i = 0; i <= nachOben; i++) {
+		for (int i = 0; i < nachOben; i++) {
 			Spielflaeche.play.fill(intBombeX, intBombeY + i, 0);
 		}
-		for (int i = 0; i <= nachLinks; i++) {
+		for (int i = 0; i < nachLinks; i++) {
 			Spielflaeche.play.fill(intBombeX - i, intBombeY, 0);
 		}
-		for (int i = 0; i <= nachRechts; i++) {
+		for (int i = 0; i < nachRechts; i++) {
 			Spielflaeche.play.fill(intBombeX + i, intBombeY, 0);
 		}
 		Spielflaeche.bman.setBombPlanted(false);

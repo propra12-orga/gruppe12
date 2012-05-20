@@ -23,7 +23,6 @@ public class Spielflaeche extends JPanel {
 
 		play.feldfuellen(); // Befuellt die Raender mit Mauer
 		play.fill(19, 19, 1); // Ausgang
-		play.fill(1, 2, 4); // Testbombe
 
 	}
 
