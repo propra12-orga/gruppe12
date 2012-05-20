@@ -2,8 +2,6 @@ package spielfeld;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
@@ -12,7 +10,7 @@ import spielfigur.Spielfigur;
 /* *** Update ***/
 /* neue Version mit dynamischer Vergroeßerung der Bilder */
 
-public class Spielflaeche extends JPanel implements KeyListener {
+public class Spielflaeche extends JPanel {
 
 	public static Spielfeld play;
 	public static Spielfigur bman;
@@ -21,16 +19,27 @@ public class Spielflaeche extends JPanel implements KeyListener {
 
 	public Spielflaeche() {
 		play = new Spielfeld(21, 21);
-		bman = new Spielfigur(1, 1);
+		bman = new Spielfigur(2, 1);
 
 		play.feldfuellen(); // Befuellt die Raender mit Mauer
 		play.fill(19, 19, 1); // Ausgang
 		play.fill(1, 2, 4); // Testbombe
-		play.fill(5, 5, 10); // Testfigur
 
 	}
 
 	public void paint(Graphics g) {
+
+		if (1 == 1) {
+			Spielfeld.Register[bman.xPosition][bman.yPosition] = 10; // Figur
+																		// dort
+																		// gezeichnet
+																		// wo
+			// objekt
+			// bman
+			// ist
+
+		}
+
 		int arrayWidth = getWidth() / 21 + 1;
 		int arrayHeight = getHeight() / 21 + 1;
 		Image gras = play.loadImg("/ressources/grafics/gras.gif");
@@ -83,66 +92,6 @@ public class Spielflaeche extends JPanel implements KeyListener {
 			}
 		}
 		repaint();
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			System.out.println("hoch");
-			Spielflaeche.play.fill(bman.xPosition, bman.yPosition, 0);
-			Spielflaeche.play.fill(bman.xPosition, bman.yPosition + 1, 10);
-			bman.xPosition = bman.xPosition;
-			bman.yPosition = bman.yPosition + 1;
-
-			// objekt bewegen
-		}
-
-		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			Spielflaeche.play.fill(bman.xPosition, bman.yPosition, 0);
-			Spielflaeche.play.fill(bman.xPosition - 1, bman.yPosition, 10);
-			bman.xPosition = bman.xPosition - 1;
-			bman.yPosition = bman.yPosition;
-
-		}
-
-		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			Spielflaeche.play.fill(bman.xPosition, bman.yPosition, 0);
-			Spielflaeche.play.fill(bman.xPosition + 1, bman.yPosition, 10);
-			bman.xPosition = bman.xPosition + 1;
-			bman.yPosition = bman.yPosition;
-
-		}
-
-		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			Spielflaeche.play.fill(bman.xPosition, bman.yPosition, 0);
-			Spielflaeche.play.fill(bman.xPosition, bman.yPosition - 1, 10);
-			bman.xPosition = bman.xPosition;
-			bman.yPosition = bman.yPosition - 1;
-
-		}
-
-		else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			bman.bombeLegen();
-		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
 
 	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			System.out.println("hoch");
-			Spielflaeche.play.fill(bman.xPosition, bman.yPosition, 0);
-			Spielflaeche.play.fill(bman.xPosition, bman.yPosition + 1, 10);
-			bman.xPosition = bman.xPosition;
-			bman.yPosition = bman.yPosition + 1;
-		}
-	}
-
 }
