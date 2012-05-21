@@ -29,7 +29,8 @@ public class Bombe extends Objekte {
 		// in alle 4 richtungen explodieren bis zu einer mauer, kiste oder
 		// rechts
 		for (int i = 0; (i < radius) && (boolMauer); i++) {
-			if (Spielflaeche.play.equalsMauer(intBombeX + i, intBombeY) == false) {// keine
+			if ((Spielflaeche.play.equalsMauer(intBombeX + i, intBombeY) == false)
+					&& (Spielflaeche.play.equalsExit(intBombeX + i, intBombeY) == false)) {// keine
 				// Mauer
 				if (Spielflaeche.play.equalsKiste(intBombeX + i, intBombeY) == false) {// keine
 					// Kiste
@@ -58,7 +59,8 @@ public class Bombe extends Objekte {
 		boolMauer = true;
 		// links
 		for (int i = 0; (i < radius) && (boolMauer); i++) {
-			if (Spielflaeche.play.equalsMauer(intBombeX - i, intBombeY) == false) {// keine
+			if ((Spielflaeche.play.equalsMauer(intBombeX - i, intBombeY) == false)
+					&& (Spielflaeche.play.equalsExit(intBombeX - i, intBombeY) == false)) {// keine
 				// Mauer
 				if (Spielflaeche.play.equalsKiste(intBombeX - i, intBombeY) == false) {// keine
 					// Kiste
@@ -88,7 +90,8 @@ public class Bombe extends Objekte {
 
 		// oben
 		for (int i = 0; (i < radius) && (boolMauer); i++) {
-			if (Spielflaeche.play.equalsMauer(intBombeX, intBombeY + i) == false) {// keine
+			if ((Spielflaeche.play.equalsMauer(intBombeX, intBombeY + i) == false)
+					&& (Spielflaeche.play.equalsExit(intBombeX, intBombeY + i) == false)) {// keine
 				// Mauer
 				if (Spielflaeche.play.equalsKiste(intBombeX, intBombeY + i) == false) {// keine
 					// Kiste
@@ -115,7 +118,9 @@ public class Bombe extends Objekte {
 
 		// unten
 		for (int i = 0; (i < radius) && (boolMauer); i++) {
-			if (Spielflaeche.play.equalsMauer(intBombeX, intBombeY - i) == false) {// keine
+
+			if ((Spielflaeche.play.equalsMauer(intBombeX, intBombeY - i) == false)
+					&& (Spielflaeche.play.equalsExit(intBombeX, intBombeY - i) == false)) {// keine
 				// Mauer
 				if (Spielflaeche.play.equalsKiste(intBombeX, intBombeY - i) == false) {// keine
 					// Kiste
