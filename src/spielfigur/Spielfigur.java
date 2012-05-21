@@ -1,5 +1,6 @@
 package spielfigur;
 
+import game.Game;
 import spielfeld.Spielflaeche;
 import bombe.BombType;
 import bombe.Bombe;
@@ -7,12 +8,12 @@ import bombe.NormalBomb;
 
 public class Spielfigur {
 
-	// Dekleration von Variabeln
+	// Initialisierung von Variabeln
 
-	public int xPosition;
-	public int yPosition;
-	protected int width = 200;
-	protected int height = 200;
+	public int xPosition; // aktuelle Position auf der "x-Achse" der Spielfläche
+	public int yPosition; // aktuelle Position auf der "y-Achse" der Spielfläche
+	protected int width;
+	protected int height;
 	protected String pic;
 	private boolean bombPlanted = false;
 	private BombType bomb = new NormalBomb();
@@ -76,6 +77,22 @@ public class Spielfigur {
 			bombPlanted = true;
 			bombeLiegt = true;
 		}
+	}
 
+	public void move(int x, int y) {
+		if (Spielflaeche.play.equalsGras(xPosition + x, yPosition + y)) {
+
+			Spielflaeche.play.fill(xPosition, yPosition, 0);
+			if (Spielflaeche.bman.bombeLiegt) {
+				Spielflaeche.play.fill(xPosition, yPosition, 4);
+				bombeLiegt = false;
+			}
+			xPosition = xPosition + x;
+			yPosition = yPosition + y;
+		} else if (Spielflaeche.play.equalsExit(xPosition + x, yPosition + y)) {
+			xPosition = xPosition + x;
+			yPosition = yPosition + y;
+			Game.restartGame();
+		}
 	}
 }

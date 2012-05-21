@@ -7,6 +7,4 @@ Spielfeld:
 		(einfach das Spielfeld mal um wenige Pixel vergrößern/verkleinern)	(Micha, 15.05.'12 ; 13:33)
 		- lag an arrayWidth und heigth, musste man um 1 pixel vergrößern, glaub sollte jetzt klappen?!
 			- nein tut es nicht, bittte selber testen.
-
-Dummy:
-	~	Kein Bug aber verwirrend, bitte umbenennen/ersetzen/anpassen!	(Micha, 16.05.'12 ; 15:53)
+		- bei den Kisten stimmt auch irgendwas nicht, wenn das Fenster eine bestimmte Größe erreicht bekommen sie schwarze Ränder	(Micha, 21.05.'12 ; 14:43)

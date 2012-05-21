@@ -17,9 +17,11 @@ public class Spielfeld extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	int hoehe, breite;
 	public static int register[][];
 
+	// Konstruktor
 	public Spielfeld(int breite, int hoehe) { // initialisiert Register
 		register = new int[breite][hoehe];
 		for (int i = 0; i < breite; i++) {
@@ -92,7 +94,6 @@ public class Spielfeld extends JPanel {
 	}
 
 	public void draw(Image img, int x, int y, Graphics g) {
-
 		g.drawImage(img, x * (getWidth() / 20), y * (getHeight() / 20),
 				getWidth() / 20 + 19, (getHeight() / 20) + 19, null);
 	}
@@ -100,7 +101,6 @@ public class Spielfeld extends JPanel {
 	public Image loadImg(String pfad) {
 		Image name1 = Toolkit.getDefaultToolkit().getImage(
 				getClass().getResource(pfad));
-
 		return name1;
 
 	}

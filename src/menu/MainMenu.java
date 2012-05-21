@@ -1,13 +1,12 @@
 package menu;
 
-import game.TestRun;
+import game.RunGame;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,17 +22,10 @@ public class MainMenu extends JFrame implements ActionListener {
 	public static boolean gamerunning = false;
 
 	// Panels und zugehoerige Buttons initialisieren
-	JPanel startpanel = new JPanel();
-	JButton start = new JButton("Start(WIP)");
-
-	JPanel testpanel = new JPanel();
-	JButton test = new JButton("TestRun");
-
-	JPanel setspanel = new JPanel();
-	JButton sets = new JButton("Settings(WIP)");
-
-	JPanel exitpanel = new JPanel();
-	JButton exit = new JButton("Exit");
+	MenuButton start = new MenuButton("Start");
+	MenuButton test = new MenuButton("Test");
+	MenuButton sets = new MenuButton("Sets");
+	MenuButton exit = new MenuButton("Exit");
 
 	// ...ebenso das Titelpanel
 	JPanel titlepanel = new JPanel();
@@ -44,7 +36,6 @@ public class MainMenu extends JFrame implements ActionListener {
 
 		getContentPane().setLayout(
 				new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-
 		getContentPane().setBackground(Color.BLACK);
 
 		// Buttons den Panels hinzufuegen
@@ -52,60 +43,42 @@ public class MainMenu extends JFrame implements ActionListener {
 		title.setForeground(Color.WHITE);
 		titlepanel.add(title);
 
-		startpanel.setBackground(null);
-		startpanel.add(start);
-
-		testpanel.setBackground(null);
-		testpanel.add(test);
-
-		setspanel.setBackground(null);
-		setspanel.add(sets);
-
-		exitpanel.setBackground(null);
-		exitpanel.add(exit);
-
 		// Panels dem Oberpanel hinzufuegen
 		getContentPane().add(titlepanel);
-
-		getContentPane().add(startpanel);
-
-		getContentPane().add(testpanel);
-
-		getContentPane().add(setspanel);
-
-		getContentPane().add(exitpanel);
+		getContentPane().add(start.getPanel());
+		getContentPane().add(test.getPanel());
+		getContentPane().add(sets.getPanel());
+		getContentPane().add(exit.getPanel());
 
 		// Buttons beim ActionListener registrieren
-		start.addActionListener(this);
-		start.setActionCommand("start");
+		start.getButton().addActionListener(this);
+		start.getButton().setActionCommand("start");
 
-		test.addActionListener(this);
-		test.setActionCommand("test");
+		test.getButton().addActionListener(this);
+		test.getButton().setActionCommand("test");
 
-		sets.addActionListener(this);
-		sets.setActionCommand("sets");
+		sets.getButton().addActionListener(this);
+		sets.getButton().setActionCommand("sets");
 
-		exit.addActionListener(this);
-		exit.setActionCommand("exit");
+		exit.getButton().addActionListener(this);
+		exit.getButton().setActionCommand("exit");
 	}
 
 	// ActionLister: Hier werden den Buttones Aktionen zugeordnet.
 	public void actionPerformed(ActionEvent evt) {
-		if (evt.getActionCommand().equals("start") && gamerunning == false) { // Startet
-																				// das
-																				// Spiel
-
-		}
-		if (evt.getActionCommand().equals("test") && gamerunning == false) { // Startet
-																				// den
-																				// Testrun
-			TestRun.go();
+		// Startet das Spiel
+		if (evt.getActionCommand().equals("start") && gamerunning == false) {
+			RunGame.go();
 			gamerunning = true;
 		}
-		if (evt.getActionCommand().equals("sets")) { // Oeffnet ein neues
-														// Fenster: "Settings"
+		// Startet den Tests (falls implementiert
+		if (evt.getActionCommand().equals("test") && gamerunning == false) {
 
 		}
+		// Startet die Settings (2do)
+		if (evt.getActionCommand().equals("sets")) {
+		}
+		// Beendet das Programm
 		if (evt.getActionCommand().equals("exit")) { // Beendet das Programm
 			System.exit(0);
 		}
