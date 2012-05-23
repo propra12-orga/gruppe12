@@ -46,7 +46,7 @@ public class Spielflaeche extends JPanel {
 		exit = play.loadImg("/ressources/grafics/ausgang.jpg");
 		bomb = play.loadImg("/ressources/grafics/Bombe.gif");
 		man = play.loadImg("/ressources/grafics/e.gif");
-		man2 = play.loadImg("/ressources/grafics/e.gif");
+		man2 = play.loadImg("/ressources/grafics/1015-1-kroco-gems.jpg");
 		kiste = play.loadImg("/ressources/grafics/kiste.png");
 		explo = play.loadImg("/ressources/grafics/expl.gif");
 
