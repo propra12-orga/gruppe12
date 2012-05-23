@@ -141,6 +141,13 @@ public class Spielfeld extends JPanel {
 			return true;
 		else
 			return false;
+	}
+	public boolean equalsMan2(int x, int y) {
+		// TODO Auto-generated method stub
+		if (register[x][y] == 11)
+			return true;
+		else
+			return false;
 
 	}
 

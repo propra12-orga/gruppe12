@@ -8,4 +8,5 @@ Objekte-Register:
 5	- 	Explosion
 
 10	-	Spielfigur
+11 - Player 2
 19	-	Spieler-Reserviert

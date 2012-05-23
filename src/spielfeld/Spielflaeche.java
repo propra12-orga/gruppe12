@@ -14,15 +14,17 @@ public class Spielflaeche extends JPanel {
 	// initialisiere Variablen
 	public static Spielfeld play;
 	public static Spielfigur bman;
+	public static Spielfigur bman2;
 
 	private static final long serialVersionUID = 1L;
 	public int arrayWidth, arrayHeight;
-	private Image gras, mauer, exit, bomb, man, kiste, explo;
+	private Image gras, mauer, exit, bomb, man, kiste, explo, man2;
 
 	// Konstruktor
 	public Spielflaeche() {
 		play = new Spielfeld(21, 21);
 		bman = new Spielfigur(2, 1);
+		bman2 = new Spielfigur(18, 19);
 
 		play.feldfuellen(); // Befuellt die Raender mit Mauer
 		play.fill(19, 19, 1); // Ausgang
@@ -32,6 +34,7 @@ public class Spielflaeche extends JPanel {
 	public void paint(Graphics g) {
 		// Figur dort gezeichnet wo objekt bman ist
 		Spielfeld.register[bman.xPosition][bman.yPosition] = 10;
+		Spielfeld.register[bman2.xPosition][bman2.yPosition] = 11;
 
 		// Anpassung der Spielfeldgröße an aktuelle Fenstergroesse
 		arrayWidth = getWidth() / 21 + 1;
@@ -43,6 +46,7 @@ public class Spielflaeche extends JPanel {
 		exit = play.loadImg("/ressources/grafics/ausgang.jpg");
 		bomb = play.loadImg("/ressources/grafics/Bombe.gif");
 		man = play.loadImg("/ressources/grafics/e.gif");
+		man2 = play.loadImg("/ressources/grafics/e.gif");
 		kiste = play.loadImg("/ressources/grafics/kiste.png");
 		explo = play.loadImg("/ressources/grafics/expl.gif");
 
@@ -72,6 +76,11 @@ public class Spielflaeche extends JPanel {
 				// zeichnet Spielfigur
 				if (play.equalsMan(x, y)) {
 					g.drawImage(man, x * arrayWidth, y * arrayHeight,
+							arrayWidth, arrayHeight, null);
+				}
+
+				if (play.equalsMan2(x, y)) {
+					g.drawImage(man2, x * arrayWidth, y * arrayHeight,
 							arrayWidth, arrayHeight, null);
 				}
 				// zeichnet Kiste
