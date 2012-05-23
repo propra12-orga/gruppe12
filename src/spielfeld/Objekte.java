@@ -22,6 +22,9 @@ public class Objekte extends Thread {
 		this.pic = pic;
 		this.type = type;
 	}
+	public Objekte(String type) {
+		this.type = type;
+	}
 
 	// Methode zum bewegen von Objekten. Muss Ã¼berschrieben werden
 	public void move() {
@@ -77,7 +80,7 @@ public class Objekte extends Thread {
 	}
 
 	public void warten(int millisToWait) {// diese Methode wartet eine
-											// übergebene anzahl an
+											// ï¿½bergebene anzahl an
 											// Millisekunden.
 		long millis = System.currentTimeMillis();
 		while ((System.currentTimeMillis() - millis) < millisToWait) {

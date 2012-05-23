@@ -1,6 +1,7 @@
 package bombe;
 
 import spielfeld.Objekte;
+import spielfeld.Spielfeld;
 import spielfeld.Spielflaeche;
 
 //Bombe hat folgende Eigenschaften
@@ -35,7 +36,8 @@ public class Bombe extends Objekte {
 				if (Spielflaeche.play.equalsKiste(intBombeX + i, intBombeY) == false) {// keine
 					// Kiste
 					nachRechts++;
-					Spielflaeche.play.fill(intBombeX + i, intBombeY, 5);// explosion
+					Spielflaeche.play.fill(intBombeX + i, intBombeY,
+							Spielfeld.Explosion);// explosion
 					// anzeigen
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt
@@ -44,7 +46,8 @@ public class Bombe extends Objekte {
 					// und es soll nicht weiter explodieren
 
 					boolMauer = false;
-					Spielflaeche.play.fill(intBombeX + i, intBombeY, 5);
+					Spielflaeche.play.fill(intBombeX + i, intBombeY,
+							Spielfeld.Explosion);
 					nachRechts++;
 					// nachRechts++;
 
@@ -65,7 +68,8 @@ public class Bombe extends Objekte {
 				if (Spielflaeche.play.equalsKiste(intBombeX - i, intBombeY) == false) {// keine
 					// Kiste
 					nachLinks++;
-					Spielflaeche.play.fill(intBombeX - i, intBombeY, 5);
+					Spielflaeche.play.fill(intBombeX - i, intBombeY,
+							Spielfeld.Explosion);
 					// explosion
 					// anzeigen
 					// Animation von Bombe + Bomberman stirbt + kiste geht
@@ -75,7 +79,8 @@ public class Bombe extends Objekte {
 					// und es soll nicht weiter explodieren
 
 					boolMauer = false;
-					Spielflaeche.play.fill(intBombeX - i, intBombeY, 5);
+					Spielflaeche.play.fill(intBombeX - i, intBombeY,
+							Spielfeld.Explosion);
 					nachLinks++;
 
 				}
@@ -96,7 +101,8 @@ public class Bombe extends Objekte {
 				if (Spielflaeche.play.equalsKiste(intBombeX, intBombeY + i) == false) {// keine
 					// Kiste
 					nachOben++;
-					Spielflaeche.play.fill(intBombeX, intBombeY + i, 5);// explosion
+					Spielflaeche.play.fill(intBombeX, intBombeY + i,
+							Spielfeld.Explosion);// explosion
 					// anzeigen
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt
@@ -105,7 +111,8 @@ public class Bombe extends Objekte {
 					// und es soll nicht weiter explodieren
 
 					boolMauer = false;
-					Spielflaeche.play.fill(intBombeX, intBombeY + i, 5);
+					Spielflaeche.play.fill(intBombeX, intBombeY + i,
+							Spielfeld.Explosion);
 					nachOben++;
 				}
 			} else {
@@ -125,7 +132,8 @@ public class Bombe extends Objekte {
 				if (Spielflaeche.play.equalsKiste(intBombeX, intBombeY - i) == false) {// keine
 					// Kiste
 					nachUnten++;
-					Spielflaeche.play.fill(intBombeX, intBombeY - i, 5);// explosion
+					Spielflaeche.play.fill(intBombeX, intBombeY - i,
+							Spielfeld.Explosion);// explosion
 					// anzeigen
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt
@@ -134,7 +142,8 @@ public class Bombe extends Objekte {
 					// und es soll nicht weiter explodieren
 
 					boolMauer = false;
-					Spielflaeche.play.fill(intBombeX, intBombeY - i, 5);
+					Spielflaeche.play.fill(intBombeX, intBombeY - i,
+							Spielfeld.Explosion);
 					nachUnten++;
 
 				}
@@ -149,16 +158,16 @@ public class Bombe extends Objekte {
 		boolMauer = true;
 		warten(750);
 		for (int i = 0; i < nachUnten; i++) {
-			Spielflaeche.play.fill(intBombeX, intBombeY - i, 0);
+			Spielflaeche.play.fill(intBombeX, intBombeY - i, Spielfeld.Gras);
 		}
 		for (int i = 0; i < nachOben; i++) {
-			Spielflaeche.play.fill(intBombeX, intBombeY + i, 0);
+			Spielflaeche.play.fill(intBombeX, intBombeY + i, Spielfeld.Gras);
 		}
 		for (int i = 0; i < nachLinks; i++) {
-			Spielflaeche.play.fill(intBombeX - i, intBombeY, 0);
+			Spielflaeche.play.fill(intBombeX - i, intBombeY, Spielfeld.Gras);
 		}
 		for (int i = 0; i < nachRechts; i++) {
-			Spielflaeche.play.fill(intBombeX + i, intBombeY, 0);
+			Spielflaeche.play.fill(intBombeX + i, intBombeY, Spielfeld.Gras);
 		}
 		Spielflaeche.bman.bombeLiegt = false;
 		Spielflaeche.bman.setBombPlanted(false);

@@ -19,14 +19,23 @@ public class Spielfeld extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	int hoehe, breite;
-	public static int register[][];
+	public static Objekte register[][];
 
+	public static Objekte Gras = new Objekte("Gras");
+	public static Objekte festeMauer = new Objekte("festeMauer");
+	public static Objekte zerstMauer = new Objekte("zerstMauer");
+	public static Objekte Ausgang = new Objekte("Ausgang");
+	public static Objekte Bombe = new Objekte("Bombe");
+	public static Objekte Explosion = new Objekte("Explosion");
+	public static Objekte Kiste = new Objekte("Kiste");
+	public static Objekte Bomberman1 = new Objekte("Bomberman1");
+	public static Objekte Bomberman2 = new Objekte("Bomberman2");
 	// Konstruktor
 	public Spielfeld(int breite, int hoehe) { // initialisiert Register
-		register = new int[breite][hoehe];
+		register = new Objekte[breite][hoehe];
 		for (int i = 0; i < breite; i++) {
 			for (int j = 0; j < hoehe; j++) {
-				register[i][j] = 0;
+				register[i][j] = Gras;
 			}
 		}
 
@@ -35,14 +44,14 @@ public class Spielfeld extends JPanel {
 	public void feldfuellen() {// Feste Mauern, Kisten und Ausgang werden
 		// bestimmt.
 		for (int y = 0; y < 21; y++) {
-			register[0][y] = 2;
-			register[20][y] = 2;
-			register[y][0] = 2;
-			register[y][20] = 2;
+			register[0][y] = festeMauer;
+			register[20][y] = festeMauer;
+			register[y][0] = festeMauer;
+			register[y][20] = festeMauer;
 		} // Raender mit Mauer befuellen
 		for (int i = 2; i < 20; i = i + 2) {
 			for (int j = 2; j < 20; j = j + 2) {
-				register[i][j] = 2;
+				register[i][j] = festeMauer;
 			}
 		}
 		// Zufallsgenerator deaktiviert.
@@ -52,43 +61,43 @@ public class Spielfeld extends JPanel {
 
 	public void randomGen(double dichte) {
 		// Feste Mauern einfuegen
-		register[1][3] = 3;
-		register[3][1] = 3;
+		register[1][3] = zerstMauer;
+		register[3][1] = zerstMauer;
 
 		// alles was noch nicht Mauer ist wird eventuell eine kiste.
 		for (int i = 3; i < 20; i = i + 2) {
 			for (int j = 1; j < 20; j++) {
 				int k = (int) (Math.random() + dichte);
 				if (k == 1)
-					register[i][j] = 3;
+					register[i][j] = Kiste;
 			}
 		}
 		for (int i = 3; i < 20; i = i + 2) {
 			for (int j = 1; j < 20; j++) {
 				int k = (int) (Math.random() + dichte);
 				if (k == 1)
-					register[j][i] = 3;
+					register[j][i] = Kiste;
 			}
 		}
 
 		for (int j = 3; j < 20; j++) {
 			int k = (int) (Math.random() + dichte);
 			if (k == 1)
-				register[1][j] = 3;
+				register[1][j] = Kiste;
 
 			int l = (int) (Math.random() + dichte);
 			if (l == 1)
-				register[j][1] = 3;
+				register[j][1] = Kiste;
 		}
 	}
-
-	public void fill(int regX, int regY, int obj) { // Methode zum befuellen des
+	public void fill(int regX, int regY, Objekte obj) { // Methode zum befuellen
+														// des
 		// Arrays an der Stelle
 		// RegX,RegY mit Objekt Obj
 		register[regX][regY] = obj;
 	}
 
-	public int getObj(int regX, int regY) { // gibt das Objekt an der Stelle
+	public Objekte getObj(int regX, int regY) { // gibt das Objekt an der Stelle
 		// RegX,RegY aus dem Register wieder
 		return register[regX][regY];
 	}
@@ -106,21 +115,20 @@ public class Spielfeld extends JPanel {
 	}
 
 	public boolean equalsGras(int x, int y) {
-		if (register[x][y] == 0)
+		if (register[x][y] == Gras)
 			return true;
 		else
 			return false;
 	}
-
 	public boolean equalsMauer(int x, int y) {
-		if (register[x][y] == 2)
+		if (register[x][y] == festeMauer)
 			return true;
 		else
 			return false;
 	}
 
 	public boolean equalsExit(int x, int y) {
-		if (register[x][y] == 1)
+		if (register[x][y] == Ausgang)
 			return true;
 		else
 			return false;
@@ -128,7 +136,7 @@ public class Spielfeld extends JPanel {
 
 	public boolean equalsBomb(int x, int y) {
 		// TODO Auto-generated method stub
-		if (register[x][y] == 4)
+		if (register[x][y] == Bombe)
 			return true;
 		else
 			return false;
@@ -137,14 +145,14 @@ public class Spielfeld extends JPanel {
 
 	public boolean equalsMan(int x, int y) {
 		// TODO Auto-generated method stub
-		if (register[x][y] == 10)
+		if (register[x][y] == Bomberman1)
 			return true;
 		else
 			return false;
 	}
 	public boolean equalsMan2(int x, int y) {
 		// TODO Auto-generated method stub
-		if (register[x][y] == 11)
+		if (register[x][y] == Bomberman1)
 			return true;
 		else
 			return false;
@@ -152,14 +160,14 @@ public class Spielfeld extends JPanel {
 	}
 
 	public boolean equalsKiste(int x, int y) {
-		if (register[x][y] == 3)
+		if (register[x][y] == Kiste)
 			return true;
 		else
 			return false;
 	}
 
 	public boolean equalsExplosion(int x, int y) {
-		if (register[x][y] == 5)
+		if (register[x][y] == Explosion)
 			return true;
 		else
 			return false;

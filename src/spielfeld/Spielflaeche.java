@@ -27,14 +27,14 @@ public class Spielflaeche extends JPanel {
 		bman2 = new Spielfigur(18, 19);
 
 		play.feldfuellen(); // Befuellt die Raender mit Mauer
-		play.fill(19, 19, 1); // Ausgang
+		play.fill(19, 19, Spielfeld.Ausgang); // Ausgang
 
 	}
 
 	public void paint(Graphics g) {
 		// Figur dort gezeichnet wo objekt bman ist
-		Spielfeld.register[bman.xPosition][bman.yPosition] = 10;
-		Spielfeld.register[bman2.xPosition][bman2.yPosition] = 11;
+		Spielfeld.register[bman.xPosition][bman.yPosition] = Spielfeld.Bomberman1;
+		Spielfeld.register[bman2.xPosition][bman2.yPosition] = Spielfeld.Bomberman2;
 
 		// Anpassung der Spielfeldgröße an aktuelle Fenstergroesse
 		arrayWidth = getWidth() / 21 + 1;

@@ -1,6 +1,7 @@
 package spielfigur;
 
 import game.Game;
+import spielfeld.Spielfeld;
 import spielfeld.Spielflaeche;
 import bombe.BombType;
 import bombe.Bombe;
@@ -69,7 +70,7 @@ public class Spielfigur {
 	public void bombeLegen() {
 		if (bombPlanted == false) {
 			new Bombe(xPosition, yPosition, width, height, bomb).start();
-			Spielflaeche.play.fill(xPosition, yPosition, 4);
+			Spielflaeche.play.fill(xPosition, yPosition, Spielfeld.Bombe);
 			bombPlanted = true;
 			bombeLiegt = true;
 		}
@@ -78,9 +79,9 @@ public class Spielfigur {
 	public void move(int x, int y) {
 		if (Spielflaeche.play.equalsGras(xPosition + x, yPosition + y)) {
 
-			Spielflaeche.play.fill(xPosition, yPosition, 0);
+			Spielflaeche.play.fill(xPosition, yPosition, Spielfeld.Gras);
 			if (Spielflaeche.bman.bombeLiegt) {
-				Spielflaeche.play.fill(xPosition, yPosition, 4);
+				Spielflaeche.play.fill(xPosition, yPosition, Spielfeld.Bombe);
 				bombeLiegt = false;
 			}
 			xPosition = xPosition + x;
@@ -92,7 +93,7 @@ public class Spielfigur {
 		} else if (Spielflaeche.play.equalsExplosion(xPosition + x, yPosition
 				+ y)
 				|| (Spielflaeche.play.equalsExplosion(xPosition, yPosition))) {
-			Spielflaeche.play.fill(xPosition, yPosition, 0);
+			Spielflaeche.play.fill(xPosition, yPosition, Spielfeld.Gras);
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
 			System.out.println("DU TOT");
@@ -105,9 +106,9 @@ public class Spielfigur {
 	public void move2(int x, int y) {
 		if (Spielflaeche.play.equalsGras(xPosition + x, yPosition + y)) {
 
-			Spielflaeche.play.fill(xPosition, yPosition, 0);
+			Spielflaeche.play.fill(xPosition, yPosition, Spielfeld.Gras);
 			if (Spielflaeche.bman2.bombeLiegt) {
-				Spielflaeche.play.fill(xPosition, yPosition, 4);
+				Spielflaeche.play.fill(xPosition, yPosition, Spielfeld.Bombe);
 				bombeLiegt = false;
 			}
 			xPosition = xPosition + x;
@@ -118,7 +119,7 @@ public class Spielfigur {
 			Game.restartGame();
 		} else if (Spielflaeche.play.equalsExplosion(xPosition + x, yPosition
 				+ y)) {
-			Spielflaeche.play.fill(xPosition, yPosition, 0);
+			Spielflaeche.play.fill(xPosition, yPosition, Spielfeld.Gras);
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
 			System.out.println("DU TOT");

@@ -1,0 +1,37 @@
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+// Diese Klasse erzeugt ein Spielfeld und benutzt einen Thread zum darstellen
+// wahrscheinlich fixt das das Problem, es ist bei mir nichtmehr aufgetreten
+
+public class SpielfeldThread extends Thread {
+	public SpielfeldThread(){   // Konstruktor erzeugt Frame mit Spielfeld
+		final JFrame opener = new JFrame("Bomberman");
+		GameQuitter gQuit = new GameQuitter(opener); // Erzeugt WindowListener		
+		opener.add(new Spielflaeche());
+		opener.setLocation(400, 25);
+		opener.setSize(800,600);
+		opener.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		opener.addWindowListener(gQuit);
+		
+		
+		
+		
+		Runnable gui=new Runnable(){
+
+			@Override
+			public void run() {			  // der Thread zeichnet durchgehend neu 
+				opener.repaint();
+				opener.setVisible(true);
+			}
+			
+		};
+		SwingUtilities.invokeLater(gui); // wartet bis ausgefuehrt
+			
+		
+		
+		
+		
+		
+	}
+
+}
