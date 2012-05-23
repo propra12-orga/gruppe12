@@ -21,9 +21,9 @@ public class Spielfeld extends JPanel {
 	int hoehe, breite;
 	public static Objekte register[][];
 
+	// erstellen der Objekte
 	public static Objekte Gras = new Objekte("Gras");
 	public static Objekte festeMauer = new Objekte("festeMauer");
-	public static Objekte zerstMauer = new Objekte("zerstMauer");
 	public static Objekte Ausgang = new Objekte("Ausgang");
 	public static Objekte Bombe = new Objekte("Bombe");
 	public static Objekte Explosion = new Objekte("Explosion");
@@ -61,8 +61,8 @@ public class Spielfeld extends JPanel {
 
 	public void randomGen(double dichte) {
 		// Feste Mauern einfuegen
-		register[1][3] = zerstMauer;
-		register[3][1] = zerstMauer;
+		register[1][3] = Kiste;
+		register[3][1] = Kiste;
 
 		// alles was noch nicht Mauer ist wird eventuell eine kiste.
 		for (int i = 3; i < 20; i = i + 2) {
@@ -152,7 +152,7 @@ public class Spielfeld extends JPanel {
 	}
 	public boolean equalsMan2(int x, int y) {
 		// TODO Auto-generated method stub
-		if (register[x][y] == Bomberman1)
+		if (register[x][y] == Bomberman2)
 			return true;
 		else
 			return false;
