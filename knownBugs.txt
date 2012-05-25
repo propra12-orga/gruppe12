@@ -8,3 +8,6 @@ Spielfeld:
 		- lag an arrayWidth und heigth, musste man um 1 pixel vergrößern, glaub sollte jetzt klappen?!
 			- nein tut es nicht, bittte selber testen.
 		- bei den Kisten stimmt auch irgendwas nicht, wenn das Fenster eine bestimmte Größe erreicht bekommen sie schwarze Ränder	(Micha, 21.05.'12 ; 14:43)
+		
+Allgemein:
+	-	Die Performance ist aus irgendeinem Grund seit letztem pull im Keller (zumindest aufm Netbook)	(Micha, 25.05.'12 ; 11:27)
