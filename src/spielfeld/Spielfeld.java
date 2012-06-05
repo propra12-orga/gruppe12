@@ -121,7 +121,7 @@ public class Spielfeld extends JPanel {
 	}
 
 	public Objekte getObj(int regX, int regY, int ebene) { // gibt das Objekt an
-															// der Stelle
+		// der Stelle
 		// RegX,RegY aus dem Register wieder
 		return register[regX][regY][ebene];
 	}

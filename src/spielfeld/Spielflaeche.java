@@ -55,7 +55,7 @@ public class Spielflaeche extends JPanel {
 
 		// Laden der Bilder
 		gras = play.loadImg("/ressources/grafics/gras.gif");
-		mauer = play.loadImg("/ressources/grafics/brick.gif");
+		mauer = play.loadImg("/ressources/grafics/brick.jpg");
 		exit = play.loadImg("/ressources/grafics/ausgang.gif");
 		bomb = play.loadImg("/ressources/grafics/Bombe.gif");
 		man = play.loadImg("/ressources/grafics/bomberman.png");
