@@ -8,6 +8,7 @@ public class Objekte extends Thread {
 	protected int width;
 	protected int height;
 	protected String pic;
+	protected int dimension;
 
 	protected String type;
 
@@ -22,8 +23,9 @@ public class Objekte extends Thread {
 		this.pic = pic;
 		this.type = type;
 	}
-	public Objekte(String type) {
+	public Objekte(String type, int dimension) {
 		this.type = type;
+		this.dimension = dimension;
 	}
 
 	// Methode zum bewegen von Objekten. Muss überschrieben werden

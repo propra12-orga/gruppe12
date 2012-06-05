@@ -44,4 +44,5 @@ public class BombType {
 		pic = Toolkit.getDefaultToolkit().getImage(
 				getClass().getResource(picPath));
 	}
+
 }

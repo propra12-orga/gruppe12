@@ -13,6 +13,7 @@ public class Spielfigur {
 
 	public int xPosition; // aktuelle Position auf der "x-Achse" der Spielfläche
 	public int yPosition; // aktuelle Position auf der "y-Achse" der Spielfläche
+	public int dimension;
 	protected int width;
 	protected int height;
 	protected String pic;
@@ -30,9 +31,10 @@ public class Spielfigur {
 
 	}
 
-	public Spielfigur(int xPosition, int yPosition) {
+	public Spielfigur(int xPosition, int yPosition, int dimension) {
 		this.yPosition = yPosition;
 		this.xPosition = xPosition;
+		this.dimension = dimension;
 	}
 
 	// get und set methoden
@@ -70,7 +72,7 @@ public class Spielfigur {
 	public void bombeLegen() {
 		if (bombPlanted == false) {
 			new Bombe(xPosition, yPosition, width, height, bomb).start();
-			Spielflaeche.play.fill(xPosition, yPosition, Spielfeld.Bombe);
+			Spielflaeche.play.fill(xPosition, yPosition, 4, Spielfeld.Bombe);
 			bombPlanted = true;
 			bombeLiegt = true;
 		}
@@ -79,21 +81,23 @@ public class Spielfigur {
 	public void move(int x, int y) {
 		if (Spielflaeche.play.equalsGras(xPosition + x, yPosition + y)) {
 
-			Spielflaeche.play.fill(xPosition, yPosition, Spielfeld.Gras);
+			Spielflaeche.play.fill(xPosition, yPosition, 3, Spielfeld.Gras);
 			if (Spielflaeche.bman.bombeLiegt) {
-				Spielflaeche.play.fill(xPosition, yPosition, Spielfeld.Bombe);
+				Spielflaeche.play
+						.fill(xPosition, yPosition, 4, Spielfeld.Bombe);
 				bombeLiegt = false;
 			}
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
-		} else if (Spielflaeche.play.equalsExit(xPosition + x, yPosition + y)) {
+		} else if (Spielflaeche.play
+				.equalsExit(xPosition + x, yPosition + y, 1)) {
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
 			Game.restartGame();
 		} else if (Spielflaeche.play.equalsExplosion(xPosition + x, yPosition
-				+ y)
-				|| (Spielflaeche.play.equalsExplosion(xPosition, yPosition))) {
-			Spielflaeche.play.fill(xPosition, yPosition, Spielfeld.Gras);
+				+ y, 3)
+				|| (Spielflaeche.play.equalsExplosion(xPosition, yPosition, 3))) {
+			Spielflaeche.play.fill(xPosition, yPosition, 3, Spielfeld.Gras);
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
 			System.out.println("DU TOT");
@@ -106,20 +110,22 @@ public class Spielfigur {
 	public void move2(int x, int y) {
 		if (Spielflaeche.play.equalsGras(xPosition + x, yPosition + y)) {
 
-			Spielflaeche.play.fill(xPosition, yPosition, Spielfeld.Gras);
+			Spielflaeche.play.fill(xPosition, yPosition, 3, Spielfeld.Gras);
 			if (Spielflaeche.bman2.bombeLiegt) {
-				Spielflaeche.play.fill(xPosition, yPosition, Spielfeld.Bombe);
+				Spielflaeche.play
+						.fill(xPosition, yPosition, 4, Spielfeld.Bombe);
 				bombeLiegt = false;
 			}
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
-		} else if (Spielflaeche.play.equalsExit(xPosition + x, yPosition + y)) {
+		} else if (Spielflaeche.play
+				.equalsExit(xPosition + x, yPosition + y, 1)) {
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
 			Game.restartGame();
 		} else if (Spielflaeche.play.equalsExplosion(xPosition + x, yPosition
-				+ y)) {
-			Spielflaeche.play.fill(xPosition, yPosition, Spielfeld.Gras);
+				+ y, 3)) {
+			Spielflaeche.play.fill(xPosition, yPosition, 3, Spielfeld.Gras);
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
 			System.out.println("DU TOT");
