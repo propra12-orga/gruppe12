@@ -37,8 +37,8 @@ public class Spielflaeche extends JPanel {
 		bman = new Spielfigur(2, 1, 2);
 		bman2 = new Spielfigur(18, 19, 2);
 
-		play.feldfuellen(); // Befuellt die Raender mit Mauer
-		play.fill(19, 19, 1, Spielfeld.Ausgang); // Ausgang
+		play.feldfuellen();
+		play.fill(19, 19, 1, Spielfeld.Ausgang);
 		play.fill(1, 1, 2, Spielfeld.Kiste);
 		play.fill(1, 1, 1, Spielfeld.Ausgang);
 
@@ -64,33 +64,42 @@ public class Spielflaeche extends JPanel {
 		explo = play.loadImg("/ressources/grafics/expl.gif");
 		dummy = play.loadImg("/ressources/grafics/Gem.png");
 		/*
-		 * abgeaenderte Zeichenschleife. sie implementiert eine gewisse
-		 * Prioritätenliste. Die Objekte der Dimension 1 werden nur gezeichnet
-		 * a) falls sie existieren und b) falls kein Objekt der Dimension 2
-		 * existiert (auf den selben Koordinaten.) Das Gras wird nur genau dann
-		 * gezeichnet wenn Dimension 1 und 2 leer sind wichtig: unter die
-		 * Objekte(sprich zeitlich davor!) muss Gras gesetzt werden sonst wird
-		 * ein falscher Untergrund implementiert.
+		 * Zeichenschleife. sie implementiert eine gewisse Prioritätenliste. Die
+		 * Objekte der Dimension 1 werden nur gezeichnet: a) falls sie
+		 * existieren und b) falls kein Objekt der Dimension 2 existiert (auf
+		 * den selben Koordinaten.). Wichtig: unter die Objekte(sprich zeitlich
+		 * davor!) muss Gras gesetzt werden sonst wird ein falscher Untergrund
+		 * implementiert.
 		 */
 		for (int x = 0; x < 21; x++) {
 			for (int y = 0; y < 21; y++) {
 
 				if (play.getObj(x, y, 1) == null
 						&& play.getObj(x, y, 2) == null) {
+					/*
+					 * Wenn das Feld frei ist an der Stelle zeichne lediglich
+					 * Gras (sofern da auch welches ist) merke: Jede Stelle die
+					 * nicht gerade festeMauer beeinhaltet wird erstmal zu gras
+					 * und die anderen Ebenen null falls nicht explizit gefüllt
+					 */
 					if (play.equalsGras(x, y)) {
 						g.drawImage(gras, x * arrayWidth, y * arrayHeight,
 								arrayWidth, arrayHeight, null);
 					}
 				} else if (play.getObj(x, y, 1) != null) {
-
+					/*
+					 * Wenn Ebene 1 nicht leer ist und nichts über ihr liegt
+					 * zeichne Ebene 1. wichtig: vorher Untergrund editieren zu
+					 * Gras.
+					 */
 					if (play.equalsExit(x, y, 1)
-							&& play.register[x][y][2] == null) {
+							&& play.getObj(x, y, 2) == null) {
 						g.drawImage(gras, x * arrayWidth, y * arrayHeight,
 								arrayWidth, arrayHeight, null);
 						g.drawImage(exit, x * arrayWidth, y * arrayHeight,
 								arrayWidth, arrayHeight, null);
 					} else if (play.equalsDummyItem(x, y, 1)
-							&& play.register[x][y][2] == null) {
+							&& play.getObj(x, y, 2) == null) {
 
 						g.drawImage(gras, x * arrayWidth, y * arrayHeight,
 								arrayWidth, arrayHeight, null);
@@ -100,14 +109,18 @@ public class Spielflaeche extends JPanel {
 				}
 
 				/*
-				 * über Mauer Position liegt eh nichts. zeichnet Mauer
+				 * über Mauer Position liegt nichts. zeichnet Mauer
 				 */
 				if (play.equalsMauer(x, y)) {
 					g.drawImage(mauer, x * arrayWidth, y * arrayHeight,
 							arrayWidth, arrayHeight, null);
 				}
 
-				// zeichnet Bombe auf Dimension 4
+				/*
+				 * zeichnet Bombe auf Dimension 4 Die Bombe hat eine eigene
+				 * Dimension damit Bomberman beim legen der Bombe über ihr
+				 * stehen kann.
+				 */
 				else if (play.equalsBomb(x, y, 4)) {
 					g.drawImage(bomb, x * arrayWidth, y * arrayHeight,
 							arrayWidth, arrayHeight, null);
@@ -117,7 +130,7 @@ public class Spielflaeche extends JPanel {
 					g.drawImage(man, x * arrayWidth, y * arrayHeight,
 							arrayWidth, arrayHeight, null);
 				}
-
+				// zeichnet Spielfigur 2
 				if (play.equalsMan2(x, y, 3)) {
 					g.drawImage(man2, x * arrayWidth, y * arrayHeight,
 							arrayWidth, arrayHeight, null);

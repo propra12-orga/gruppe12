@@ -12,8 +12,6 @@ public class Objekte extends Thread {
 
 	protected String type;
 
-	// Konstruktor
-
 	public Objekte(int xPos, int yPos, int widht, int height, String pic,
 			String type) {
 		xPosition = xPos;
