@@ -11,8 +11,10 @@ public class Spielfigur {
 
 	// Initialisierung von Variabeln
 
-	public int xPosition; // aktuelle Position auf der "x-Achse" der Spielfläche
-	public int yPosition; // aktuelle Position auf der "y-Achse" der Spielfläche
+	public int xPosition; // aktuelle Position auf der "x-Achse" der
+							// Spielfläche
+	public int yPosition; // aktuelle Position auf der "y-Achse" der
+							// Spielfläche
 	public int dimension;
 	protected int width;
 	protected int height;
@@ -21,11 +23,6 @@ public class Spielfigur {
 	private BombType bomb = new NormalBomb();
 
 	public boolean bombeLiegt;
-
-	private void addKeyListener(Spielfigur spielfigur) {
-		// TODO Auto-generated method stub
-
-	}
 
 	public Spielfigur(int xPosition, int yPosition, int dimension) {
 		this.yPosition = yPosition;
@@ -75,11 +72,23 @@ public class Spielfigur {
 	}
 
 	public void move(int x, int y) {
+
+		/*
+		 * Das Spiel wird neu gestartet wenn Bomberman in Ausgang
+		 */
+
+		if (Spielflaeche.play.getObj(xPosition + x, yPosition + y, 1) == Spielfeld.Ausgang
+				&& Spielflaeche.play.getObj(xPosition + x, yPosition + y, 2) != Spielfeld.Kiste) {
+			xPosition = xPosition + x;
+			yPosition = yPosition + y;
+			Game.restartGame();
+		}
+
 		/*
 		 * Abfrage ob schon ein Objekt bzw. Mauer in Bewegungsrichtung vorhanden
 		 * ist
 		 */
-		if (Spielflaeche.play.getObj(xPosition + x, yPosition + y, 2) == null
+		else if (Spielflaeche.play.getObj(xPosition + x, yPosition + y, 2) == null
 				&& Spielflaeche.play.getObj(xPosition + x, yPosition + y, 4) == null
 				&& Spielflaeche.play.equalsMauer(xPosition + x, yPosition + y) == false) {
 			/*
@@ -98,16 +107,7 @@ public class Spielfigur {
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
 		}
-		/*
-		 * Das Spiel wird neu gestartet wenn Bomberman in Ausgang
-		 */
 
-		else if (Spielflaeche.play.equalsExit(xPosition + x, yPosition + y, 1)
-				&& Spielflaeche.play.getObj(xPosition + x, yPosition + y, 2) != Spielfeld.Kiste) {
-			xPosition = xPosition + x;
-			yPosition = yPosition + y;
-			Game.restartGame();
-		}
 		/*
 		 * Abfrage: bomberman kann in eine Explosion gehen: stirbt allerdings.
 		 */
