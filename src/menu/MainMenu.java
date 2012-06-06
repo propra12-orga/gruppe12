@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import menu.mapChoose.MapChooser;
+
 public class MainMenu extends JFrame implements ActionListener {
 
 	/**
@@ -23,13 +25,14 @@ public class MainMenu extends JFrame implements ActionListener {
 
 	// Panels und zugehoerige Buttons initialisieren
 	MenuButton start = new MenuButton("Start");
-	MenuButton test = new MenuButton("Test");
+	MenuButton dummy = new MenuButton("Dummy");
+	MenuButton loadMap = new MenuButton("Lade Karte");
 	MenuButton sets = new MenuButton("Sets");
 	MenuButton exit = new MenuButton("Exit");
 
 	// ...ebenso das Titelpanel
 	JPanel titlepanel = new JPanel();
-	JLabel title = new JLabel("Ganz schön dolles Spiel");
+	JLabel title = new JLabel("Ganz dolles Spiel");
 
 	// Konstruktor
 	public MainMenu() {
@@ -46,7 +49,8 @@ public class MainMenu extends JFrame implements ActionListener {
 		// Panels dem Oberpanel hinzufuegen
 		getContentPane().add(titlepanel);
 		getContentPane().add(start.getPanel());
-		getContentPane().add(test.getPanel());
+		getContentPane().add(dummy.getPanel());
+		getContentPane().add(loadMap.getPanel());
 		getContentPane().add(sets.getPanel());
 		getContentPane().add(exit.getPanel());
 
@@ -54,8 +58,11 @@ public class MainMenu extends JFrame implements ActionListener {
 		start.getButton().addActionListener(this);
 		start.getButton().setActionCommand("start");
 
-		test.getButton().addActionListener(this);
-		test.getButton().setActionCommand("test");
+		dummy.getButton().addActionListener(this);
+		dummy.getButton().setActionCommand("dummy");
+
+		loadMap.getButton().addActionListener(this);
+		loadMap.getButton().setActionCommand("loadMap");
 
 		sets.getButton().addActionListener(this);
 		sets.getButton().setActionCommand("sets");
@@ -71,9 +78,13 @@ public class MainMenu extends JFrame implements ActionListener {
 			RunGame.go();
 			gamerunning = true;
 		}
-		// Startet den Tests (falls implementiert
-		if (evt.getActionCommand().equals("test") && gamerunning == false) {
+		// Startet den Tests (falls implementiert)
+		if (evt.getActionCommand().equals("dummy")) {
 
+		}
+		// Startet Spiel mit vorgegebener Karte
+		if (evt.getActionCommand().equals("loadMap") && gamerunning == false) {
+			MapChooser.go();
 		}
 		// Startet die Settings (2do)
 		if (evt.getActionCommand().equals("sets")) {
