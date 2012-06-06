@@ -39,7 +39,7 @@ public class Spielflaeche extends JPanel {
 
 		play.feldfuellen(); // Befuellt die Raender mit Mauer
 		play.fill(19, 19, 1, Spielfeld.Ausgang); // Ausgang
-		// play.fill(1, 1, 2, Spielfeld.Kiste);
+		play.fill(1, 1, 2, Spielfeld.Kiste);
 		play.fill(1, 1, 1, Spielfeld.Ausgang);
 
 	}
