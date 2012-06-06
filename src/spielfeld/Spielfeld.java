@@ -3,6 +3,9 @@ package spielfeld;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 /*
@@ -87,7 +90,10 @@ public class Spielfeld extends JPanel {
 	 * ueberladen der Methode feldfuellen() um ein Feld aus einer .txt Datei
 	 * auszulesen
 	 */
-	public void feldfuellen(String text) {
+	public void feldfuellen(String text) throws IOException {
+		FileReader einlesen = new FileReader(text);
+		BufferedReader br = new BufferedReader(einlesen);
+		br.read();
 		// noch zu editieren.
 	}
 	public void randomGen(double dichte) {
@@ -95,19 +101,30 @@ public class Spielfeld extends JPanel {
 		register[1][3][2] = Kiste;
 		register[3][1][2] = Kiste;
 
-		// alles was noch nicht Mauer ist wird eventuell eine kiste.
+		// Zufallsgenerator erweitert um die Moeglichkeit
+		// Items zu platzieren
 		for (int i = 3; i < 20; i = i + 2) {
 			for (int j = 1; j < 20; j++) {
 				int k = (int) (Math.random() + dichte);
-				if (k == 1)
+				int h = (int) (Math.random() + dichte);
+				if (h == 1) {
 					register[i][j][2] = Kiste;
+					register[i][j][1] = DummyItem;
+				} else if (k == 1)
+					register[i][j][2] = Kiste;
+
 			}
 		}
 		for (int i = 3; i < 20; i = i + 2) {
 			for (int j = 1; j < 20; j++) {
 				int k = (int) (Math.random() + dichte);
-				if (k == 1)
+				int h = (int) (Math.random() + dichte / 2);
+				if (h == 1) {
 					register[j][i][2] = Kiste;
+					register[j][i][1] = DummyItem;
+				} else if (k == 1) {
+					register[j][i][2] = Kiste;
+				}
 			}
 		}
 
