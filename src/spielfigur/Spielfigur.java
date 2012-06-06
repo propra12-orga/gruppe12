@@ -85,6 +85,21 @@ public class Spielfigur {
 		}
 
 		/*
+		 * Abfrage: bomberman kann in eine Explosion gehen: stirbt allerdings.
+		 */
+
+		else if (Spielflaeche.play.equalsExplosion(xPosition + x,
+				yPosition + y, 3)
+				|| (Spielflaeche.play.equalsExplosion(xPosition, yPosition, 3))) {
+			Spielflaeche.play.fill(xPosition, yPosition, 3, Spielfeld.Gras);
+			xPosition = xPosition + x;
+			yPosition = yPosition + y;
+			System.out.println("Player 2 siegt");
+			// Label soll erstellt werden // Tot - wanna restart?
+
+		}
+
+		/*
 		 * Abfrage ob schon ein Objekt bzw. Mauer in Bewegungsrichtung vorhanden
 		 * ist
 		 */
@@ -108,25 +123,41 @@ public class Spielfigur {
 			yPosition = yPosition + y;
 		}
 
-		/*
-		 * Abfrage: bomberman kann in eine Explosion gehen: stirbt allerdings.
-		 */
-
-		else if (Spielflaeche.play.equalsExplosion(xPosition + x,
-				yPosition + y, 3)
-				|| (Spielflaeche.play.equalsExplosion(xPosition, yPosition, 3))) {
-			Spielflaeche.play.fill(xPosition, yPosition, 3, Spielfeld.Gras);
-			xPosition = xPosition + x;
-			yPosition = yPosition + y;
-			System.out.println("DU TOT");
-			// Label soll erstellt werden // Tot - wanna restart?
-
-		}
-
 	}// move
 
 	public void move2(int x, int y) {
-		if (Spielflaeche.play.equalsGras(xPosition + x, yPosition + y)) {
+		/*
+		 * 
+		 * Checkt ob Player 2 auf einen Ausgang rennt
+		 */
+		if (Spielflaeche.play.getObj(xPosition + x, yPosition + y, 1) == Spielfeld.Ausgang
+				&& Spielflaeche.play.getObj(xPosition + x, yPosition + y, 2) != Spielfeld.Kiste) {
+			xPosition = xPosition + x;
+			yPosition = yPosition + y;
+			Game.restartGame();
+
+		}
+		/*
+		 * Checkt ob Spieler 2 in eine Explo rennt
+		 */
+
+		else if (Spielflaeche.play.equalsExplosion(xPosition + x,
+				yPosition + y, 3)) {
+			Spielflaeche.play.fill(xPosition, yPosition, 3, Spielfeld.Gras);
+			xPosition = xPosition + x;
+			yPosition = yPosition + y;
+			System.out.println("Player1 siegt");
+		}
+
+		// Label soll erstellt werden // Tot - wanna restart?
+
+		/*
+		 * 
+		 * Checkt ob das Feld auf das Player 2 rennen soll leer ist
+		 */
+		else if (Spielflaeche.play.getObj(xPosition + x, yPosition + y, 2) == null
+				&& Spielflaeche.play.getObj(xPosition + x, yPosition + y, 4) == null
+				&& Spielflaeche.play.equalsMauer(xPosition + x, yPosition + y) == false) {
 
 			Spielflaeche.play.fill(xPosition, yPosition, 3, Spielfeld.Gras);
 			if (Spielflaeche.bman2.bombeLiegt) {
@@ -136,19 +167,6 @@ public class Spielfigur {
 			}
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
-		} else if (Spielflaeche.play
-				.equalsExit(xPosition + x, yPosition + y, 1)) {
-			xPosition = xPosition + x;
-			yPosition = yPosition + y;
-			Game.restartGame();
-		} else if (Spielflaeche.play.equalsExplosion(xPosition + x, yPosition
-				+ y, 3)) {
-			Spielflaeche.play.fill(xPosition, yPosition, 3, Spielfeld.Gras);
-			xPosition = xPosition + x;
-			yPosition = yPosition + y;
-			System.out.println("DU TOT");
-			// Label soll erstellt werden // Tot - wanna restart?
-
 		}
-	}// move2
-}
+	}
+}// move2
