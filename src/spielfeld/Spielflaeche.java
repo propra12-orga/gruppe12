@@ -39,8 +39,8 @@ public class Spielflaeche extends JPanel {
 
 		play.feldfuellen(); // Befuellt die Raender mit Mauer
 		play.fill(19, 19, 1, Spielfeld.Ausgang); // Ausgang
-		play.fill(1, 1, 2, Spielfeld.Kiste);
-		play.fill(1, 1, 1, Spielfeld.DummyItem);
+		// play.fill(1, 1, 2, Spielfeld.Kiste);
+		play.fill(1, 1, 1, Spielfeld.Ausgang);
 
 	}
 
@@ -56,7 +56,7 @@ public class Spielflaeche extends JPanel {
 		// Laden der Bilder
 		gras = play.loadImg("/ressources/grafics/gras.gif");
 		mauer = play.loadImg("/ressources/grafics/brick.jpg");
-		exit = play.loadImg("/ressources/grafics/ausgang.gif");
+		exit = play.loadImg("/ressources/grafics/ausgang.jpg");
 		bomb = play.loadImg("/ressources/grafics/Bombe.gif");
 		man = play.loadImg("/ressources/grafics/bomberman.png");
 		man2 = play.loadImg("/ressources/grafics/bomberman2.png");
@@ -118,8 +118,8 @@ public class Spielflaeche extends JPanel {
 							arrayWidth, arrayHeight, null);
 				}
 
-				if (play.equalsMan2(x, y, 2)) {
-					g.drawImage(man, x * arrayWidth, y * arrayHeight,
+				if (play.equalsMan2(x, y, 3)) {
+					g.drawImage(man2, x * arrayWidth, y * arrayHeight,
 							arrayWidth, arrayHeight, null);
 				}
 

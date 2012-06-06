@@ -22,10 +22,6 @@ public class Spielfigur {
 
 	public boolean bombeLiegt;
 
-	public Spielfigur() {
-		addKeyListener(this);
-	}
-
 	private void addKeyListener(Spielfigur spielfigur) {
 		// TODO Auto-generated method stub
 
@@ -79,23 +75,45 @@ public class Spielfigur {
 	}
 
 	public void move(int x, int y) {
-		if (Spielflaeche.play.equalsGras(xPosition + x, yPosition + y)) {
-
+		/*
+		 * Abfrage ob schon ein Objekt bzw. Mauer in Bewegungsrichtung vorhanden
+		 * ist
+		 */
+		if (Spielflaeche.play.getObj(xPosition + x, yPosition + y, 2) == null
+				&& Spielflaeche.play.getObj(xPosition + x, yPosition + y, 4) == null
+				&& Spielflaeche.play.equalsMauer(xPosition + x, yPosition + y) == false) {
+			/*
+			 * Checkt ob Bombe gelegt wurde, falls ja wird Bombengrafik auf den
+			 * Feld hinterlassen
+			 */
 			Spielflaeche.play.fill(xPosition, yPosition, 3, Spielfeld.Gras);
 			if (Spielflaeche.bman.bombeLiegt) {
 				Spielflaeche.play
 						.fill(xPosition, yPosition, 4, Spielfeld.Bombe);
-				bombeLiegt = false;
+				bombeLiegt = false; // Noch eine Bedingung ( Wenn Explo --> Bman
+									// auf explo
+				// sieht verkohlt aus
+
 			}
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
-		} else if (Spielflaeche.play
-				.equalsExit(xPosition + x, yPosition + y, 1)) {
+		}
+		/*
+		 * Das Spiel wird neu gestartet wenn Bomberman in Ausgang
+		 */
+
+		else if (Spielflaeche.play.equalsExit(xPosition + x, yPosition + y, 1)
+				&& Spielflaeche.play.getObj(xPosition + x, yPosition + y, 2) != Spielfeld.Kiste) {
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
 			Game.restartGame();
-		} else if (Spielflaeche.play.equalsExplosion(xPosition + x, yPosition
-				+ y, 3)
+		}
+		/*
+		 * Abfrage: bomberman kann in eine Explosion gehen: stirbt allerdings.
+		 */
+
+		else if (Spielflaeche.play.equalsExplosion(xPosition + x,
+				yPosition + y, 3)
 				|| (Spielflaeche.play.equalsExplosion(xPosition, yPosition, 3))) {
 			Spielflaeche.play.fill(xPosition, yPosition, 3, Spielfeld.Gras);
 			xPosition = xPosition + x;
@@ -105,7 +123,7 @@ public class Spielfigur {
 
 		}
 
-	}
+	}// move
 
 	public void move2(int x, int y) {
 		if (Spielflaeche.play.equalsGras(xPosition + x, yPosition + y)) {
@@ -132,5 +150,5 @@ public class Spielfigur {
 			// Label soll erstellt werden // Tot - wanna restart?
 
 		}
-	}
+	}// move2
 }

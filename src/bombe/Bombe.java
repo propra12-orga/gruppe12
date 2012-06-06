@@ -63,9 +63,8 @@ public class Bombe extends Objekte {
 		boolMauer = true;
 		// links
 		for (int i = 0; (i < radius) && (boolMauer); i++) {
-			if ((Spielflaeche.play.equalsMauer(intBombeX - i, intBombeY) == false)
-					&& (Spielflaeche.play.equalsExit(intBombeX - i, intBombeY,
-							1) == false)) {// keine
+			if ((Spielflaeche.play.equalsMauer(intBombeX - i, intBombeY) == false&& (Spielflaeche.play.equalsExit(intBombeX - i, intBombeY,
+					1) == false))) {// keine
 				// Mauer
 				if (Spielflaeche.play.equalsKiste(intBombeX - i, intBombeY, 2) == false) {// keine
 					// Kiste
