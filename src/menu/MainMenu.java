@@ -5,6 +5,7 @@ import game.RunGame;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -84,7 +85,12 @@ public class MainMenu extends JFrame implements ActionListener {
 		}
 		// Startet Spiel mit vorgegebener Karte
 		if (evt.getActionCommand().equals("loadMap") && gamerunning == false) {
-			MapChooser.go();
+			try {
+				MapChooser.go();
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
 		}
 		// Startet die Settings (2do)
 		if (evt.getActionCommand().equals("sets")) {

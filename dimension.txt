@@ -1,6 +1,6 @@
 Im Folgenden die Dimensionen der Objekte:
  	Gras, feste Mauer           - Ebene 0 (unveränderliche Objekte) 
 	Ausgang,DummyItem           - Ebene 1 (versteckteObjekte) 
-	Kiste          		    - Ebene 2 (zerstörbare Objekte)
+	Kiste          		    	- Ebene 2 (zerstörbare Objekte)
 	Bomberman1/2,Explosion      - Ebene 3 (interaktive Objekte)
-	Bombe			    - Ebene 4 			
+	Bombe			    		- Ebene 4 			

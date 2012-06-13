@@ -1,5 +1,7 @@
 package spielfeld;
 
+import game.LoadMap;
+
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -8,8 +10,12 @@ import javax.swing.JPanel;
 import spielfigur.Spielfigur;
 
 /* *** Update ***/
-/* Objekte können sich nun unter anderen verstecken.Kommentare hinsichtlich
- * JavaDoc hinzugefügt */
+/*
+ * zufälliger Ausgang implementiert.
+ * Feldeinlesen implementiert
+ * zum Testen entweder randomMap.java benutzen oder Level.txt einlesen.
+ * wichtig:: bitte manual.txt lesen.
+ */
 
 public class Spielflaeche extends JPanel {
 	/*
@@ -30,18 +36,28 @@ public class Spielflaeche extends JPanel {
 	 * Dimensionen 5 Bomberman wird oben links platiert.
 	 * 
 	 * Das Spielfeld füllt sich direkt mit der ersten Methode feldfuellen() Es
-	 * werden Gras,Mauer,Kiste,Ausgang und Items generiert.
+	 * werden Gras,Mauer,Kiste,Ausgang und Items generiert. wahlweise kann ein
+	 * Feld eingelesen werden mit feldlesen()
 	 */
 	public Spielflaeche() {
 		play = new Spielfeld(21, 21, 5);
 		bman = new Spielfigur(2, 1, 2);
 		bman2 = new Spielfigur(18, 19, 2);
 
-		play.feldfuellen();
-		play.fill(19, 19, 1, Spielfeld.Ausgang);
-		play.fill(1, 1, 2, Spielfeld.Kiste);
-		play.fill(1, 1, 1, Spielfeld.DummyItem);
+		/*
+		 * falls keine Datei geladen wurde isLoadText()==false dann
+		 * ursprüngliche füllMethode per Zufall ansonsten liest er eine Karte
+		 * ein über LoadMap.load()
+		 */
 
+		if (LoadMap.isLoadtext() == false) {
+			play.feldfuellen();
+			play.fill(19, 19, 1, Spielfeld.Ausgang);
+			play.fill(19, 19, 2, Spielfeld.Kiste);
+		} else {
+			play.feldeinlesen(LoadMap.map);
+
+		}
 	}
 
 	public void paint(Graphics g) {

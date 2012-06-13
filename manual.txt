@@ -1,0 +1,16 @@
+Hinweise zu der Codierung der Leveldateien.
+
+
+Wie Sie sehen können besteht ein Level im Prinzip nur aus 1 und 0 (momentan. hinzugefügt werden noch Ausgang weitere Items etc.)
+Dabei wird jede Dimension getrennt eingelesen.
+Dimension 0 wird explizit gefüllt mit Gras und Randmauer. 
+Dimension 1 befüllt die ersten 20 Zeilen des Textes.
+Dimension 2 die nächsten 20. 
+Ist ein Feld in der Datei 0 (!!! nicht zu verwechseln mit Gras auf Dimension 0 !!!) so wird
+es als null also leer angesehen. Bei einer Zahl ungleich 0 ist es belegt.
+Wie Sie bereits wissen befinden sich in Ebene 2 zerstörbare- und in Ebene 1 versteckte Gegenstände.
+Demzufolge ist eine 1 im Dim2 Block gleichbedeutend mit einer Kiste an genau dieser Stelle.
+(analog zu Ebene 1, dort liegt dann ein Item)
+
+Sie können dies ganz einfach testen indem Sie entweder meine "Level.txt" Datei aus dem Home-Verzeichnis
+gruppe12 laden oder sich mit der Klasse randomMap.java ein eigenes Feld erzeugen. 

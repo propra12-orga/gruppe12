@@ -3,9 +3,6 @@ package spielfeld;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
 import javax.swing.JPanel;
 /*
@@ -23,6 +20,7 @@ public class Spielfeld extends JPanel {
 
 	int hoehe, breite;
 	public static Objekte register[][][];
+	public static char map[][][];
 
 	/*
 	 * Erstelle Objekte die statisch genutzt werden können in allen Klassen.
@@ -70,6 +68,7 @@ public class Spielfeld extends JPanel {
 	 */
 
 	public void feldfuellen() {
+
 		for (int y = 0; y < 21; y++) {
 			register[0][y][0] = festeMauer;
 			register[20][y][0] = festeMauer;
@@ -90,11 +89,44 @@ public class Spielfeld extends JPanel {
 	 * ueberladen der Methode feldfuellen() um ein Feld aus einer .txt Datei
 	 * auszulesen
 	 */
-	public void feldfuellen(String text) throws IOException {
-		FileReader einlesen = new FileReader(text);
-		BufferedReader br = new BufferedReader(einlesen);
-		br.read();
-		// noch zu editieren.
+	public void feldeinlesen(char[][][] map) {
+		for (int y = 0; y < 21; y++) {
+			register[0][y][0] = festeMauer;
+			register[20][y][0] = festeMauer;
+			register[y][0][0] = festeMauer;
+			register[y][20][0] = festeMauer;
+		}
+		for (int i = 2; i < 20; i = i + 2) {
+			for (int j = 2; j < 20; j = j + 2) {
+				register[i][j][0] = festeMauer;
+			}
+		}
+		/*
+		 * hier wird aus der geladenen Datei, die in map[][][] gespeichert wird
+		 * übersetzt. anhand if abfragen wird aus 0 oder 1 ein Objekt auf dem
+		 * Spielfeld
+		 */
+		for (int x = 0; x < 21; x++) {
+			for (int y = 0; y < 21; y++) {
+				if (map[x][y][1] == '1') {
+					register[x][y][1] = DummyItem;
+				} else if (map[x][y][1] == '2') {
+					register[x][y][1] = Ausgang;
+				} else if (map[x][y][1] == '0') {
+					register[x][y][1] = null;
+				}
+			}
+		}
+		for (int x = 0; x < 20; x++) {
+			for (int y = 0; y < 20; y++) {
+				if (map[x][y][2] == '1') {
+					register[x][y][2] = Kiste;
+				} else if (map[x][y][2] == '0') {
+					register[x][y][2] = null;
+				}
+			}
+		}
+
 	}
 	public void randomGen(double dichte) {
 		// Feste Mauern einfuegen
