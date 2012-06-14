@@ -52,8 +52,7 @@ public class Spielflaeche extends JPanel {
 
 		if (LoadMap.isLoadtext() == false) {
 			play.feldfuellen();
-			play.fill(19, 19, 1, Spielfeld.Ausgang);
-			play.fill(19, 19, 2, Spielfeld.Kiste);
+
 		} else {
 			play.feldeinlesen(LoadMap.map);
 

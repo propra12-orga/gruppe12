@@ -22,6 +22,7 @@ public class MapChooser extends JFileChooser {
 									// übergeben
 		fc.setMultiSelectionEnabled(false); // keine mehrfache Selektion
 		fc.showDialog(fc, "Laden"); // statt "Öffnen" steht im Dialog "Laden"
+
 		File f = fc.getSelectedFile();// prüft...
 		String name = f.getName().toLowerCase();
 		/*

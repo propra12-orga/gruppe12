@@ -41,6 +41,12 @@ public class Spielfeld extends JPanel {
 	 * restlichen Ebenen werden explizit null gesetzt um Störungen der If
 	 * Abfrage in Spielflaeche.java zu vermeiden So werden wirklich nur die
 	 * Plätze belegt die auch beschrieben werden.
+	 * 
+	 * @param breite bestimmt die Breite des Feldes(Anzahl Blöcke in X Richtung)
+	 * 
+	 * @param hoehe bestimmt die Höhe des Feldes (Anzahl Blöcke in Y Richtung)
+	 * 
+	 * @param dimension legt die Anzahl der Ebenen fest
 	 */
 
 	public Spielfeld(int breite, int hoehe, int dimension) {
@@ -60,11 +66,9 @@ public class Spielfeld extends JPanel {
 
 	/*
 	 * void feldfuellen(): Feste Mauern, Kisten und Ausgang werden ins Register
-	 * geschrieben
-	 * 
-	 * Dabei haben wir die festeMauer an den Rand verlegt und einen
+	 * geschrieben.Dabei haben wir die festeMauer an den Rand verlegt und einen
 	 * Zufallsgenerator mit randomGen(double Dichte) implementiert, der Kisten
-	 * verteilt. Je höher Dichte, desto größer die Anzahl der Kisten im Spiel.
+	 * verteilt,Items und Ausgang verteilt.
 	 */
 
 	public void feldfuellen() {
@@ -88,6 +92,9 @@ public class Spielfeld extends JPanel {
 	/*
 	 * ueberladen der Methode feldfuellen() um ein Feld aus einer .txt Datei
 	 * auszulesen
+	 * 
+	 * @param map bekommt von der Methode loadmap() aus LoadMap.java eine Karte
+	 * geliefert zum parsen
 	 */
 	public void feldeinlesen(char[][][] map) {
 		for (int y = 0; y < 21; y++) {
@@ -129,7 +136,8 @@ public class Spielfeld extends JPanel {
 
 	}
 	public void randomGen(double dichte) {
-		// Feste Mauern einfuegen
+		boolean existsExit = false;
+
 		register[1][3][2] = Kiste;
 		register[3][1][2] = Kiste;
 
@@ -139,23 +147,34 @@ public class Spielfeld extends JPanel {
 			for (int j = 1; j < 20; j++) {
 				int k = (int) (Math.random() + dichte);
 				int h = (int) (Math.random() + dichte);
+				int l = (int) (Math.random() + dichte);
+
 				if (h == 1) {
 					register[i][j][2] = Kiste;
 					register[i][j][1] = DummyItem;
-				} else if (k == 1)
+				} else if (k == 1) {
 					register[i][j][2] = Kiste;
-
+				} else if (l == 1 && existsExit == false) {
+					register[i][j][1] = Ausgang;
+					register[i][j][2] = Kiste;
+					existsExit = true;
+				}
 			}
 		}
 		for (int i = 3; i < 20; i = i + 2) {
 			for (int j = 1; j < 20; j++) {
 				int k = (int) (Math.random() + dichte);
 				int h = (int) (Math.random() + dichte / 2);
+				int l = (int) (Math.random() + 0.15);
 				if (h == 1) {
 					register[j][i][2] = Kiste;
 					register[j][i][1] = DummyItem;
 				} else if (k == 1) {
 					register[j][i][2] = Kiste;
+				} else if (l == 1 && existsExit == false) {
+					register[i][j][1] = Ausgang;
+					register[i][j][2] = Kiste;
+					existsExit = true;
 				}
 			}
 		}
@@ -169,25 +188,65 @@ public class Spielfeld extends JPanel {
 			if (l == 1)
 				register[j][1][2] = Kiste;
 		}
-	}// randomGen
+
+		for (int i = 3; i < 20; i = i + 2) {
+			for (int j = 1; j < 20; j++) {
+				if (existsExit == false) {
+					int k = (int) (Math.random() + 0.5);
+					if (k == 1) {
+						register[i][j][1] = Ausgang;
+						register[i][j][2] = Kiste;
+						existsExit = true;
+					}
+				}
+			}
+		}
+	}
+	// randomGen
 
 	/*
-	 * void fill():Methode um explizit Stellen des Arrays zu befüllen Sie nimmt
-	 * X,Y Koordinaten,ein Objekt und eine Ebene an so wird eine
+	 * Methode um explizit Stellen des Arrays zu befüllen.An angegebener Stelle
+	 * 
+	 * @param regX X Koordinate im Register
+	 * 
+	 * @param regY Y Koordinate im Register
+	 * 
+	 * @param ebene Legt die Schicht des Objekts fest,so wird eine
 	 * Mehrschichtigkeit realisiert
+	 * 
+	 * @param obj Das Objekt welches in diese Stelle kommen soll
 	 */
 	public void fill(int regX, int regY, int ebene, Objekte obj) {
 		register[regX][regY][ebene] = obj;
 	}
-	// void destroy(): Zerstört das Objekt an der Position(+Ebene)
-	// setzt es null und verhindert somit weiteres zeichnen
+	/*
+	 * void destroy(): Zerstört das Objekt an der Position(+Ebene). Setzt das
+	 * Register an dieser Stelle null und leert es damit.
+	 * 
+	 * @param regX X Koordinate des zu zerst. Objekts
+	 * 
+	 * @param regY Y Koordinate des zu zerst. Objekts
+	 * 
+	 * @param dimension wichtig: nur die richtige Schicht löschen, untere
+	 * Schichten können hiermit freigelegt sein!
+	 */
+
 	public void destroy(int regX, int regY, int dimension) {
 		register[regX][regY][dimension] = null;
 	}
 	/*
-	 * Objekte getObj(): nimmt X,Y Koordinaten und eine Ebene entgegen und gibt
-	 * das Objekt an genau dieser Stelle wieder. wichtig für
-	 * Kollisionsabfragen,Ausgangimplementierung etc.
+	 * Objekte getObj():Methode um das Objekt zu bestimmen an bestimmter Stelle
+	 * Nützlich für Kollisionsabfragen bezgl. Bombe,unbegehbares Gelände und
+	 * Ausgang.
+	 * 
+	 * @param regX Die X Koordinate
+	 * 
+	 * @param regY Die Y Koordinate
+	 * 
+	 * @param ebene Die Schicht auf der das Objekt liegt
+	 * 
+	 * @return gibt das Objekt an genau dieser Stelle auf dieser Ebene wieder
+	 * nützlich für Kollisionsabfragen
 	 */
 	public Objekte getObj(int regX, int regY, int ebene) {
 		return register[regX][regY][ebene];
@@ -205,6 +264,9 @@ public class Spielfeld extends JPanel {
 	/*
 	 * Image loadImg(): dient ebenfalls der Lesbarkeit und liest ein Bild ein
 	 * nach gegebenem String.
+	 * 
+	 * @param pfad nimmt den Pfad des Bildes entgegen. Steigert deutlich die
+	 * lesbarkeit.Denn nur noch dieser String kann gesehen werden von außen
 	 */
 	public Image loadImg(String pfad) {
 		Image name1 = Toolkit.getDefaultToolkit().getImage(
@@ -218,26 +280,37 @@ public class Spielfeld extends JPanel {
 	 * liegt. Alle Methoden vom typ boolean. return true wenn Objekt sich dort
 	 * befindet ansonsten false.
 	 */
-
+	/*
+	 * @return gibt true zurück falls an dieser Stelle Gras ist.
+	 */
 	public boolean equalsGras(int x, int y) {
 		if (register[x][y][0] == Gras)
 			return true;
 		else
 			return false;
 	}
+	/*
+	 * @return gibt true zurück wenn sich an der x und y Koordinate eine
+	 * festeMauer befindet
+	 */
 	public boolean equalsMauer(int x, int y) {
 		if (register[x][y][0] == festeMauer)
 			return true;
 		else
 			return false;
 	}
-
+	/*
+	 * @return gibt true zurück wenn auf dieser Schicht sich ein Ausgang
+	 * befindet
+	 */
 	public boolean equalsExit(int x, int y, int dimension) {
 		if (register[x][y][dimension] == Ausgang)
 			return true;
 		else
 			return false;
-	}
+	}/*
+	 * @return return true wenn Item auf dieser Ebene an X/Y Stelle
+	 */
 	public boolean equalsDummyItem(int x, int y, int dimension) {
 
 		if (register[x][y][dimension] == DummyItem)
@@ -246,7 +319,9 @@ public class Spielfeld extends JPanel {
 			return false;
 
 	}
-
+	/*
+	 * @return gibt true zurück wenn eine Bombe liegt an dieser Stelle/Ebene
+	 */
 	public boolean equalsBomb(int x, int y, int dimension) {
 		if (register[x][y][dimension] == Bombe)
 			return true;
@@ -254,14 +329,18 @@ public class Spielfeld extends JPanel {
 			return false;
 
 	}
-
+	/*
+	 * @return gibt true zurück wenn Bomberman dort steht
+	 */
 	public boolean equalsMan(int x, int y, int dimension) {
 
 		if (register[x][y][dimension] == Bomberman1)
 			return true;
 		else
 			return false;
-	}
+	}/*
+	 * @return analog zu equalsMan()
+	 */
 	public boolean equalsMan2(int x, int y, int dimension) {
 
 		if (register[x][y][dimension] == Bomberman2)
@@ -270,14 +349,19 @@ public class Spielfeld extends JPanel {
 			return false;
 
 	}
-
+	/*
+	 * @return gibt true zurück falls register an dieser Stelle eine Kiste
+	 * beinhaltet
+	 */
 	public boolean equalsKiste(int x, int y, int dimension) {
 		if (register[x][y][dimension] == Kiste)
 			return true;
 		else
 			return false;
 	}
-
+	/*
+	 * @return true wenn sich eine Explosion dort befindet.
+	 */
 	public boolean equalsExplosion(int x, int y, int dimension) {
 		if (register[x][y][dimension] == Explosion)
 			return true;
@@ -285,5 +369,4 @@ public class Spielfeld extends JPanel {
 			return false;
 	}
 
-	/* Rest noch zu editieren */
 }

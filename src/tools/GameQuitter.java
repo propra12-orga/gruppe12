@@ -1,5 +1,7 @@
 package tools;
 
+import game.LoadMap;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -15,8 +17,8 @@ public class GameQuitter extends WindowAdapter // WindowListener
 	}
 
 	public void windowClosing(WindowEvent e) {
-		menu.MainMenu.gamerunning = false; // teilt StartMenu mit, dass das
-											// Spiel geschlossen ist.
+		menu.MainMenu.gamerunning = false;// teilt StartMenu mit, dass das
+		LoadMap.setLoadtext(false); // Spiel geschlossen ist.
 		GamePan.dispose(); // schließt Fenster
 	}
 }
