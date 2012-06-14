@@ -7,6 +7,25 @@ import spielfeld.Spielflaeche;
 
 public class GameKeyListener implements KeyListener {
 
+	/*
+	 * Die Funktion dieser Klasse ist die Bedienung des Programms mit Hilfe der
+	 * Tastatur. Auf die einzelnen Tasten wurde jeweils die move bzw. move2
+	 * Methoden gelegt.
+	 * 
+	 * Tastaturbelegung:
+	 * 
+	 * Player 1:
+	 * 
+	 * Pfeiltaste hoch = bman geht hoch Pfeiltaste runter = bman geht runter
+	 * Pfeiltaste rechts = bman geht rechts Pfeiltaste links = bman geht links
+	 * Space = bman legt Bombe
+	 * 
+	 * Player 2:
+	 * 
+	 * w = bman2 geht hoch s = bman2 geht runter a = bman2 geht links d = bman2
+	 * geht rechts g = bman2 legt Bombe
+	 */
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// Fall: Hochtaste gedrückt ==> Hoch bewegen

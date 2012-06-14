@@ -70,11 +70,20 @@ public class Spielfigur {
 			bombeLiegt = true;
 		}
 	}
-
+	/*
+	 * Die Methode move bzw. move2 regeln die Bewegungen der Figuren "man" und
+	 * "man2. Benutzt werden diese Methoden vom gamekeylistener. Die Bewegung
+	 * wird durch Abfragen , der in der jeweiligen Bewegungsrichtung vorhandenen
+	 * Objekte realisiert. Es wird abgefragt, was sich auf dem jeweiligen Feld
+	 * befindet und falls Bewegung logisch erscheint, wird die jeweilige Figur
+	 * auf dieses Feld bewegt. (Änderung der Variablen xPosition und yPosition
+	 * des jeweiligen Spielfigurenobjektes
+	 */
 	public void move(int x, int y) {
 
 		/*
-		 * Das Spiel wird neu gestartet wenn Bomberman in Ausgang
+		 * Das Spiel wird neu gestartet wenn Bomberman und Ausgang sich auf den
+		 * selben Koordinaten befinden.
 		 */
 
 		if (Spielflaeche.play.getObj(xPosition + x, yPosition + y, 1) == Spielfeld.Ausgang
@@ -85,7 +94,9 @@ public class Spielfigur {
 		}
 
 		/*
-		 * Abfrage: bomberman kann in eine Explosion gehen: stirbt allerdings.
+		 * wenn das angepeilte Feld eine Explosion ist, dann wird die Figur
+		 * dorthin bewegt. Allerdings stirbt diese dann --> Spieler2 hat
+		 * gewonnen --> Spiel startet neu
 		 */
 
 		else if (Spielflaeche.play.equalsExplosion(xPosition + x,
@@ -100,15 +111,17 @@ public class Spielfigur {
 		}
 
 		/*
-		 * Abfrage ob schon ein Objekt bzw. Mauer in Bewegungsrichtung vorhanden
-		 * ist
+		 * Es wird festgestellt, ob das angepeilte Feld bereits mit einem
+		 * Objekt, das unpassierbarist, belegt ist. Wenn es passierbar ist geht
+		 * die Abfrage weiter.
 		 */
 		else if (Spielflaeche.play.getObj(xPosition + x, yPosition + y, 2) == null
 				&& Spielflaeche.play.getObj(xPosition + x, yPosition + y, 4) == null
 				&& Spielflaeche.play.equalsMauer(xPosition + x, yPosition + y) == false) {
 			/*
-			 * Checkt ob Bombe gelegt wurde, falls ja wird Bombengrafik auf den
-			 * Feld hinterlassen
+			 * Es wird abgefragt ob eine Bombe gelegt wurde. Wenn eine Bombe
+			 * gelegt wurde, dann wird auf den Variablen xPostítion und
+			 * yPosition des Spielfigurenobjektes eine Bombe gezeichnet.
 			 */
 			Spielflaeche.play.fill(xPosition, yPosition, 3, Spielfeld.Gras);
 			if (Spielflaeche.bman.bombeLiegt) {
@@ -119,6 +132,10 @@ public class Spielfigur {
 				// sieht verkohlt aus
 
 			}
+			/*
+			 * Bewegung der Figur
+			 */
+
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
 		}
@@ -128,7 +145,8 @@ public class Spielfigur {
 	public void move2(int x, int y) {
 		/*
 		 * 
-		 * Checkt ob Player 2 auf einen Ausgang rennt
+		 * Diese Methode funktioniert analog zu move ausser ,dass hierbei nicht
+		 * das Objekt"man" angesprochen wird sondern "man2"
 		 */
 		if (Spielflaeche.play.getObj(xPosition + x, yPosition + y, 1) == Spielfeld.Ausgang
 				&& Spielflaeche.play.getObj(xPosition + x, yPosition + y, 2) != Spielfeld.Kiste) {
