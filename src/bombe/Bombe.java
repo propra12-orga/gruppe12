@@ -1,5 +1,6 @@
 package bombe;
 
+import game.Game;
 import spielfeld.Objekte;
 import spielfeld.Spielfeld;
 import spielfeld.Spielflaeche;
@@ -11,14 +12,18 @@ import spielfeld.Spielflaeche;
 public class Bombe extends Objekte {
 	int intBombeX, intBombeY;
 	BombType bomb;
+	int vonSpieler;
 
-	public Bombe(int xPos, int yPos, int width, int height, BombType bomb) {
+	public Bombe(int xPos, int yPos, int width, int height, BombType bomb,
+			int von) {
 		super(xPos, yPos, width, height, bomb.picPath, bomb.type);
 		this.bomb = bomb;
 		intBombeX = xPos;
 		intBombeY = yPos;
+		vonSpieler = von;
 	}
 
+	@SuppressWarnings("deprecation")
 	public void run() {// explodieren der bombe als thread.
 		int radius = bomb.radius;
 
@@ -38,6 +43,22 @@ public class Bombe extends Objekte {
 					Spielflaeche.play.fill(intBombeX + i, intBombeY, 3,
 							Spielfeld.Explosion);// explosion
 					// anzeigen
+
+					// Ist das Feld ein bomberman? wenn ja, welcher? Der Andere
+					// gewinnt.
+
+					if (Spielflaeche.bman.istPos(intBombeX + i, intBombeY)) {
+						System.out.println("Spieler 2 gewinnt.");
+						Game.restartGame();
+						this.stop();
+					}
+
+					if (Spielflaeche.bman2.istPos(intBombeX + i, intBombeY)) {
+						System.out.println("Spieler 1 gewinnt");
+						Game.restartGame();
+						this.stop();
+					}
+
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt
 				} else {// wird eine Kiste getroffen soll diese zerst�rt
@@ -70,6 +91,20 @@ public class Bombe extends Objekte {
 							Spielfeld.Explosion);
 					// explosion
 					// anzeigen
+
+					// Ist das Feld ein bomberman? wenn ja, welcher? Der Andere
+					// gewinnt.
+					if (Spielflaeche.bman.istPos(intBombeX - i, intBombeY)) {
+						System.out.println("Spieler 2 gewinnt.");
+						Game.restartGame();
+						this.stop();
+					}
+
+					if (Spielflaeche.bman2.istPos(intBombeX - i, intBombeY)) {
+						System.out.println("Spieler 1 gewinnt");
+						Game.restartGame();
+						this.stop();
+					}
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt
 				} else {// wird eine Kiste getroffen soll diese zerst�rt
@@ -101,6 +136,20 @@ public class Bombe extends Objekte {
 					Spielflaeche.play.fill(intBombeX, intBombeY + i, 3,
 							Spielfeld.Explosion);// explosion
 					// anzeigen
+
+					// Ist das Feld ein bomberman? wenn ja, welcher? Der Andere
+					// gewinnt.
+					if (Spielflaeche.bman.istPos(intBombeX, intBombeY + i)) {
+						System.out.println("Spieler 2 gewinnt.");
+						Game.restartGame();
+						this.stop();
+					}
+
+					if (Spielflaeche.bman2.istPos(intBombeX, intBombeY + i)) {
+						System.out.println("Spieler 1 gewinnt");
+						Game.restartGame();
+						this.stop();
+					}
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt
 				} else {// wird eine Kiste getroffen soll diese zerst�rt
@@ -131,6 +180,17 @@ public class Bombe extends Objekte {
 					Spielflaeche.play.fill(intBombeX, intBombeY - i, 3,
 							Spielfeld.Explosion);// explosion
 					// anzeigen
+					if (Spielflaeche.bman.istPos(intBombeX, intBombeY - i)) {
+						System.out.println("Spieler 2 gewinnt.");
+						Game.restartGame();
+						this.stop();
+					}
+
+					if (Spielflaeche.bman2.istPos(intBombeX, intBombeY - i)) {
+						System.out.println("Spieler 1 gewinnt");
+						Game.restartGame();
+						this.stop();
+					}
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt
 				} else {// wird eine Kiste getroffen soll diese zerst�rt
@@ -220,7 +280,18 @@ public class Bombe extends Objekte {
 			}
 
 		}
-		Spielflaeche.bman.bombeLiegt = false;
-		Spielflaeche.bman.setBombPlanted(false);
+
+		switch (vonSpieler) {// der legende Spieler darf wieder eine Bombe
+								// legen.
+			case 1 :
+				Spielflaeche.bman.setBombPlanted(Spielflaeche.bman
+						.getBombPlanted() + 1);
+				break;
+			case 2 :
+				Spielflaeche.bman2.setBombPlanted(Spielflaeche.bman2
+						.getBombPlanted() + 1);
+				break;
+		}
+
 	}// bombeexplodieren
 }

@@ -41,8 +41,8 @@ public class Spielflaeche extends JPanel {
 	 */
 	public Spielflaeche() {
 		play = new Spielfeld(21, 21, 5);
-		bman = new Spielfigur(2, 1, 2);
-		bman2 = new Spielfigur(18, 19, 2);
+		bman = new Spielfigur(2, 1, 2, 1);
+		bman2 = new Spielfigur(18, 19, 2, 2);
 
 		/*
 		 * falls keine Datei geladen wurde isLoadText()==false dann
@@ -79,8 +79,8 @@ public class Spielflaeche extends JPanel {
 		explo = play.loadImg("/ressources/grafics/expl.gif");
 		dummy = play.loadImg("/ressources/grafics/Gem.png");
 		/*
-		 * Zeichenschleife. sie implementiert eine gewisse Prioritätenliste. Die
-		 * Objekte der Dimension 1 werden nur gezeichnet: a) falls sie
+		 * Zeichenschleife. sie implementiert eine gewisse Prioritätenliste.
+		 * Die Objekte der Dimension 1 werden nur gezeichnet: a) falls sie
 		 * existieren und b) falls kein Objekt der Dimension 2 existiert (auf
 		 * den selben Koordinaten.). Wichtig: unter die Objekte(sprich zeitlich
 		 * davor!) muss Gras gesetzt werden sonst wird ein falscher Untergrund

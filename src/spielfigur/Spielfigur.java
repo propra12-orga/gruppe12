@@ -19,18 +19,26 @@ public class Spielfigur {
 	protected int width;
 	protected int height;
 	protected String pic;
-	private boolean bombPlanted = false;
+	private int bombPlanted = 3;
+	private int playerNumber;
 	private BombType bomb = new NormalBomb();
 
-	public boolean bombeLiegt;
-
-	public Spielfigur(int xPosition, int yPosition, int dimension) {
+	public Spielfigur(int xPosition, int yPosition, int dimension, int player) {
 		this.yPosition = yPosition;
 		this.xPosition = xPosition;
 		this.dimension = dimension;
+		this.playerNumber = player;
 	}
 
 	// get und set methoden
+
+	public int getPlayerNumber() {
+		return playerNumber;
+	}
+
+	public void setPlayerNumber(int playerNumber) {
+		this.playerNumber = playerNumber;
+	}
 
 	public int getxPosition() {
 		return xPosition;
@@ -42,6 +50,10 @@ public class Spielfigur {
 
 	public int getyPosition() {
 		return yPosition;
+	}
+
+	public int getBombPlanted() {
+		return bombPlanted;
 	}
 
 	public void setyPosition(int yPosition) {
@@ -56,18 +68,28 @@ public class Spielfigur {
 		this.bomb = bomb;
 	}
 
-	public void setBombPlanted(boolean b) {
+	public void setBombPlanted(int b) {
 		bombPlanted = b;
 	}
 
+	/*
+	 * Überprüft ob Bomberman an einer bestimmten Stelle ist.
+	 */
+	public boolean istPos(int x, int y) {
+		if ((x == xPosition && y == yPosition))
+			return true;
+		else
+			return false;
+	}
 	// Bombe
 
 	public void bombeLegen() {
-		if (bombPlanted == false) {
-			new Bombe(xPosition, yPosition, width, height, bomb).start();
+		if (bombPlanted > 0) {
+			new Bombe(xPosition, yPosition, width, height, bomb, playerNumber)
+					.start();
 			Spielflaeche.play.fill(xPosition, yPosition, 4, Spielfeld.Bombe);
-			bombPlanted = true;
-			bombeLiegt = true;
+			bombPlanted -= 1;
+
 		}
 	}
 	/*
@@ -124,14 +146,15 @@ public class Spielfigur {
 			 * yPosition des Spielfigurenobjektes eine Bombe gezeichnet.
 			 */
 			Spielflaeche.play.fill(xPosition, yPosition, 3, Spielfeld.Gras);
-			if (Spielflaeche.bman.bombeLiegt) {
-				Spielflaeche.play
-						.fill(xPosition, yPosition, 4, Spielfeld.Bombe);
-				bombeLiegt = false; // Noch eine Bedingung ( Wenn Explo --> Bman
-									// auf explo
-				// sieht verkohlt aus
+			/*
+			 * if (Spielflaeche.bman.bombeLiegt) { Spielflaeche.play
+			 * .fill(xPosition, yPosition, 4, Spielfeld.Bombe); bombeLiegt =
+			 * false; // Noch eine Bedingung ( Wenn Explo --> Bman // auf explo
+			 * // sieht verkohlt aus
+			 * 
+			 * }
+			 */
 
-			}
 			/*
 			 * Bewegung der Figur
 			 */
@@ -178,13 +201,13 @@ public class Spielfigur {
 				&& Spielflaeche.play.equalsMauer(xPosition + x, yPosition + y) == false) {
 
 			Spielflaeche.play.fill(xPosition, yPosition, 3, Spielfeld.Gras);
-			if (Spielflaeche.bman2.bombeLiegt) {
-				Spielflaeche.play
-						.fill(xPosition, yPosition, 4, Spielfeld.Bombe);
-				bombeLiegt = false;
-			}
+
+			// Spielflaeche.play
+			// .fill(xPosition, yPosition, 4, Spielfeld.Bombe);
+
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
 		}
 	}
+
 }// move2
