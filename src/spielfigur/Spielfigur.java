@@ -128,6 +128,7 @@ public class Spielfigur {
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
 			System.out.println("Player 2 siegt");
+			Game.restartGame();
 			// Label soll erstellt werden // Tot - wanna restart?
 
 		}

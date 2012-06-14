@@ -9,10 +9,6 @@ Spielfeld:
 			- nein tut es nicht, bittte selber testen.
 		- bei den Kisten stimmt auch irgendwas nicht, wenn das Fenster eine bestimmte Größe erreicht bekommen sie schwarze Ränder	(Micha, 21.05.'12 ; 14:43)
 		
-<Ausgang:
-       - Bman löst Event nicht mehr aus
 
-
-
-Allgemein:
-	-	Die Performance ist aus irgendeinem Grund seit letztem pull im Keller (zumindest aufm Netbook)	(Micha, 25.05.'12 ; 11:27)
+Spielende:
+        - Wenn das Spiel neustartet , aber eine Bombe gelegt wurde, wird noch eine explosion im nächsten Spiel angezeigt. Zerstört sogar blöcke
