@@ -30,7 +30,12 @@ public class Bombe extends Objekte {
 		boolean boolMauer = true;
 		int nachUnten = 0, nachOben = 0, nachRechts = 0, nachLinks = 0;
 		// zunaechst warten bis die Bombe explodieren soll.
-		warten(2000);
+
+		long millis = System.currentTimeMillis();
+		while (((System.currentTimeMillis() - millis) < 2000)
+				&& (Spielflaeche.sollExplodieren[intBombeX][intBombeY] == false)) {
+
+		}
 
 		// in alle 4 richtungen explodieren bis zu einer mauer, kiste oder
 		// rechts
@@ -43,6 +48,9 @@ public class Bombe extends Objekte {
 					Spielflaeche.play.fill(intBombeX + i, intBombeY, 3,
 							Spielfeld.Explosion);// explosion
 					// anzeigen
+					// liegt hier eine bombe, dann soll die gefälligst auch
+					// explodieren!
+					Spielflaeche.sollExplodieren[intBombeX + i][intBombeY] = true;
 
 					// Ist das Feld ein bomberman? wenn ja, welcher? Der Andere
 					// gewinnt.
@@ -68,6 +76,7 @@ public class Bombe extends Objekte {
 					boolMauer = false;
 					Spielflaeche.play.fill(intBombeX + i, intBombeY, 3,
 							Spielfeld.Explosion);
+
 					nachRechts++;
 					// nachRechts++;
 
@@ -92,6 +101,9 @@ public class Bombe extends Objekte {
 					// explosion
 					// anzeigen
 
+					// liegt hier eine bombe, dann soll die gefälligst auch
+					// explodieren!
+					Spielflaeche.sollExplodieren[intBombeX - i][intBombeY] = true;
 					// Ist das Feld ein bomberman? wenn ja, welcher? Der Andere
 					// gewinnt.
 					if (Spielflaeche.bman.istPos(intBombeX - i, intBombeY)) {
@@ -114,6 +126,7 @@ public class Bombe extends Objekte {
 					boolMauer = false;
 					Spielflaeche.play.fill(intBombeX - i, intBombeY, 3,
 							Spielfeld.Explosion);
+					Spielflaeche.sollExplodieren[intBombeX - i][intBombeY] = true;
 					nachLinks++;
 
 				}
@@ -136,6 +149,9 @@ public class Bombe extends Objekte {
 					Spielflaeche.play.fill(intBombeX, intBombeY + i, 3,
 							Spielfeld.Explosion);// explosion
 					// anzeigen
+					// liegt hier eine bombe, dann soll die gefälligst auch
+					// explodieren!
+					Spielflaeche.sollExplodieren[intBombeX][intBombeY + i] = true;
 
 					// Ist das Feld ein bomberman? wenn ja, welcher? Der Andere
 					// gewinnt.
@@ -159,6 +175,7 @@ public class Bombe extends Objekte {
 					boolMauer = false;
 					Spielflaeche.play.fill(intBombeX, intBombeY + i, 3,
 							Spielfeld.Explosion);
+					Spielflaeche.sollExplodieren[intBombeX][intBombeY + i] = true;
 					nachOben++;
 				}
 			} else {
@@ -180,6 +197,13 @@ public class Bombe extends Objekte {
 					Spielflaeche.play.fill(intBombeX, intBombeY - i, 3,
 							Spielfeld.Explosion);// explosion
 					// anzeigen
+
+					// liegt hier eine bombe, dann soll die gefälligst auch
+					// explodieren!
+					Spielflaeche.sollExplodieren[intBombeX][intBombeY - i] = true;
+
+					// spiel beenden wenn ein bman getroffen wurde
+
 					if (Spielflaeche.bman.istPos(intBombeX, intBombeY - i)) {
 						System.out.println("Spieler 2 gewinnt.");
 						Game.restartGame();
@@ -200,6 +224,7 @@ public class Bombe extends Objekte {
 					boolMauer = false;
 					Spielflaeche.play.fill(intBombeX, intBombeY - i, 3,
 							Spielfeld.Explosion);
+					Spielflaeche.sollExplodieren[intBombeX][intBombeY - i] = true;
 					nachUnten++;
 
 				}
@@ -212,6 +237,9 @@ public class Bombe extends Objekte {
 		}
 
 		boolMauer = true;
+		// hier warten wir 750 ms oder bis eine andere bombe in der nähe
+		// explodiert ist
+
 		warten(750);
 		// explosionsauswirkung nach UNTEN
 		for (int i = 0; i < nachUnten; i++) {
@@ -223,6 +251,8 @@ public class Bombe extends Objekte {
 			 * das in die 3. Dimension und zeichne es. analog fÃ¼r die anderen
 			 * Explosionsabfragen weiter unten.
 			 */
+			Spielflaeche.sollExplodieren[intBombeX][intBombeY - i] = false;
+
 			Spielflaeche.play.destroy(intBombeX, intBombeY - i, 3);
 			Spielflaeche.play.destroy(intBombeX, intBombeY - i, 4);
 			Spielflaeche.play.destroy(intBombeX, intBombeY - i, 2);
@@ -237,6 +267,7 @@ public class Bombe extends Objekte {
 		}
 		// explosionsauswirkung nach OBEN
 		for (int i = 0; i < nachOben; i++) {
+			Spielflaeche.sollExplodieren[intBombeX][intBombeY + i] = false;
 
 			Spielflaeche.play.destroy(intBombeX, intBombeY + i, 3);
 			Spielflaeche.play.destroy(intBombeX, intBombeY + i, 4);
@@ -253,6 +284,8 @@ public class Bombe extends Objekte {
 		}
 		// explosionsauswirkung nach LINKS
 		for (int i = 0; i < nachLinks; i++) {
+			Spielflaeche.sollExplodieren[intBombeX - i][intBombeY] = false;
+
 			Spielflaeche.play.destroy(intBombeX - i, intBombeY, 4);
 			Spielflaeche.play.destroy(intBombeX - i, intBombeY, 2);
 			Spielflaeche.play.destroy(intBombeX - i, intBombeY, 3);
@@ -267,6 +300,8 @@ public class Bombe extends Objekte {
 		}
 		// explosionsauswirkung nach RECHTS
 		for (int i = 0; i < nachRechts; i++) {
+			Spielflaeche.sollExplodieren[intBombeX + i][intBombeY] = false;
+
 			Spielflaeche.play.destroy(intBombeX + i, intBombeY, 4);
 			Spielflaeche.play.destroy(intBombeX + i, intBombeY, 2);
 			Spielflaeche.play.destroy(intBombeX + i, intBombeY, 3);

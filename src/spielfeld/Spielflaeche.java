@@ -25,6 +25,7 @@ public class Spielflaeche extends JPanel {
 	public static Spielfeld play;
 	public static Spielfigur bman;
 	public static Spielfigur bman2;
+	public static boolean sollExplodieren[][];
 
 	private static final long serialVersionUID = 1L;
 	public int arrayWidth, arrayHeight;
@@ -44,6 +45,16 @@ public class Spielflaeche extends JPanel {
 		bman = new Spielfigur(2, 1, 2, 1);
 		bman2 = new Spielfigur(18, 19, 2, 2);
 
+		// sollExplodieren ist die Kommunikationsplattform der bomben-Threads.
+		// Ist hier ein Wert true, so sollen bomben auf diesem feld explodieren
+		sollExplodieren = new boolean[21][21];
+		for (int i = 0; i < 21; i++) {
+			for (int j = 0; j < 21; j++) {
+				sollExplodieren[i][j] = false;// bombe soll anfangen zu
+												// explodieren
+
+			}
+		}
 		/*
 		 * falls keine Datei geladen wurde isLoadText()==false dann
 		 * ursprüngliche füllMethode per Zufall ansonsten liest er eine Karte
