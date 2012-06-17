@@ -52,7 +52,7 @@ public class Spielfigur {
 		return yPosition;
 	}
 
-	public int getBombPlanted() {
+	public synchronized int getBombPlanted() {
 		return bombPlanted;
 	}
 
@@ -68,7 +68,7 @@ public class Spielfigur {
 		this.bomb = bomb;
 	}
 
-	public void setBombPlanted(int b) {
+	public synchronized void setBombPlanted(int b) {
 		bombPlanted = b;
 	}
 
