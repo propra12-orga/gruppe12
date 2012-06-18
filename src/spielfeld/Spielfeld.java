@@ -36,17 +36,22 @@ public class Spielfeld extends JPanel {
 	public static Objekte Bomberman1 = new Objekte("Bomberman1", 2);
 	public static Objekte Bomberman2 = new Objekte("Bomberman2", 2);
 	public static Objekte DummyItem = new Objekte("DummyItem", 1);
-	/*
-	 * Konstruktor intialisiert den Register. Befüllt die Ebene 0 mit Gras Die
-	 * restlichen Ebenen werden explizit null gesetzt um Störungen der If
-	 * Abfrage in Spielflaeche.java zu vermeiden So werden wirklich nur die
-	 * Plätze belegt die auch beschrieben werden.
+	/**
+	 * intialisiert den Register. Das Register ist ein 3d Array. So werden X/Y
+	 * Koordinaten und eine Ebene erfasst fuer jedes Objekt .Befuellt die Ebene
+	 * 0 mit Gras. Die restlichen Ebenen werden explizit null gesetzt um
+	 * Stoerungen der If Abfrage in Spielflaeche.java zu vermeiden So werden
+	 * wirklich nur die Plaetze belegt die auch beschrieben werden. Bei
+	 * Erstellung eines Feldes wird es direkt befuellt damit.
 	 * 
-	 * @param breite bestimmt die Breite des Feldes(Anzahl Blöcke in X Richtung)
+	 * @param breite
+	 *            bestimmt die Breite des Feldes(Anzahl Blöcke in X Richtung)
 	 * 
-	 * @param hoehe bestimmt die Höhe des Feldes (Anzahl Blöcke in Y Richtung)
+	 * @param hoehe
+	 *            bestimmt die Höhe des Feldes (Anzahl Blöcke in Y Richtung)
 	 * 
-	 * @param dimension legt die Anzahl der Ebenen fest
+	 * @param dimension
+	 *            legt die Anzahl der Ebenen fest
 	 */
 
 	public Spielfeld(int breite, int hoehe, int dimension) {
@@ -64,11 +69,12 @@ public class Spielfeld extends JPanel {
 
 	}
 
-	/*
-	 * void feldfuellen(): Feste Mauern, Kisten und Ausgang werden ins Register
-	 * geschrieben.Dabei haben wir die festeMauer an den Rand verlegt und einen
-	 * Zufallsgenerator mit randomGen(double Dichte) implementiert, der Kisten
-	 * verteilt,Items und Ausgang verteilt.
+	/**
+	 * Feste Mauern werden explizit und Kisten/Items/Ausgang per Zufall ins
+	 * Register geschrieben. Zufallsgenerator wird mit double 0.1 gestartet.
+	 * Startmethode, die mehrere Aktionen zusammenfasst.
+	 * 
+	 * @see randomGen()
 	 */
 
 	public void feldfuellen() {
@@ -89,12 +95,14 @@ public class Spielfeld extends JPanel {
 
 	}// feldfuellen
 
-	/*
-	 * ueberladen der Methode feldfuellen() um ein Feld aus einer .txt Datei
-	 * auszulesen
+	/**
+	 * Liest eine gegebene Karte ein und uebersetzt sie.
 	 * 
-	 * @param map bekommt von der Methode loadmap() aus LoadMap.java eine Karte
-	 * geliefert zum parsen
+	 * @param map
+	 *            bekommt von der Methode loadmap() aus LoadMap.java eine Karte
+	 *            geliefert zum uebertragen in Register. Anhand des char Arrays
+	 *            wird das Register an den bestimten Stellen mit Objekten
+	 *            befuellt.
 	 */
 	public void feldeinlesen(char[][][] map) {
 		for (int y = 0; y < 21; y++) {
@@ -135,6 +143,15 @@ public class Spielfeld extends JPanel {
 		}
 
 	}
+	/**
+	 * Zufallsgenerator der bei jeder Start-Ausfuehrung ein anderes Feld
+	 * generiert.Kisten mit Items,Kisten ohne Items und ein Ausgang werden
+	 * erzeugt.
+	 * 
+	 * @param dichte
+	 *            double Wert zwischen 0 und 1. Je hoeher desto groeßer die
+	 *            Anzahl der Kisten
+	 */
 	public void randomGen(double dichte) {
 		boolean existsExit = false;
 
@@ -204,69 +221,82 @@ public class Spielfeld extends JPanel {
 	}
 	// randomGen
 
-	/*
-	 * Methode um explizit Stellen des Arrays zu befüllen.An angegebener Stelle
+	/**
+	 * Methode um explizit Stellen des Arrays zu befuellen.An angegebener
+	 * Stelle.
 	 * 
-	 * @param regX X Koordinate im Register
+	 * @param regX
+	 *            X Koordinate im Register
 	 * 
-	 * @param regY Y Koordinate im Register
+	 * @param regY
+	 *            Y Koordinate im Register
 	 * 
-	 * @param ebene Legt die Schicht des Objekts fest,so wird eine
-	 * Mehrschichtigkeit realisiert
+	 * @param ebene
+	 *            Legt die Schicht des Objekts fest,so wird eine
+	 *            Mehrschichtigkeit realisiert
 	 * 
-	 * @param obj Das Objekt welches in diese Stelle kommen soll
+	 * @param obj
+	 *            Das Objekt welches in diese Stelle kommen soll
 	 */
 	public void fill(int regX, int regY, int ebene, Objekte obj) {
 		register[regX][regY][ebene] = obj;
 	}
-	/*
-	 * void destroy(): Zerstört das Objekt an der Position(+Ebene). Setzt das
-	 * Register an dieser Stelle null und leert es damit.
+	/**
+	 * Zerstoert das Objekt an der Position(+Ebene). Setzt das Register an
+	 * dieser Stelle null und leert es damit.Wichtig fuer Bombenimplementierung.
 	 * 
-	 * @param regX X Koordinate des zu zerst. Objekts
+	 * @param regX
+	 *            X Koordinate des zu zerst. Objekts
 	 * 
-	 * @param regY Y Koordinate des zu zerst. Objekts
+	 * @param regY
+	 *            Y Koordinate des zu zerst. Objekts
 	 * 
-	 * @param dimension wichtig: nur die richtige Schicht löschen, untere
-	 * Schichten können hiermit freigelegt sein!
+	 * @param dimension
+	 *            wichtig: nur die richtige Schicht loeschen, untere Schichten
+	 *            koennen hiermit freigelegt sein!
 	 */
 
 	public void destroy(int regX, int regY, int dimension) {
 		register[regX][regY][dimension] = null;
 	}
-	/*
+	/**
 	 * Objekte getObj():Methode um das Objekt zu bestimmen an bestimmter Stelle
-	 * Nützlich für Kollisionsabfragen bezgl. Bombe,unbegehbares Gelände und
+	 * Nuetzlich für Kollisionsabfragen bezgl. Bombe,unbegehbares Gelaende und
 	 * Ausgang.
 	 * 
-	 * @param regX Die X Koordinate
+	 * @param regX
+	 *            Die X Koordinate
 	 * 
-	 * @param regY Die Y Koordinate
+	 * @param regY
+	 *            Die Y Koordinate
 	 * 
-	 * @param ebene Die Schicht auf der das Objekt liegt
+	 * @param ebene
+	 *            Die Schicht auf der das Objekt liegt
 	 * 
 	 * @return gibt das Objekt an genau dieser Stelle auf dieser Ebene wieder
-	 * nützlich für Kollisionsabfragen
+	 *         nützlich für Kollisionsabfragen
 	 */
 	public Objekte getObj(int regX, int regY, int ebene) {
 		return register[regX][regY][ebene];
 	}
-	/*
-	 * void draw(): nimmt ein Bild,Koordinaten und ein Graphics-Objekt entgegen
-	 * im Prinzip nur eine verkürzte Fassung von Graphics.drawImage um die
-	 * lesbarkeit zu steigern.Intern skaliert die Methode die Bilder bei
-	 * Veränderung der Fenstergröße mit.
+	/**
+	 * nimmt ein Bild,Koordinaten und ein Graphics-Objekt entgegen im Prinzip
+	 * nur eine verkuerzte Fassung von Graphics.drawImage um die lesbarkeit zu
+	 * steigern.Intern skaliert die Methode die Bilder bei Veraenderung der
+	 * Fenstergroesse mit.
 	 */
 	public void draw(Image img, int x, int y, Graphics g) {
 		g.drawImage(img, x * (getWidth() / 20), y * (getHeight() / 20),
 				getWidth() / 20 + 19, (getHeight() / 20) + 19, null);
 	}
-	/*
+	/**
 	 * Image loadImg(): dient ebenfalls der Lesbarkeit und liest ein Bild ein
 	 * nach gegebenem String.
 	 * 
-	 * @param pfad nimmt den Pfad des Bildes entgegen. Steigert deutlich die
-	 * lesbarkeit.Denn nur noch dieser String kann gesehen werden von außen
+	 * @param pfad
+	 *            nimmt den Pfad des Bildes entgegen. Steigert deutlich die
+	 *            lesbarkeit.Denn von außen kann nur noch dieser String gesehen
+	 *            werden
 	 */
 	public Image loadImg(String pfad) {
 		Image name1 = Toolkit.getDefaultToolkit().getImage(
@@ -276,12 +306,14 @@ public class Spielfeld extends JPanel {
 	}
 	/*
 	 * Für jedes Objekt, welches im Register stehen kann gibt es eine Abfrage ob
-	 * an der gewählten Stelle X,Y(bzw. auch in dieser Dimension) dieses Objekt
+	 * an der gewaehlten Stelle X,Y(bzw. auch in dieser Dimension) dieses Objekt
 	 * liegt. Alle Methoden vom typ boolean. return true wenn Objekt sich dort
 	 * befindet ansonsten false.
 	 */
-	/*
-	 * @return gibt true zurück falls an dieser Stelle Gras ist.
+	/**
+	 * pruefe ob Gras an der Stelle.
+	 * 
+	 * @return gibt true zurueck falls an dieser Stelle Gras ist.
 	 */
 	public boolean equalsGras(int x, int y) {
 		if (register[x][y][0] == Gras)
@@ -289,9 +321,11 @@ public class Spielfeld extends JPanel {
 		else
 			return false;
 	}
-	/*
-	 * @return gibt true zurück wenn sich an der x und y Koordinate eine
-	 * festeMauer befindet
+	/**
+	 * teste ob an dieser Stelle eine Mauer ist.
+	 * 
+	 * @return gibt true zurueck wenn sich an der x und y Koordinate eine
+	 *         festeMauer befindet
 	 */
 	public boolean equalsMauer(int x, int y) {
 		if (register[x][y][0] == festeMauer)
@@ -299,17 +333,22 @@ public class Spielfeld extends JPanel {
 		else
 			return false;
 	}
-	/*
-	 * @return gibt true zurück wenn auf dieser Schicht sich ein Ausgang
-	 * befindet
+	/**
+	 * teste ob Eingang an X/Y/Ebene Position.
+	 * 
+	 * @return gibt true zurueck wenn auf dieser Schicht sich ein Ausgang
+	 *         befindet
 	 */
 	public boolean equalsExit(int x, int y, int dimension) {
 		if (register[x][y][dimension] == Ausgang)
 			return true;
 		else
 			return false;
-	}/*
-	 * @return return true wenn Item auf dieser Ebene an X/Y Stelle
+	}
+	/**
+	 * Teste ob Item an dieser Stelle liegt.
+	 * 
+	 * @return gibt true zurueck wenn Item auf dieser Ebene an X/Y Stelle
 	 */
 	public boolean equalsDummyItem(int x, int y, int dimension) {
 
@@ -319,8 +358,10 @@ public class Spielfeld extends JPanel {
 			return false;
 
 	}
-	/*
-	 * @return gibt true zurück wenn eine Bombe liegt an dieser Stelle/Ebene
+	/**
+	 * teste ob die Bombe an dieser Stelle ist.
+	 * 
+	 * @return gibt true zurueck wenn eine Bombe liegt an dieser Stelle/Ebene
 	 */
 	public boolean equalsBomb(int x, int y, int dimension) {
 		if (register[x][y][dimension] == Bombe)
@@ -329,8 +370,10 @@ public class Spielfeld extends JPanel {
 			return false;
 
 	}
-	/*
-	 * @return gibt true zurück wenn Bomberman dort steht
+	/**
+	 * teste ob Bomberman sich dort befindet.
+	 * 
+	 * @return gibt true zurueck wenn Bomberman dort steht
 	 */
 	public boolean equalsMan(int x, int y, int dimension) {
 
@@ -338,7 +381,10 @@ public class Spielfeld extends JPanel {
 			return true;
 		else
 			return false;
-	}/*
+	}
+	/**
+	 * analog zu eqalsMan()
+	 * 
 	 * @return analog zu equalsMan()
 	 */
 	public boolean equalsMan2(int x, int y, int dimension) {
@@ -349,9 +395,11 @@ public class Spielfeld extends JPanel {
 			return false;
 
 	}
-	/*
-	 * @return gibt true zurück falls register an dieser Stelle eine Kiste
-	 * beinhaltet
+	/**
+	 * prueft ob eine Kiste auf diesem Feld liegt.
+	 * 
+	 * @return gibt true zurueck falls register an dieser Stelle eine Kiste
+	 *         beinhaltet
 	 */
 	public boolean equalsKiste(int x, int y, int dimension) {
 		if (register[x][y][dimension] == Kiste)
@@ -359,7 +407,9 @@ public class Spielfeld extends JPanel {
 		else
 			return false;
 	}
-	/*
+	/**
+	 * prueft ob die Explosion da ist.
+	 * 
 	 * @return true wenn sich eine Explosion dort befindet.
 	 */
 	public boolean equalsExplosion(int x, int y, int dimension) {

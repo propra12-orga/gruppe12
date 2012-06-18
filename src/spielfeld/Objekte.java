@@ -1,6 +1,9 @@
 package spielfeld;
 
 public class Objekte extends Thread {
+	/**
+	 * Mutterklasse fuer die Objekte,welche ins Register geschrieben werden.
+	 */
 
 	// Dekleration von Variabeln
 	protected int xPosition;
@@ -37,10 +40,21 @@ public class Objekte extends Thread {
 	// Set- und Get-Methoden
 
 	// Set:
-
+	/**
+	 * Methode um explizit ein Objekt dieser Stelle zu uebergeben
+	 * 
+	 * @param pos
+	 *            Stelle an X Position
+	 */
 	public void setXPosition(int pos) {
 		xPosition = pos;
 	}
+	/**
+	 * Methode um explizit ein Objekt dieser Stelle zu uebergeben
+	 * 
+	 * @param pos
+	 *            Stelle an Y Position
+	 */
 
 	public void setYPosition(int pos) {
 		yPosition = pos;

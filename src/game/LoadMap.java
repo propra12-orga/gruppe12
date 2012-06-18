@@ -5,18 +5,34 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-/*
- * Klasse, die eine Datei bekommt diese in ein Array schreibt 
- * wird in Spielfeld.java feldfuellen() übergeben um zu
- * übersetzen.
- * boolean loadtext gibt Auskunft darüber ob eine Datei geladen wurde.
- * Das Programm füllt sich mit der eigenen randomGen() Methode falls sie false ist.
- * Ansonsten wird das Feld mit dem Dateiinhalt befüllt.
- *
+/**
+ * Klasse, die eine Datei bekommt diese in ein Array schreibt wird in
+ * Spielfeld.java feldfuellen() übergeben um zu übersetzen. boolean loadtext
+ * gibt Auskunft darüber ob eine Datei geladen wurde. Das Programm füllt sich
+ * mit der eigenen randomGen() Methode falls sie false ist. Ansonsten wird das
+ * Feld mit dem Dateiinhalt befüllt.
+ * 
  */
 public class LoadMap {
 	private static boolean loadtext = false;
 	public static char[][][] map;
+	/**
+	 * LoadMap liest eine Datei ein und schreibt damit eine Karpe (char [][][]
+	 * map). Es ist eine Datei zu uebergeben, welche ein char-Array beinhaltet.
+	 * Diese Ziffernkombination wird in map reingeschrieben. Die Dimension 0 der
+	 * Uebersetzer-Karte wird explizit mit Gras und Mauer befuellt. Die
+	 * Dimensionen 1 und 2 jeweils getrennt von einander eingelesen.
+	 * 
+	 * 
+	 * @param f
+	 *            Die Methode nimmt File f entgegen. Das ist die Datei aus der
+	 *            das Feld gelesen wird.Typischerweise eine .txt Datei welche
+	 *            ein char Array beinhaltet
+	 * @throws IOException
+	 *             Wirft eine Fehlermeldung falls die einzulesende Datei nicht
+	 *             existiert.
+	 */
+
 	public static void load(File f) throws IOException {
 		setLoadtext(true);
 		/*
@@ -86,8 +102,12 @@ public class LoadMap {
 			}
 		}
 
-	}/*
-	 * erzeugt eine Zufallskarte und schreibt sie in txt Datei namens Tester.txt
+	}
+	/**
+	 * Mit dieser Methode hat der Spieler die Moeglichkeit, selber Karten zu
+	 * erstellen nach dem Zufallsprinzip aus randomGen(). Die Karte wird
+	 * erstellt und in einer .txt Datei gespeichert. Sie kann danach wie gewohnt
+	 * geladen und gespielt werden.
 	 */
 	public static void randomMap() throws IOException {
 		boolean existsExit = false;
@@ -217,10 +237,19 @@ public class LoadMap {
 	}
 
 	// randomMap
+
 	public static boolean isLoadtext() {
 		return loadtext;
 	}
-
+	/**
+	 * Gibt an ob eine Karte geladen wurde. Kann benutzt werden, um zu
+	 * unterscheiden ob der Computer eine Zufallskarte erstellen soll oder die
+	 * eingelesene Karte realisiert.
+	 * 
+	 * @param loadtext
+	 *            Wenn man dieser Methode true uebergibt weiß das Programm, dass
+	 *            eine Karte eingelesen wurde und reagiert dementsprechend.
+	 */
 	public static void setLoadtext(boolean loadtext) {
 		LoadMap.loadtext = loadtext;
 	}

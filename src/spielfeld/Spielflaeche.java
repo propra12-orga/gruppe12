@@ -16,7 +16,14 @@ import spielfigur.Spielfigur;
  * zum Testen entweder randomMap.java benutzen oder Level.txt einlesen.
  * wichtig:: bitte manual.txt lesen.
  */
-
+/**
+ * Initialisiert die Karte und fuehrt die Zeichnung durch. Das Prinzip einer
+ * "state machine" wird benutzt. So aendert das Programm lediglich Zustaende und
+ * uebergibt es der Zeichenmethode paint aus JavaGraphics.
+ * 
+ * @author tony
+ * 
+ */
 public class Spielflaeche extends JPanel {
 	/*
 	 * Initialisierung der Variablen für das Spielfeld und die beiden
@@ -39,6 +46,14 @@ public class Spielflaeche extends JPanel {
 	 * Das Spielfeld füllt sich direkt mit der ersten Methode feldfuellen() Es
 	 * werden Gras,Mauer,Kiste,Ausgang und Items generiert. wahlweise kann ein
 	 * Feld eingelesen werden mit feldlesen()
+	 */
+	/**
+	 * Der Konstruktor dieser Klasse plaziert die Spielfigur und erzeugt ein
+	 * noch zu befuellendes Spielfeld. Falls keine Datei eingelesen wurde wird
+	 * ein Zufallsgenerator aktiviert,andernfalls die Karte eingelesen und
+	 * geoeffnet.
+	 * 
+	 * @see randomGen()
 	 */
 	public Spielflaeche() {
 		play = new Spielfeld(21, 21, 5);
@@ -68,8 +83,16 @@ public class Spielflaeche extends JPanel {
 			play.feldeinlesen(LoadMap.map);
 
 		}
-	}
-
+	}// Konstruktor Ende
+	/**
+	 * paint() zeichnet dynamisch das ganze Register. Die Zeichenschleife
+	 * implementiert eine bestimmte Prioritaetenliste fuer die Dimensionen. Die
+	 * Mehrschichtigkeit wird wie folgt realisiert: Eine Ebene kann nur dann
+	 * gezeichnet werden, wenn die Ebene ueber ihr leer ist. Die Ausnahme ist
+	 * bei Gras zu machen, denn da wird gezeichnet falls sich ein Objekt (!=
+	 * Kiste) darueber befindet.
+	 * 
+	 */
 	public void paint(Graphics g) {
 		// Figur dort gezeichnet wo objekt bman ist
 		Spielfeld.register[bman.xPosition][bman.yPosition][3] = Spielfeld.Bomberman1;
@@ -90,8 +113,8 @@ public class Spielflaeche extends JPanel {
 		explo = play.loadImg("/ressources/grafics/expl.gif");
 		dummy = play.loadImg("/ressources/grafics/Gem.png");
 		/*
-		 * Zeichenschleife. sie implementiert eine gewisse Prioritätenliste.
-		 * Die Objekte der Dimension 1 werden nur gezeichnet: a) falls sie
+		 * Zeichenschleife. sie implementiert eine gewisse Prioritätenliste. Die
+		 * Objekte der Dimension 1 werden nur gezeichnet: a) falls sie
 		 * existieren und b) falls kein Objekt der Dimension 2 existiert (auf
 		 * den selben Koordinaten.). Wichtig: unter die Objekte(sprich zeitlich
 		 * davor!) muss Gras gesetzt werden sonst wird ein falscher Untergrund
