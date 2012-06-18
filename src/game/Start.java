@@ -4,8 +4,8 @@ import menu.MenuStarter;
 
 public class Start {
 
-	public static void main(String[] args) {
-		MenuStarter.openmainmenu();
-	}
+  public static void main(String[] args) {
+    MenuStarter.openmainmenu();
+  }
 
 }
