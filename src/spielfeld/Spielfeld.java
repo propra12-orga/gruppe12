@@ -9,7 +9,10 @@ import javax.swing.JPanel;
  * Klasse um Spielfelder zu erzeugen.
  */
 public class Spielfeld extends JPanel {
-
+	/**
+	 * Diese Klasse beinhaltet alle Methoden zum erzeugen von
+	 * Spielfeldern,Objekten und zum Einlesen von Karten.
+	 */
 	/*
 	 * Das ganze Spielfeld befindet sich auf mehreren Ebenen und wird als 3d
 	 * Array register[][][] realisiert. wichtig:die einzelnen Ebenen mit kurzer
@@ -45,10 +48,10 @@ public class Spielfeld extends JPanel {
 	 * Erstellung eines Feldes wird es direkt befuellt damit.
 	 * 
 	 * @param breite
-	 *            bestimmt die Breite des Feldes(Anzahl Blöcke in X Richtung)
+	 *            bestimmt die Breite des Feldes(Anzahl Bloecke in X Richtung)
 	 * 
 	 * @param hoehe
-	 *            bestimmt die Höhe des Feldes (Anzahl Blöcke in Y Richtung)
+	 *            bestimmt die Höhe des Feldes (Anzahl Bloecke in Y Richtung)
 	 * 
 	 * @param dimension
 	 *            legt die Anzahl der Ebenen fest

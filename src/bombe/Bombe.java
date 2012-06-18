@@ -13,7 +13,22 @@ public class Bombe extends Objekte {
 	int intBombeX, intBombeY;
 	BombType bomb;
 	int vonSpieler;
-
+	/**
+	 * Erzeugt eine Bombe mit gegebenen Attributen
+	 * 
+	 * @param xPos
+	 *            X Position
+	 * @param yPos
+	 *            Y Position
+	 * @param width
+	 *            Breite der Bombe bestimmen
+	 * @param height
+	 *            Hoehe der Bombe bestimmen
+	 * @param bomb
+	 *            legt fest welche Bombe erzeugt werden soll
+	 * @param von
+	 *            legt fest welcher Spieler sie erzeugt
+	 */
 	public Bombe(int xPos, int yPos, int width, int height, BombType bomb,
 			int von) {
 		super(xPos, yPos, width, height, bomb.picPath, bomb.type);
@@ -48,7 +63,7 @@ public class Bombe extends Objekte {
 					Spielflaeche.play.fill(intBombeX + i, intBombeY, 3,
 							Spielfeld.Explosion);// explosion
 					// anzeigen
-					// liegt hier eine bombe, dann soll die gefälligst auch
+					// liegt hier eine bombe, dann soll die gefï¿½lligst auch
 					// explodieren!
 					Spielflaeche.sollExplodieren[intBombeX + i][intBombeY] = true;
 
@@ -101,7 +116,7 @@ public class Bombe extends Objekte {
 					// explosion
 					// anzeigen
 
-					// liegt hier eine bombe, dann soll die gefälligst auch
+					// liegt hier eine bombe, dann soll die gefï¿½lligst auch
 					// explodieren!
 					Spielflaeche.sollExplodieren[intBombeX - i][intBombeY] = true;
 					// Ist das Feld ein bomberman? wenn ja, welcher? Der Andere
@@ -149,7 +164,7 @@ public class Bombe extends Objekte {
 					Spielflaeche.play.fill(intBombeX, intBombeY + i, 3,
 							Spielfeld.Explosion);// explosion
 					// anzeigen
-					// liegt hier eine bombe, dann soll die gefälligst auch
+					// liegt hier eine bombe, dann soll die gefï¿½lligst auch
 					// explodieren!
 					Spielflaeche.sollExplodieren[intBombeX][intBombeY + i] = true;
 
@@ -198,7 +213,7 @@ public class Bombe extends Objekte {
 							Spielfeld.Explosion);// explosion
 					// anzeigen
 
-					// liegt hier eine bombe, dann soll die gefälligst auch
+					// liegt hier eine bombe, dann soll die gefï¿½lligst auch
 					// explodieren!
 					Spielflaeche.sollExplodieren[intBombeX][intBombeY - i] = true;
 
@@ -237,7 +252,7 @@ public class Bombe extends Objekte {
 		}
 
 		boolMauer = true;
-		// hier warten wir 750 ms oder bis eine andere bombe in der nähe
+		// hier warten wir 750 ms oder bis eine andere bombe in der nï¿½he
 		// explodiert ist
 
 		warten(750);

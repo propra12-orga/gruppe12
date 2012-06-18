@@ -22,7 +22,18 @@ public class Spielfigur {
 	private int bombPlanted = 3;
 	private int playerNumber;
 	private BombType bomb = new NormalBomb();
-
+	/**
+	 * erzeugt eine Spielfigur Bomberman an die angegebene Stelle
+	 * 
+	 * @param xPosition
+	 *            definiert X-Position bei Start der Figur
+	 * @param yPosition
+	 *            definiert Y-Position bei Start der Figur
+	 * @param dimension
+	 *            definiert Dimension bei Start
+	 * @param player
+	 *            Gibt an welcher Spieler das ist.
+	 */
 	public Spielfigur(int xPosition, int yPosition, int dimension, int player) {
 		this.yPosition = yPosition;
 		this.xPosition = xPosition;
@@ -72,8 +83,8 @@ public class Spielfigur {
 		bombPlanted = b;
 	}
 
-	/*
-	 * Überprüft ob Bomberman an einer bestimmten Stelle ist.
+	/**
+	 * ueberprueft ob Bomberman an angegebener x/y Stelle ist.
 	 */
 	public boolean istPos(int x, int y) {
 		if ((x == xPosition && y == yPosition))
@@ -82,7 +93,10 @@ public class Spielfigur {
 			return false;
 	}
 	// Bombe
-
+	/**
+	 * Methode mit der Bomberman schlieÃŸlich Bomben legen kann. An der Position
+	 * des Spielers wird ein Objekt des Typs Bombe erzeugt.
+	 */
 	public void bombeLegen() {
 		if (bombPlanted > 0) {
 			new Bombe(xPosition, yPosition, width, height, bomb, playerNumber)
@@ -92,14 +106,14 @@ public class Spielfigur {
 
 		}
 	}
-	/*
+	/**
 	 * Die Methode move bzw. move2 regeln die Bewegungen der Figuren "man" und
 	 * "man2. Benutzt werden diese Methoden vom gamekeylistener. Die Bewegung
 	 * wird durch Abfragen , der in der jeweiligen Bewegungsrichtung vorhandenen
 	 * Objekte realisiert. Es wird abgefragt, was sich auf dem jeweiligen Feld
 	 * befindet und falls Bewegung logisch erscheint, wird die jeweilige Figur
 	 * auf dieses Feld bewegt. (Ã„nderung der Variablen xPosition und yPosition
-	 * des jeweiligen Spielfigurenobjektes
+	 * des jeweiligen Spielfigurenobjektes.
 	 */
 	public void move(int x, int y) {
 
@@ -166,12 +180,13 @@ public class Spielfigur {
 
 	}// move
 
+	/**
+	 * 
+	 * Diese Methode funktioniert analog zu move ausser ,dass hierbei nicht das
+	 * Objekt"man" angesprochen wird sondern "man2"
+	 */
 	public void move2(int x, int y) {
-		/*
-		 * 
-		 * Diese Methode funktioniert analog zu move ausser ,dass hierbei nicht
-		 * das Objekt"man" angesprochen wird sondern "man2"
-		 */
+
 		if (Spielflaeche.play.getObj(xPosition + x, yPosition + y, 1) == Spielfeld.Ausgang
 				&& Spielflaeche.play.getObj(xPosition + x, yPosition + y, 2) != Spielfeld.Kiste) {
 			xPosition = xPosition + x;

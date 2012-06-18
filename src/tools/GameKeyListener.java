@@ -7,7 +7,7 @@ import spielfeld.Spielflaeche;
 
 public class GameKeyListener implements KeyListener {
 
-	/*
+	/**
 	 * Die Funktion dieser Klasse ist die Bedienung des Programms mit Hilfe der
 	 * Tastatur. Auf die einzelnen Tasten wurde jeweils die move bzw. move2
 	 * Methoden gelegt.
