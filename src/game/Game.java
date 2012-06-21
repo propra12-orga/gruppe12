@@ -11,6 +11,7 @@ public class Game extends Thread {
 	// initialisiere Variablen
 	public static Spielflaeche game; // neue "leere" Spieflaeche
 	public static JFrame gameFrame; // neues "leeres" Fenster
+	public static GameKeyListener gkl;
 
 	public Game() { // Konstruktor erzeugt Frame mit Spielfeld
 		go();
@@ -31,7 +32,7 @@ public class Game extends Thread {
 		gameFrame.addWindowListener(gQuit); // fügt WindowListener gQuit dem
 		// Frame bei
 
-		GameKeyListener gkl = new GameKeyListener(); // erzeugt GameKeyListener
+		gkl = new GameKeyListener(); // erzeugt GameKeyListener
 		// "gkl"
 		gameFrame.addKeyListener(gkl); // fügt GameKeyListener "gkl" dem Frame
 		// bei

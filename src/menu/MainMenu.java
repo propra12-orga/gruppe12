@@ -33,6 +33,8 @@ public class MainMenu extends JFrame implements ActionListener {
 
 	// ...ebenso das Titelpanel
 	JPanel titlepanel = new JPanel();
+	JPanel buttons = new JPanel();
+	JPanel bottom = new JPanel();
 	JLabel title = new JLabel("Ganz dolles Spiel");
 
 	// Konstruktor
@@ -42,18 +44,27 @@ public class MainMenu extends JFrame implements ActionListener {
 				new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		getContentPane().setBackground(Color.BLACK);
 
-		// Buttons den Panels hinzufuegen
+		// Titel dem Titelpanel hinzufuegen
 		titlepanel.setBackground(null);
 		title.setForeground(Color.WHITE);
 		titlepanel.add(title);
 
+		// Buttons dem Buttonpanel hinzufuegen
+		buttons.setLayout(new BoxLayout(buttons, BoxLayout.Y_AXIS));
+		buttons.setBackground(null);
+		buttons.add(start.getPanel());
+		buttons.add(dummy.getPanel());
+		buttons.add(loadMap.getPanel());
+		buttons.add(sets.getPanel());
+		buttons.add(exit.getPanel());
+
+		// Bottompanel:
+		bottom.setBackground(null);
+
 		// Panels dem Oberpanel hinzufuegen
 		getContentPane().add(titlepanel);
-		getContentPane().add(start.getPanel());
-		getContentPane().add(dummy.getPanel());
-		getContentPane().add(loadMap.getPanel());
-		getContentPane().add(sets.getPanel());
-		getContentPane().add(exit.getPanel());
+		getContentPane().add(buttons);
+		getContentPane().add(bottom);
 
 		// Buttons beim ActionListener registrieren
 		start.getButton().addActionListener(this);

@@ -4,10 +4,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 
+import menu.MenuStarter;
 import spielfeld.Spielfeld;
 import spielfeld.Spielflaeche;
 
 public class GameKeyListener implements KeyListener {
+	public static boolean sichtbar;
 
 	/**
 	 * Die Funktion dieser Klasse ist die Bedienung des Programms mit Hilfe der
@@ -35,22 +37,23 @@ public class GameKeyListener implements KeyListener {
 			Spielflaeche.bman.move(0, -1);
 		}
 		// Fall: Linkstaste gedrückt ==> Links bewegen
-		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			Spielflaeche.bman.move(-1, 0);
 		}
 		// Fall: Rechtstaste gedrückt ==> Rechts bewegen
-		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			Spielflaeche.bman.move(1, 0);
 		}
 		// Fall: Runtertaste gedrückt ==> Runter bewegen
-		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			Spielflaeche.bman.move(0, 1);
 		}
 		// Fall: Leertaste gedrückt ==> Bombe legen
-		else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			Spielflaeche.bman.bombeLegen();
 
-		} else if (e.getKeyCode() == KeyEvent.VK_F5) {
+		}
+		if (e.getKeyCode() == KeyEvent.VK_F5) {
 			try {
 				Spielfeld.save(Spielflaeche.play);
 			} catch (IOException e1) {
@@ -58,6 +61,16 @@ public class GameKeyListener implements KeyListener {
 				e1.printStackTrace();
 			}
 		}
+
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			if (sichtbar == true) {
+				sichtbar = false;
+			} else if (sichtbar == false) {
+				sichtbar = true;
+			}
+			MenuStarter.frame.setVisible(true);
+		}
+
 		// same for player 2
 		if (e.getKeyCode() == KeyEvent.VK_W) {
 			Spielflaeche.bman2.move2(0, -1);

@@ -14,4 +14,7 @@ Spielende:
         - Wenn das Spiel neustartet , aber eine Bombe gelegt wurde, wird noch eine explosion im nächsten Spiel angezeigt. Zerstört sogar blöcke
         
 Spielfiguren:
-		- Aus welchem Grund auch immer springen die figuren manchmal. 
+		- Aus welchem Grund auch immer springen die figuren manchmal.
+		
+Bombe:
+	-	Bombe legen und nicht bewegen => Bombe explodiert nicht.

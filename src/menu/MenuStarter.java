@@ -1,11 +1,15 @@
 package menu;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import tools.WindowQuitter;
 
 public class MenuStarter {
+	public static MainMenu frame;
 
 	public static void openmainmenu() {
-		MainMenu frame = new MainMenu(); // Erzeugt ein Objekt von StartMenu
+		frame = new MainMenu(); // Erzeugt ein Objekt von StartMenu
 
 		WindowQuitter wquit = new WindowQuitter(); // Erzeugt einen
 													// WindowQuitter
@@ -13,9 +17,15 @@ public class MenuStarter {
 										// Listener namens "wquit" zu, siehe
 										// Klasse "WindowQuitter"
 
-		frame.setSize(400, 225); // Einstellung der Fenstergröße
 		frame.setResizable(false);
 		frame.setLocationByPlatform(true);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setBounds(0, 0, screenSize.width, screenSize.height);
+		frame.setUndecorated(true);
 		frame.setVisible(true); // Sichtbarmachen
+	}
+
+	public MainMenu getFrame() {
+		return frame;
 	}
 }
