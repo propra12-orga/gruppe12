@@ -66,7 +66,7 @@ public class Spielflaeche extends JPanel {
     for (int i = 0; i < 21; i++) {
       for (int j = 0; j < 21; j++) {
         sollExplodieren[i][j] = false;// bombe soll anfangen zu
-                        // explodieren
+        // explodieren
 
       }
     }
@@ -103,18 +103,18 @@ public class Spielflaeche extends JPanel {
     arrayHeight = getHeight() / 21 + 1;
 
     // Laden der Bilder
-    gras = play.loadImg("/ressources/grafics/floor2.png");
-    mauer = play.loadImg("/ressources/grafics/unbreakable.png");
+    gras = play.loadImg("/ressources/grafics/floor2.gif");
+    mauer = play.loadImg("/ressources/grafics/unbreakable.gif");
     exit = play.loadImg("/ressources/grafics/finish.png");
-    bomb = play.loadImg("/ressources/grafics/bomb1.png");
+    bomb = play.loadImg("/ressources/grafics/bomb1.gif");
     man = play.loadImg("/ressources/grafics/bomberman.png");
     man2 = play.loadImg("/ressources/grafics/bomberman2.png");
-    kiste = play.loadImg("/ressources/grafics/kiste2.png");
+    kiste = play.loadImg("/ressources/grafics/kiste2.gif");
     explo = play.loadImg("/ressources/grafics/Explode12.png");
     dummy = play.loadImg("/ressources/grafics/item_star.png");
     /*
-     * Zeichenschleife. sie implementiert eine gewisse Prioritätenliste. Die
-     * Objekte der Dimension 1 werden nur gezeichnet: a) falls sie
+     * Zeichenschleife. sie implementiert eine gewisse Prioritätenliste.
+     * Die Objekte der Dimension 1 werden nur gezeichnet: a) falls sie
      * existieren und b) falls kein Objekt der Dimension 2 existiert (auf
      * den selben Koordinaten.). Wichtig: unter die Objekte(sprich zeitlich
      * davor!) muss Gras gesetzt werden sonst wird ein falscher Untergrund
