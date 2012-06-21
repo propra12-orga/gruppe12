@@ -49,7 +49,7 @@ public class Bombe extends Objekte {
 		long millis = System.currentTimeMillis();
 		while (((System.currentTimeMillis() - millis) < 2000)
 				&& (Spielflaeche.sollExplodieren[intBombeX][intBombeY] == false)) {
-
+			System.out.print("");
 		}
 
 		// in alle 4 richtungen explodieren bis zu einer mauer, kiste oder
