@@ -57,8 +57,6 @@ public class Spielflaeche extends JPanel {
 	 */
 	public Spielflaeche() {
 		play = new Spielfeld(21, 21, 5);
-		bman = new Spielfigur(2, 1, 2, 1);
-		bman2 = new Spielfigur(18, 19, 2, 2);
 
 		// sollExplodieren ist die Kommunikationsplattform der bomben-Threads.
 		// Ist hier ein Wert true, so sollen bomben auf diesem feld explodieren
@@ -78,10 +76,18 @@ public class Spielflaeche extends JPanel {
 
 		if (LoadMap.isLoadtext() == false) {
 			play.feldfuellen();
+			bman = new Spielfigur(2, 1, 2, 1);
+			bman2 = new Spielfigur(18, 19, 2, 2);
 
 		} else {
-			play.feldeinlesen(LoadMap.map);
-
+			if (Spielfeld.booleanSave == false) {
+				play.feldeinlesen(LoadMap.map);
+				bman = new Spielfigur(2, 1, 2, 1);
+				bman2 = new Spielfigur(18, 19, 2, 2);
+			} else {
+				play.feldeinlesen(LoadMap.map);
+				bman = new Spielfigur(Spielfeld.xPos, Spielfeld.yPos, 2, 1);
+			}
 		}
 	}// Konstruktor Ende
 	/**

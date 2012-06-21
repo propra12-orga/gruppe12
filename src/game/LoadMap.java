@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import spielfeld.Spielfeld;
+import spielfeld.Spielflaeche;
 /**
  * Klasse, die eine Datei bekommt diese in ein Array schreibt wird in
  * Spielfeld.java feldfuellen() übergeben um zu übersetzen. boolean loadtext
@@ -35,6 +38,10 @@ public class LoadMap {
 
 	public static void load(File f) throws IOException {
 		setLoadtext(true);
+		if (Spielfeld.booleanSave == true) {
+			Spielflaeche.bman.setxPosition(Spielfeld.xPos);
+			Spielflaeche.bman.setyPosition(Spielfeld.yPos);
+		}
 		/*
 		 * in den ersten Zeilen wird ein 3d Array für die Übersetzung ans
 		 * Spielfeld initialisiert. Ein Stream öffnet sich (BufferedReader). Er

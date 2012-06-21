@@ -2,7 +2,9 @@ package tools;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 
+import spielfeld.Spielfeld;
 import spielfeld.Spielflaeche;
 
 public class GameKeyListener implements KeyListener {
@@ -48,6 +50,13 @@ public class GameKeyListener implements KeyListener {
 		else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			Spielflaeche.bman.bombeLegen();
 
+		} else if (e.getKeyCode() == KeyEvent.VK_F5) {
+			try {
+				Spielfeld.save(Spielflaeche.play);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		// same for player 2
 		if (e.getKeyCode() == KeyEvent.VK_W) {

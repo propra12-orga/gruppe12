@@ -28,7 +28,8 @@ public class Spielfeld extends JPanel {
 	int hoehe, breite;
 	public static Objekte register[][][];
 	public static char map[][][];
-
+	public static boolean booleanSave = false;
+	public static int xPos, yPos;
 	/*
 	 * Erstelle Objekte die statisch genutzt werden können in allen Klassen.
 	 * Macht das Programm deutlich übersichtlicher und lesbarer. Jedem Objekt
@@ -311,8 +312,11 @@ public class Spielfeld extends JPanel {
 		return name1;
 
 	}
-	public void save(Spielfeld game) throws IOException {
-		char[][][] map = new char[20][20][5];
+	public static void save(Spielfeld game) throws IOException {
+		booleanSave = true;
+		xPos = Spielflaeche.bman.getxPosition();
+		yPos = Spielflaeche.bman.getyPosition();
+		char[][][] map = new char[21][21][5];
 
 		for (int y = 0; y < 21; y++) {
 			map[0][y][0] = '1';
@@ -330,12 +334,12 @@ public class Spielfeld extends JPanel {
 		 */
 		for (int x = 0; x < 21; x++) {
 			for (int y = 0; y < 21; y++) {
-				if (game.getObj(x, y, 1) == DummyItem) {
-					map[x][y][1] = '1';
-				} else if (game.getObj(x, y, 1) == Ausgang) {
-					map[x][y][1] = '2';
-				} else if (game.getObj(x, y, 1) == null) {
-					map[x][y][1] = '0';
+				if (game.getObj(y, x, 1) == DummyItem) {
+					map[y][x][1] = '1';
+				} else if (game.getObj(y, x, 1) == Ausgang) {
+					map[y][x][1] = '2';
+				} else if (game.getObj(y, x, 1) == null) {
+					map[y][x][1] = '0';
 				}
 			}
 		}
@@ -344,10 +348,10 @@ public class Spielfeld extends JPanel {
 		 */
 		for (int x = 0; x < 20; x++) {
 			for (int y = 0; y < 20; y++) {
-				if (game.getObj(x, y, 2) == Kiste) {
-					map[x][y][2] = '1';
-				} else if (game.getObj(x, y, 2) == null) {
-					map[x][y][2] = '0';
+				if (game.getObj(y, x, 2) == Kiste) {
+					map[y][x][2] = '1';
+				} else if (game.getObj(y, x, 2) == null) {
+					map[y][x][2] = '0';
 				}
 			}
 		}
@@ -365,7 +369,7 @@ public class Spielfeld extends JPanel {
 
 			for (int j = 0; j < 20; j++) {
 
-				speichern.write(String.valueOf(map[i][j][1]));
+				speichern.write(String.valueOf(map[j][i][1]));
 				if (j == 19) {
 					speichern.write('\n');
 				}
@@ -376,7 +380,7 @@ public class Spielfeld extends JPanel {
 
 			for (int j = 0; j < 20; j++) {
 
-				speichern.write(String.valueOf(map[i][j][2]));
+				speichern.write(String.valueOf(map[j][i][2]));
 				if (j == 19) {
 					speichern.write('\n');
 				}
@@ -384,7 +388,7 @@ public class Spielfeld extends JPanel {
 		}
 		speichern.flush();
 		speichern.close();
-
+		System.out.println("Das Spiel wurde gespeichert.");
 	}
 	/*
 	 * Für jedes Objekt, welches im Register stehen kann gibt es eine Abfrage ob
