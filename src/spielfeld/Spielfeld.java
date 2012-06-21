@@ -3,6 +3,9 @@ package spielfeld;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 /*
@@ -306,6 +309,81 @@ public class Spielfeld extends JPanel {
 		Image name1 = Toolkit.getDefaultToolkit().getImage(
 				getClass().getResource(pfad));
 		return name1;
+
+	}
+	public void save(Spielfeld game) throws IOException {
+		char[][][] map = new char[20][20][5];
+
+		for (int y = 0; y < 21; y++) {
+			map[0][y][0] = '1';
+			map[20][y][0] = '1';
+			map[y][0][0] = '1';
+			map[y][20][0] = '1';
+		}
+		for (int i = 2; i < 20; i = i + 2) {
+			for (int j = 2; j < 20; j = j + 2) {
+				map[i][j][0] = '1';
+			}
+		}
+		/*
+		 * speichere Dimension 1.
+		 */
+		for (int x = 0; x < 21; x++) {
+			for (int y = 0; y < 21; y++) {
+				if (game.getObj(x, y, 1) == DummyItem) {
+					map[x][y][1] = '1';
+				} else if (game.getObj(x, y, 1) == Ausgang) {
+					map[x][y][1] = '2';
+				} else if (game.getObj(x, y, 1) == null) {
+					map[x][y][1] = '0';
+				}
+			}
+		}
+		/*
+		 * speichere Dimension 2
+		 */
+		for (int x = 0; x < 20; x++) {
+			for (int y = 0; y < 20; y++) {
+				if (game.getObj(x, y, 2) == Kiste) {
+					map[x][y][2] = '1';
+				} else if (game.getObj(x, y, 2) == null) {
+					map[x][y][2] = '0';
+				}
+			}
+		}
+
+		/*
+		 * schreibe nun das Save-Game in eine txt Datei
+		 */
+
+		/*
+		 * Dimension 1 wird gespeichert.
+		 */
+		File saveGame = new File("save.txt");
+		FileWriter speichern = new FileWriter(saveGame);
+		for (int i = 0; i < 20; i++) {
+
+			for (int j = 0; j < 20; j++) {
+
+				speichern.write(String.valueOf(map[i][j][1]));
+				if (j == 19) {
+					speichern.write('\n');
+				}
+			}
+
+		}
+		for (int i = 0; i < 20; i++) {
+
+			for (int j = 0; j < 20; j++) {
+
+				speichern.write(String.valueOf(map[i][j][2]));
+				if (j == 19) {
+					speichern.write('\n');
+				}
+			}
+		}
+		speichern.flush();
+		speichern.close();
 
 	}
 	/*
