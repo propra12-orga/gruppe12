@@ -44,6 +44,7 @@ public class Spielfeld extends JPanel {
 	public static Objekte Bomberman1 = new Objekte("Bomberman1", 2);
 	public static Objekte Bomberman2 = new Objekte("Bomberman2", 2);
 	public static Objekte DummyItem = new Objekte("DummyItem", 1);
+	public static Objekte Wechsler = new Objekte("Wechsler", 1);
 	/**
 	 * intialisiert den Register. Das Register ist ein 3d Array. So werden X/Y
 	 * Koordinaten und eine Ebene erfasst fuer jedes Objekt .Befuellt die Ebene
@@ -173,12 +174,16 @@ public class Spielfeld extends JPanel {
 				int k = (int) (Math.random() + dichte);
 				int h = (int) (Math.random() + dichte);
 				int l = (int) (Math.random() + dichte);
+				int w = (int) (Math.random() + dichte);
 
 				if (h == 1) {
 					register[i][j][2] = Kiste;
 					register[i][j][1] = DummyItem;
 				} else if (k == 1) {
 					register[i][j][2] = Kiste;
+				} else if (w == 1) {
+					register[i][j][2] = Kiste;
+					register[i][j][1] = Wechsler;
 				} else if (l == 1 && existsExit == false) {
 					register[i][j][1] = Ausgang;
 					register[i][j][2] = Kiste;
@@ -436,6 +441,14 @@ public class Spielfeld extends JPanel {
 	 * 
 	 * @return gibt true zurueck wenn Item auf dieser Ebene an X/Y Stelle
 	 */
+	public boolean equalsWechsler(int x, int y, int dimension) {
+
+		if (register[x][y][dimension] == Wechsler)
+			return true;
+		else
+			return false;
+
+	}
 	public boolean equalsDummyItem(int x, int y, int dimension) {
 
 		if (register[x][y][dimension] == DummyItem)

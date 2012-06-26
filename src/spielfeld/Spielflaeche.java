@@ -36,7 +36,8 @@ public class Spielflaeche extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	public int arrayWidth, arrayHeight;
-	private Image gras, mauer, exit, bomb, man, kiste, explo, man2, dummy;
+	private Image gras, mauer, exit, bomb, man, kiste, explo, man2, dummy,
+			wechsler;
 
 	/*
 	 * Erzeugt eine neue Spielflaeche. intern wird das als Array der Größe
@@ -118,6 +119,7 @@ public class Spielflaeche extends JPanel {
 		kiste = play.loadImg("/ressources/grafics/Kiste2.gif");
 		explo = play.loadImg("/ressources/grafics/Explode12.png");
 		dummy = play.loadImg("/ressources/grafics/item_star.png");
+		wechsler = play.loadImg("/ressources/grafics/Wechsler.png");
 		/*
 		 * Zeichenschleife. sie implementiert eine gewisse Prioritätenliste. Die
 		 * Objekte der Dimension 1 werden nur gezeichnet: a) falls sie
@@ -159,6 +161,12 @@ public class Spielflaeche extends JPanel {
 						g.drawImage(gras, x * arrayWidth, y * arrayHeight,
 								arrayWidth, arrayHeight, null);
 						g.drawImage(dummy, x * arrayWidth, y * arrayHeight,
+								arrayWidth, arrayHeight, null);
+					} else if (play.equalsWechsler(x, y, 1)
+							&& play.getObj(x, y, 2) == null) {
+						g.drawImage(gras, x * arrayWidth, y * arrayHeight,
+								arrayWidth, arrayHeight, null);
+						g.drawImage(wechsler, x * arrayWidth, y * arrayHeight,
 								arrayWidth, arrayHeight, null);
 					}
 				}

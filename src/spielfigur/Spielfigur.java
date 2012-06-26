@@ -179,9 +179,7 @@ public class Spielfigur {
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
 			if (Spielflaeche.play.getObj(Spielflaeche.bman.xPosition,
-					Spielflaeche.bman.yPosition, 1) == null) {
-
-			} else {
+					Spielflaeche.bman.yPosition, 1) == Spielfeld.Wechsler) {
 				Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
 						Spielflaeche.bman.yPosition, 1, null);
 				newx = Spielflaeche.bman.xPosition;
@@ -190,9 +188,19 @@ public class Spielfigur {
 				Spielflaeche.bman.yPosition = Spielflaeche.bman2.yPosition;
 				Spielflaeche.bman2.xPosition = newx;
 				Spielflaeche.bman2.yPosition = newy;
-				
 
+				/**
+				 * Hier kommen die Item Effekte rein, muss auchnoch in move2
+				 * ergänzt werden
+				 * 
+				 * 
+				 */
+			} else if (Spielflaeche.play.getObj(Spielflaeche.bman.xPosition,
+					Spielflaeche.bman.yPosition, 1) == Spielfeld.DummyItem) {
+				Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
+						Spielflaeche.bman.yPosition, 1, null);
 			}
+
 		}
 
 	}// move
