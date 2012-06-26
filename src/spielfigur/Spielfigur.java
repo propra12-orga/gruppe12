@@ -21,6 +21,8 @@ public class Spielfigur {
 	protected String pic;
 	private int bombPlanted = 3;
 	private int playerNumber;
+	private int newx;
+	private int newy;
 	private BombType bomb = new NormalBomb();
 	/**
 	 * erzeugt eine Spielfigur Bomberman an die angegebene Stelle
@@ -176,6 +178,21 @@ public class Spielfigur {
 
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
+			if (Spielflaeche.play.getObj(Spielflaeche.bman.xPosition,
+					Spielflaeche.bman.yPosition, 1) == null) {
+
+			} else {
+				Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
+						Spielflaeche.bman.yPosition, 1, null);
+				newx = Spielflaeche.bman.xPosition;
+				newy = Spielflaeche.bman.yPosition;
+				Spielflaeche.bman.xPosition = Spielflaeche.bman2.xPosition;
+				Spielflaeche.bman.yPosition = Spielflaeche.bman2.yPosition;
+				Spielflaeche.bman2.xPosition = newx;
+				Spielflaeche.bman2.yPosition = newy;
+				
+
+			}
 		}
 
 	}// move

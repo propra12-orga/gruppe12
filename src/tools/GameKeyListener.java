@@ -4,7 +4,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 
-import menu.MenuStarter;
 import spielfeld.Spielfeld;
 import spielfeld.Spielflaeche;
 
@@ -32,6 +31,7 @@ public class GameKeyListener implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+
 		// Fall: Hochtaste gedrückt ==> Hoch bewegen
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			Spielflaeche.bman.move(0, -1);
@@ -60,15 +60,6 @@ public class GameKeyListener implements KeyListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		}
-
-		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			if (sichtbar == true) {
-				sichtbar = false;
-			} else if (sichtbar == false) {
-				sichtbar = true;
-			}
-			MenuStarter.frame.setVisible(true);
 		}
 
 		// same for player 2
