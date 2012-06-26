@@ -23,6 +23,7 @@ public class Spielfigur {
 	private int playerNumber;
 	private int newx;
 	private int newy;
+
 	private BombType bomb = new NormalBomb();
 	/**
 	 * erzeugt eine Spielfigur Bomberman an die angegebene Stelle
@@ -178,6 +179,7 @@ public class Spielfigur {
 
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
+
 			if (Spielflaeche.play.getObj(Spielflaeche.bman.xPosition,
 					Spielflaeche.bman.yPosition, 1) == Spielfeld.Wechsler) {
 				Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
@@ -199,6 +201,15 @@ public class Spielfigur {
 					Spielflaeche.bman.yPosition, 1) == Spielfeld.DummyItem) {
 				Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
 						Spielflaeche.bman.yPosition, 1, null);
+
+				int zahl = (int) (Math.random() * 20) + 1;
+				int zahl2 = (int) (Math.random() * 20) + 1;
+				Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
+						Spielflaeche.bman.yPosition, 1, null);
+				new Bombe(zahl, zahl2, width, height, bomb, 3).start();
+				Spielflaeche.play.fill(zahl, zahl2, 4, Spielfeld.Bombe);
+				bombPlanted -= 1;
+
 			}
 
 		}
@@ -248,6 +259,38 @@ public class Spielfigur {
 
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
+
+			if (Spielflaeche.play.getObj(Spielflaeche.bman2.xPosition,
+					Spielflaeche.bman2.yPosition, 1) == Spielfeld.Wechsler) {
+				Spielflaeche.play.fill(Spielflaeche.bman2.xPosition,
+						Spielflaeche.bman2.yPosition, 1, null);
+				newx = Spielflaeche.bman.xPosition;
+				newy = Spielflaeche.bman.yPosition;
+				Spielflaeche.bman.xPosition = Spielflaeche.bman2.xPosition;
+				Spielflaeche.bman.yPosition = Spielflaeche.bman2.yPosition;
+				Spielflaeche.bman2.xPosition = newx;
+				Spielflaeche.bman2.yPosition = newy;
+				int zahl = (int) Math.random() * 20;
+				System.out.println(zahl);
+
+				/**
+				 * Hier kommen die Item Effekte rein, muss auchnoch in move2
+				 * ergänzt werden
+				 * 
+				 * 
+				 */
+			} else if (Spielflaeche.play.getObj(Spielflaeche.bman2.xPosition,
+					Spielflaeche.bman2.yPosition, 1) == Spielfeld.DummyItem) {
+				int zahl = (int) (Math.random() * 20) + 1;
+				int zahl2 = (int) (Math.random() * 20) + 1;
+				Spielflaeche.play.fill(Spielflaeche.bman2.xPosition,
+						Spielflaeche.bman2.yPosition, 1, null);
+				new Bombe(zahl, zahl2, width, height, bomb, 3).start();
+				Spielflaeche.play.fill(zahl, zahl2, 4, Spielfeld.Bombe);
+				bombPlanted -= 1;
+
+			}
+
 		}
 	}
 
