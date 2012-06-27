@@ -8,7 +8,7 @@ import spielfeld.Spielfeld;
 import spielfeld.Spielflaeche;
 
 public class GameKeyListener implements KeyListener {
-	public static boolean sichtbar;
+	public static boolean sichtbar, boolSave;
 
 	/**
 	 * Die Funktion dieser Klasse ist die Bedienung des Programms mit Hilfe der
@@ -55,6 +55,7 @@ public class GameKeyListener implements KeyListener {
 		}
 		if (e.getKeyCode() == KeyEvent.VK_F5) {
 			try {
+				boolSave = true;
 				Spielfeld.save(Spielflaeche.play);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block

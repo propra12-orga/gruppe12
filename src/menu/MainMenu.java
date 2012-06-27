@@ -1,6 +1,7 @@
 package menu;
 
 import game.RunGame;
+import game.zufallsKarte;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -28,6 +29,7 @@ public class MainMenu extends JFrame implements ActionListener {
 	MenuButton start = new MenuButton("Start");
 	MenuButton dummy = new MenuButton("Dummy");
 	MenuButton loadMap = new MenuButton("Lade Karte");
+	MenuButton randomMap = new MenuButton("Zufallskarte");
 	MenuButton sets = new MenuButton("Sets");
 	MenuButton exit = new MenuButton("Exit");
 
@@ -55,6 +57,7 @@ public class MainMenu extends JFrame implements ActionListener {
 		buttons.add(start.getPanel());
 		buttons.add(dummy.getPanel());
 		buttons.add(loadMap.getPanel());
+		buttons.add(randomMap.getPanel());
 		buttons.add(sets.getPanel());
 		buttons.add(exit.getPanel());
 
@@ -75,6 +78,9 @@ public class MainMenu extends JFrame implements ActionListener {
 
 		loadMap.getButton().addActionListener(this);
 		loadMap.getButton().setActionCommand("loadMap");
+
+		randomMap.getButton().addActionListener(this);
+		randomMap.getButton().setActionCommand("randomMap");
 
 		sets.getButton().addActionListener(this);
 		sets.getButton().setActionCommand("sets");
@@ -100,6 +106,14 @@ public class MainMenu extends JFrame implements ActionListener {
 				MapChooser.go();
 			} catch (IOException e) {
 
+				e.printStackTrace();
+			}
+		}
+		if (evt.getActionCommand().equals("randomMap") && gamerunning == false) {
+			try {
+				zufallsKarte.go();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

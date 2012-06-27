@@ -8,6 +8,7 @@ import java.awt.Image;
 import javax.swing.JPanel;
 
 import spielfigur.Spielfigur;
+import tools.GameKeyListener;
 
 /* *** Update ***/
 /*
@@ -35,7 +36,7 @@ public class Spielflaeche extends JPanel {
 	public static boolean sollExplodieren[][];
 
 	private static final long serialVersionUID = 1L;
-	public int arrayWidth, arrayHeight;
+	public int arrayWidth, arrayHeight, zaehler = 0;
 	private Image gras, mauer, exit, bomb, man, kiste, explo, man2, dummy,
 			wechsler;
 
@@ -81,10 +82,33 @@ public class Spielflaeche extends JPanel {
 			bman2 = new Spielfigur(18, 19, 2, 2);
 
 		} else {
+			/*
+			 * wenn nicht gespeichert wurde, werden die Spielfiguren explizit
+			 * gesetzt beide male wird einfach eine Karte eingelesen. prueft ob
+			 * die Karte gueltig ist und laedt sie auch nur genau dann, wenn
+			 * alle Bedingungen erfuellt sind. a) fair b) Ausgang
+			 * existiert/zugaenglich
+			 */
+
+			// Routine zum Karten einlesen und pruefen
 			if (Spielfeld.booleanSave == false) {
-				play.feldeinlesen(LoadMap.map);
 				bman = new Spielfigur(2, 1, 2, 1);
 				bman2 = new Spielfigur(18, 19, 2, 2);
+
+				if (LoadMap.consisCheck(LoadMap.map, Spielflaeche.bman,
+						Spielflaeche.bman2)) {
+
+					play.feldeinlesen(LoadMap.map);
+					System.out.println("Test erfolgreich.");
+				}
+
+				else {
+					System.out.println("Die Karte ist ungueltig.");
+				}
+				/*
+				 * lese gespeicherte Datei ein.Mit der Bomberman Position aus
+				 * dem vorherigen Spiel
+				 */
 			} else {
 				play.feldeinlesen(LoadMap.map);
 				bman = new Spielfigur(Spielfeld.xPos, Spielfeld.yPos, 2, 1);
@@ -212,6 +236,17 @@ public class Spielflaeche extends JPanel {
 			}
 		}
 		repaint();
+		if (GameKeyListener.boolSave == true) {
+			for (int i = 0; i < 20000; i++) {
+				g.drawString("Das Spiel wurde gespeichert.", 350, 200);
+				// System.out.println("bla");
+				zaehler++;
+			}
+			// GameKeyListener.boolSave = false;
+			// GameKeyListener.boolSave = false;
+
+		}
 
 	}
+
 }
