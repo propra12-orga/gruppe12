@@ -93,9 +93,9 @@ public class Objekte extends Thread {
 		return type;
 	}
 
-	public void warten(int millisToWait) {// diese Methode wartet eine
-											// �bergebene anzahl an
-											// Millisekunden.
+	public static void warten(int millisToWait) {// diese Methode wartet eine
+		// �bergebene anzahl an
+		// Millisekunden.
 		long millis = System.currentTimeMillis();
 		while ((System.currentTimeMillis() - millis) < millisToWait) {
 			// mache nichts

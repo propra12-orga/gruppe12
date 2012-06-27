@@ -1,5 +1,7 @@
 package spielfeld;
 
+import game.LoadMap;
+
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -162,10 +164,12 @@ public class Spielfeld extends JPanel {
 	 *            Anzahl der Kisten
 	 */
 	public void randomGen(double dichte) {
-		boolean existsExit = false;
-
+		int posX = LoadMap.randomInt();
+		int posY = LoadMap.randomInt();
 		register[1][3][2] = Kiste;
 		register[3][1][2] = Kiste;
+
+		register[posX][posY][1] = Ausgang;
 
 		// Zufallsgenerator erweitert um die Moeglichkeit
 		// Items zu platzieren
@@ -173,7 +177,6 @@ public class Spielfeld extends JPanel {
 			for (int j = 1; j < 20; j++) {
 				int k = (int) (Math.random() + dichte);
 				int h = (int) (Math.random() + dichte);
-				int l = (int) (Math.random() + dichte);
 				int w = (int) (Math.random() + dichte);
 
 				if (h == 1) {
@@ -184,10 +187,6 @@ public class Spielfeld extends JPanel {
 				} else if (w == 1) {
 					register[i][j][2] = Kiste;
 					register[i][j][1] = Wechsler;
-				} else if (l == 1 && existsExit == false) {
-					register[i][j][1] = Ausgang;
-					register[i][j][2] = Kiste;
-					existsExit = true;
 				}
 			}
 		}
@@ -195,16 +194,12 @@ public class Spielfeld extends JPanel {
 			for (int j = 1; j < 20; j++) {
 				int k = (int) (Math.random() + dichte);
 				int h = (int) (Math.random() + dichte / 2);
-				int l = (int) (Math.random() + 0.15);
+
 				if (h == 1) {
 					register[j][i][2] = Kiste;
 					register[j][i][1] = DummyItem;
 				} else if (k == 1) {
 					register[j][i][2] = Kiste;
-				} else if (l == 1 && existsExit == false) {
-					register[i][j][1] = Ausgang;
-					register[i][j][2] = Kiste;
-					existsExit = true;
 				}
 			}
 		}
@@ -219,18 +214,6 @@ public class Spielfeld extends JPanel {
 				register[j][1][2] = Kiste;
 		}
 
-		for (int i = 3; i < 20; i = i + 2) {
-			for (int j = 1; j < 20; j++) {
-				if (existsExit == false) {
-					int k = (int) (Math.random() + 0.5);
-					if (k == 1) {
-						register[i][j][1] = Ausgang;
-						register[i][j][2] = Kiste;
-						existsExit = true;
-					}
-				}
-			}
-		}
 	}
 	// randomGen
 

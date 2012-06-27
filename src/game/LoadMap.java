@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import spielfeld.Spielfeld;
 import spielfeld.Spielflaeche;
+import spielfigur.Spielfigur;
 /**
  * Klasse, die eine Datei bekommt diese in ein Array schreibt wird in
  * Spielfeld.java feldfuellen() übergeben um zu übersetzen. boolean loadtext
@@ -110,15 +111,31 @@ public class LoadMap {
 		}
 
 	}
+	public static int randomInt() {
+		int zufallsZahl = 0, a;
+		a = (int) (Math.random() * 6) + 1;
+
+		if (a == 1 || a == 2) {
+			zufallsZahl = 9;
+		} else if (a == 3 || a == 4) {
+			zufallsZahl = 10;
+		} else if (a == 5) {
+			zufallsZahl = 11;
+		} else
+			zufallsZahl = 12;
+
+		return zufallsZahl;
+	}
+
 	/**
 	 * Mit dieser Methode hat der Spieler die Moeglichkeit, selber Karten zu
 	 * erstellen nach dem Zufallsprinzip aus randomGen(). Die Karte wird
 	 * erstellt und in einer .txt Datei gespeichert. Sie kann danach wie gewohnt
 	 * geladen und gespielt werden.
 	 */
-	public static void randomMap() throws IOException {
-		boolean existsExit = false;
-		char[][][] random = new char[21][21][3];
+	public static char[][][] randomMap() throws IOException {
+
+		char[][][] randomMap = new char[21][21][3];
 
 		/*
 		 * fülle Array zufällig mit zerstörbaren Kisten und Items.
@@ -127,8 +144,8 @@ public class LoadMap {
 		 */
 		for (int i = 0; i < 21; i++) {
 			for (int j = 0; j < 21; j++) {
-				random[i][j][1] = '0';
-				random[i][j][2] = '0';
+				randomMap[i][j][1] = '0';
+				randomMap[i][j][2] = '0';
 			}
 
 		}
@@ -143,22 +160,18 @@ public class LoadMap {
 			for (int j = 1; j < 21; j++) {
 				int k = (int) (Math.random() + 0.2);
 				int h = (int) (Math.random() + 0.2);
-				int l = (int) (Math.random() + 0.3);
+
 				/*
 				 * wichtig: 2 bedingte Fälle: a) Kiste ohne Item b) Kiste mit
 				 * Item <=> Item ohne Kiste gibt es nicht. merken:0 heißt Feld
 				 * leer, 1 heißt Feld belegt
 				 */
 				if (h == 1) {
-					random[i][j][1] = '1'; // Ebene 1 == 1 <=> Item
-					random[i][j][2] = '1'; // Ebene 2 == 1 <=> zerst. Mauer
+					randomMap[i][j][1] = '1'; // Ebene 1 == 1 <=> Item
+					randomMap[i][j][2] = '1'; // Ebene 2 == 1 <=> zerst. Mauer
 				} else if (k == 1) {
-					random[i][j][2] = '1'; // zerst. Kiste ohne Item
+					randomMap[i][j][2] = '1'; // zerst. Kiste ohne Item
 
-				} else if (l == 1 && existsExit == false) {
-					random[i][j][1] = '2'; // Ebene 2 == 2 <=> Ausgang
-					random[i][j][2] = '1';
-					existsExit = true;
 				}
 			}
 		}
@@ -166,16 +179,12 @@ public class LoadMap {
 			for (int j = 1; j < 21; j++) {
 				int k = (int) (Math.random() + 0.4);
 				int h = (int) (Math.random() + 0.2 / 2);
-				int l = (int) (Math.random() + 0.3);
+
 				if (h == 1) {
-					random[j][i][1] = '1'; // analog zu der ersten Befüllung
-					random[j][i][2] = '1';
+					randomMap[j][i][1] = '1'; // analog zu der ersten Befüllung
+					randomMap[j][i][2] = '1';
 				} else if (k == 1) {
-					random[j][i][2] = '1';
-				} else if (l == 1 && existsExit == false) {
-					random[i][j][1] = '2'; // Ebene 2 == 2 <=> Ausgang
-					random[i][j][2] = '1';
-					existsExit = true;
+					randomMap[j][i][2] = '1';
 				}
 			}
 		}
@@ -183,14 +192,30 @@ public class LoadMap {
 		for (int j = 3; j < 21; j++) {
 			int k = (int) (Math.random() + 0.2);
 			if (k == 1)
-				random[1][j][2] = '1';
+				randomMap[1][j][2] = '1';
 
 			int l = (int) (Math.random() + 0.3);
 			if (l == 1) {
-				random[j][1][2] = '1';
+				randomMap[j][1][2] = '1';
 			}
 
 		}
+
+		// schreibe den Ausgang an einer zufaelligen Position. Liegt zwischen 9
+		// und 12(mittig)
+		int randomX = randomInt();
+		int randomY = randomInt();
+		randomMap[randomX][randomY][1] = '2';
+		randomMap[randomX][randomY][2] = '1';
+		// leere die Felder um Bomberman2 eplizit.fairness
+		randomMap[19][19][1] = '0';
+		randomMap[19][19][2] = '0';
+		randomMap[19][17][1] = '0';
+		randomMap[19][17][2] = '0';
+		randomMap[18][19][1] = '0';
+		randomMap[18][19][2] = '0';
+		randomMap[19][18][1] = '0';
+		randomMap[19][18][2] = '0';
 
 		/*
 		 * ab hier beginnt die Ausgabe die in die Datei "Level.txt" umgelenkt
@@ -212,7 +237,7 @@ public class LoadMap {
 
 			for (int j = 0; j < 20; j++) {
 
-				Schreiberling.write(String.valueOf(random[i][j][1]));
+				Schreiberling.write(String.valueOf(randomMap[i][j][1]));
 				if (j == 19) {
 					Schreiberling.write('\n');
 				}
@@ -227,7 +252,7 @@ public class LoadMap {
 
 			for (int j = 0; j < 20; j++) {
 
-				Schreiberling.write(String.valueOf(random[i][j][2]));
+				Schreiberling.write(String.valueOf(randomMap[i][j][2]));
 				if (j == 19) {
 					Schreiberling.write('\n');
 				}
@@ -241,9 +266,91 @@ public class LoadMap {
 
 		Schreiberling.flush();
 		Schreiberling.close();
+		return randomMap;
 	}
-
 	// randomMap
+
+	public static boolean consisCheck(char[][][] game, Spielfigur man1,
+			Spielfigur man2) {
+		boolean checkExit = false;
+		boolean checkFair = false;
+		int exitX = 0, exitY = 0;
+		double pruefung;
+		/*
+		 * suche Ausgang und speichere in exitX und exitY (X/Y Koordinaten)
+		 */
+		for (int i = 0; i < 21; i++) {
+			for (int j = 0; j < 21; j++) {
+				if (game[i][j][1] == '2') {
+					exitX = i;
+					exitY = j;
+				}
+			}
+		}
+		/*
+		 * pruefe ob Ausgang erreichbar. sind die X bzw Y Koordinaten unter 20
+		 * so ist der Ausgang erreichbar fuer die Spieler.
+		 */
+
+		if (exitX < 20 && exitY < 20 && exitX != 0 && exitY != 0) {
+			checkExit = true;
+		}
+
+		/*
+		 * pruefe ob der Ausgang in fairerweise fuer beide Spieler erreichbar
+		 * ist.
+		 */
+		/*
+		 * berechne Abstand von den Bomberman-Positionen zu dem Ausgang. Die
+		 * Punkte werden als Vektoren aufgefasst. es gilt:Abstand von v1(x,y)
+		 * und v2(x1,y1) ist gleich: sqrt((x1-x)² +(y1-y)²)
+		 */
+
+		/*
+		 * berechne Abstand Bomberman 1 zu Ausgang
+		 */
+		int x = man1.xPosition - exitX;
+		int y = man1.yPosition - exitY;
+		int radikand = y * y + x * x;
+		double distMan1 = Math.sqrt(radikand);
+
+		/*
+		 * berechne Abstand Bomberman 2 zu Ausgang
+		 */
+
+		x = man2.xPosition - exitX;
+		y = man2.yPosition - exitY;
+		radikand = y * y + x * x;
+		double distMan2 = Math.sqrt(radikand);
+		/*
+		 * Laengenunterschied der beiden Abstaende
+		 */
+		pruefung = (int) distMan1 - distMan2;
+
+		/*
+		 * Der Abstand der Spielfiguren zum Ausgang wurde in distMan1/2
+		 * gespeichert. Die Variable pruefung hat den Laengenunterschied der
+		 * Abstaende gespeichert. Ist der Unterschied kleiner oder gleich 2 (Das
+		 * ist eine Toleranz) ist der Ausgang gueltig.
+		 */
+		if (Math.abs(pruefung) <= 5) {
+			checkFair = true;
+		}
+		/*
+		 * Wenn beide Pruefungen positiv abgeschlossen wurden gibt die
+		 * Konsistenzpruefung zurueck dass das Feld gueltig ist. checkExit=wahr
+		 * und checkFair=wahr
+		 */
+		if (checkExit == true && checkFair == true) {
+
+			return true;
+
+		}
+
+		else
+			return false;
+
+	}
 
 	public static boolean isLoadtext() {
 		return loadtext;
