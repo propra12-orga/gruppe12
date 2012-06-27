@@ -106,6 +106,15 @@ public class Spielfeld extends JPanel {
 
 	}// feldfuellen
 
+	public void newTutorial() {
+		for (int y = 0; y < 21; y++) {
+			register[0][y][0] = festeMauer;
+			register[20][y][0] = festeMauer;
+			register[y][0][0] = festeMauer;
+			register[y][20][0] = festeMauer;
+		}
+
+	}
 	/**
 	 * Liest eine gegebene Karte ein und uebersetzt sie.
 	 * 
@@ -154,6 +163,20 @@ public class Spielfeld extends JPanel {
 		}
 
 	}
+	public void tutorial() {
+		for (int y = 0; y < 21; y++) {
+			register[0][y][0] = festeMauer;
+			register[20][y][0] = festeMauer;
+			register[y][0][0] = festeMauer;
+			register[y][20][0] = festeMauer;
+		}
+		for (int i = 2; i < 20; i = i + 2) {
+			for (int j = 2; j < 20; j = j + 2) {
+				register[i][j][0] = festeMauer;
+			}
+		}
+
+	}
 	/**
 	 * Zufallsgenerator der bei jeder Start-Ausfuehrung ein anderes Feld
 	 * generiert.Kisten mit Items,Kisten ohne Items und ein Ausgang werden
@@ -168,7 +191,7 @@ public class Spielfeld extends JPanel {
 		int posY = LoadMap.randomInt();
 		register[1][3][2] = Kiste;
 		register[3][1][2] = Kiste;
-
+		register[posX][posY][2] = Kiste;
 		register[posX][posY][1] = Ausgang;
 
 		// Zufallsgenerator erweitert um die Moeglichkeit
@@ -213,6 +236,14 @@ public class Spielfeld extends JPanel {
 			if (l == 1)
 				register[j][1][2] = Kiste;
 		}
+		register[19][19][1] = null;
+		register[19][19][2] = null;
+		register[19][17][1] = null;
+		register[19][17][2] = null;
+		register[18][19][1] = null;
+		register[18][19][2] = null;
+		register[19][18][1] = null;
+		register[19][18][2] = null;
 
 	}
 	// randomGen

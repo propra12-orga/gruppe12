@@ -1,6 +1,7 @@
 package menu;
 
 import game.RunGame;
+import game.RunTutorial;
 import game.zufallsKarte;
 
 import java.awt.Color;
@@ -27,7 +28,7 @@ public class MainMenu extends JFrame implements ActionListener {
 
 	// Panels und zugehoerige Buttons initialisieren
 	MenuButton start = new MenuButton("Start");
-	MenuButton dummy = new MenuButton("Dummy");
+	MenuButton tutorial = new MenuButton("Tutorial");
 	MenuButton loadMap = new MenuButton("Lade Karte");
 	MenuButton randomMap = new MenuButton("Zufallskarte");
 	MenuButton sets = new MenuButton("Sets");
@@ -55,7 +56,7 @@ public class MainMenu extends JFrame implements ActionListener {
 		buttons.setLayout(new BoxLayout(buttons, BoxLayout.Y_AXIS));
 		buttons.setBackground(null);
 		buttons.add(start.getPanel());
-		buttons.add(dummy.getPanel());
+		buttons.add(tutorial.getPanel());
 		buttons.add(loadMap.getPanel());
 		buttons.add(randomMap.getPanel());
 		buttons.add(sets.getPanel());
@@ -73,8 +74,8 @@ public class MainMenu extends JFrame implements ActionListener {
 		start.getButton().addActionListener(this);
 		start.getButton().setActionCommand("start");
 
-		dummy.getButton().addActionListener(this);
-		dummy.getButton().setActionCommand("dummy");
+		tutorial.getButton().addActionListener(this);
+		tutorial.getButton().setActionCommand("tutorial");
 
 		loadMap.getButton().addActionListener(this);
 		loadMap.getButton().setActionCommand("loadMap");
@@ -97,7 +98,9 @@ public class MainMenu extends JFrame implements ActionListener {
 			gamerunning = true;
 		}
 		// Startet den Tests (falls implementiert)
-		if (evt.getActionCommand().equals("dummy")) {
+		if (evt.getActionCommand().equals("tutorial")) {
+			RunTutorial.go();
+			gamerunning = true;
 
 		}
 		// Startet Spiel mit vorgegebener Karte

@@ -1,6 +1,7 @@
 package bombe;
 
 import game.Game;
+import game.Tutorial;
 import spielfeld.Objekte;
 import spielfeld.Spielfeld;
 import spielfeld.Spielflaeche;
@@ -75,11 +76,12 @@ public class Bombe extends Objekte {
 						Game.restartGame();
 						this.stop();
 					}
-
-					if (Spielflaeche.bman2.istPos(intBombeX + i, intBombeY)) {
-						System.out.println("Spieler 1 gewinnt");
-						Game.restartGame();
-						this.stop();
+					if (Tutorial.tutorialMode == false) {
+						if (Spielflaeche.bman2.istPos(intBombeX + i, intBombeY)) {
+							System.out.println("Spieler 1 gewinnt");
+							Game.restartGame();
+							this.stop();
+						}
 					}
 
 					// Animation von Bombe + Bomberman stirbt + kiste geht
@@ -126,11 +128,12 @@ public class Bombe extends Objekte {
 						Game.restartGame();
 						this.stop();
 					}
-
-					if (Spielflaeche.bman2.istPos(intBombeX - i, intBombeY)) {
-						System.out.println("Spieler 1 gewinnt");
-						Game.restartGame();
-						this.stop();
+					if (Tutorial.tutorialMode == false) {
+						if (Spielflaeche.bman2.istPos(intBombeX - i, intBombeY)) {
+							System.out.println("Spieler 1 gewinnt");
+							Game.restartGame();
+							this.stop();
+						}
 					}
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt
@@ -175,11 +178,12 @@ public class Bombe extends Objekte {
 						Game.restartGame();
 						this.stop();
 					}
-
-					if (Spielflaeche.bman2.istPos(intBombeX, intBombeY + i)) {
-						System.out.println("Spieler 1 gewinnt");
-						Game.restartGame();
-						this.stop();
+					if (Tutorial.tutorialMode == false) {
+						if (Spielflaeche.bman2.istPos(intBombeX, intBombeY + i)) {
+							System.out.println("Spieler 1 gewinnt");
+							Game.restartGame();
+							this.stop();
+						}
 					}
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt
@@ -225,10 +229,12 @@ public class Bombe extends Objekte {
 						this.stop();
 					}
 
-					if (Spielflaeche.bman2.istPos(intBombeX, intBombeY - i)) {
-						System.out.println("Spieler 1 gewinnt");
-						Game.restartGame();
-						this.stop();
+					if (Tutorial.tutorialMode == false) {
+						if (Spielflaeche.bman2.istPos(intBombeX, intBombeY - i)) {
+							System.out.println("Spieler 1 gewinnt");
+							Game.restartGame();
+							this.stop();
+						}
 					}
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt

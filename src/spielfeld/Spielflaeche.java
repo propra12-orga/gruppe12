@@ -1,6 +1,7 @@
 package spielfeld;
 
 import game.LoadMap;
+import game.Tutorial;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -36,7 +37,7 @@ public class Spielflaeche extends JPanel {
 	public static boolean sollExplodieren[][];
 
 	private static final long serialVersionUID = 1L;
-	public int arrayWidth, arrayHeight, zaehler = 0;
+	public int arrayWidth, arrayHeight;
 	private Image gras, mauer, exit, bomb, man, kiste, explo, man2, dummy,
 			wechsler;
 
@@ -70,18 +71,36 @@ public class Spielflaeche extends JPanel {
 
 			}
 		}
+
+		/*
+		 * Routine um Tutorials zu starten
+		 */
+		if (Tutorial.tutorialMode) {
+			play.newTutorial();
+			play.fill(15, 15, 1, Spielfeld.DummyItem);
+			play.fill(15, 15, 2, Spielfeld.Kiste);
+			play.fill(16, 16, 1, Spielfeld.DummyItem);
+			play.fill(16, 16, 2, Spielfeld.Kiste);
+			play.fill(17, 17, 1, Spielfeld.DummyItem);
+			play.fill(17, 17, 2, Spielfeld.Kiste);
+			play.fill(1, 1, 1, Spielfeld.Ausgang);
+			play.fill(1, 1, 2, Spielfeld.Kiste);
+			bman = new Spielfigur(10, 10, 2, 1);
+
+		}
+
 		/*
 		 * falls keine Datei geladen wurde isLoadText()==false dann
 		 * ursprüngliche füllMethode per Zufall ansonsten liest er eine Karte
 		 * ein über LoadMap.load()
 		 */
 
-		if (LoadMap.isLoadtext() == false) {
+		if (LoadMap.isLoadtext() == false && Tutorial.tutorialMode == false) {
 			play.feldfuellen();
-			bman = new Spielfigur(2, 1, 2, 1);
-			bman2 = new Spielfigur(18, 19, 2, 2);
+			bman = new Spielfigur(1, 1, 2, 1);
+			bman2 = new Spielfigur(19, 19, 2, 2);
 
-		} else {
+		} else if (Tutorial.tutorialMode == false) {
 			/*
 			 * wenn nicht gespeichert wurde, werden die Spielfiguren explizit
 			 * gesetzt beide male wird einfach eine Karte eingelesen. prueft ob
@@ -127,8 +146,10 @@ public class Spielflaeche extends JPanel {
 	public void paint(Graphics g) {
 		// Figur dort gezeichnet wo objekt bman ist
 		Spielfeld.register[bman.xPosition][bman.yPosition][3] = Spielfeld.Bomberman1;
-		Spielfeld.register[bman2.xPosition][bman2.yPosition][3] = Spielfeld.Bomberman2;
 
+		if (Tutorial.tutorialMode == false) {
+			Spielfeld.register[bman2.xPosition][bman2.yPosition][3] = Spielfeld.Bomberman2;
+		}
 		// Anpassung der Spielfeldgröße an aktuelle Fenstergroesse
 		arrayWidth = getWidth() / 21 + 1;
 		arrayHeight = getHeight() / 21 + 1;
@@ -240,7 +261,7 @@ public class Spielflaeche extends JPanel {
 			for (int i = 0; i < 20000; i++) {
 				g.drawString("Das Spiel wurde gespeichert.", 350, 200);
 				// System.out.println("bla");
-				zaehler++;
+
 			}
 			// GameKeyListener.boolSave = false;
 			// GameKeyListener.boolSave = false;
