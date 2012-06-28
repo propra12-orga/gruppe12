@@ -30,7 +30,7 @@ public class MapChooser extends JFileChooser {
 		 * Endung hat hier : .txt edit: nicht sicher bei manueller Änderung des
 		 * Dateinamens, da lediglich der String der Datei geprüft wird
 		 */
-		if (f != null && name.endsWith(".txt")) {
+		if (f != null && name.endsWith(".lv")) {
 			LoadMap.load(f); // startet Methode zur Map-Berechnung
 		} else {
 			/*

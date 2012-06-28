@@ -228,7 +228,7 @@ public class LoadMap {
 		 * ist
 		 */
 
-		File ausgabe = new File("random.lvl");
+		File ausgabe = new File("random.lv");
 		FileWriter Schreiberling = new FileWriter(ausgabe);
 
 		/*

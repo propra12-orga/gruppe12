@@ -37,11 +37,11 @@ public class GameKeyListener implements KeyListener {
 
 		// Fall: Hochtaste gedrückt ==> Hoch bewegen
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			Tutorial.moved1 = true;
+
 			Spielflaeche.bman.move(0, -1);
-
-			System.out.println("moved 1 true");
-
+			if (Tutorial.tutorialMode) {
+				Tutorial.moved1 = true;
+			}
 		}
 		// Fall: Linkstaste gedrückt ==> Links bewegen
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -49,25 +49,30 @@ public class GameKeyListener implements KeyListener {
 				SpielfEinfuehrung.bman.moveTut(-1, 0);
 			}
 			Spielflaeche.bman.move(-1, 0);
-			Tutorial.moved2 = true;
-
+			if (Tutorial.tutorialMode) {
+				Tutorial.moved2 = true;
+			}
 		}
 		// Fall: Rechtstaste gedrückt ==> Rechts bewegen
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			Spielflaeche.bman.move(1, 0);
-			Tutorial.moved3 = true;
-
+			if (Tutorial.tutorialMode) {
+				Tutorial.moved3 = true;
+			}
 		}
 		// Fall: Runtertaste gedrückt ==> Runter bewegen
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			Spielflaeche.bman.move(0, 1);
-			Tutorial.moved4 = true;
-
+			if (Tutorial.tutorialMode) {
+				Tutorial.moved4 = true;
+			}
 		}
 		// Fall: Leertaste gedrückt ==> Bombe legen
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			Spielflaeche.bman.bombeLegen();
-			Tutorial.bombeplan = true;
+			if (Tutorial.tutorialMode) {
+				Tutorial.bombeplan = true;
+			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_F5) {
 			try {
@@ -93,7 +98,6 @@ public class GameKeyListener implements KeyListener {
 		}
 
 	}
-
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub

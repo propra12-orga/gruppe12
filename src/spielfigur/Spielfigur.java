@@ -155,7 +155,9 @@ public class Spielfigur {
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
 			System.out.println("Player 2 siegt");
-			Game.restartGame();
+			if (Tutorial.tutorialMode == false) {
+				Game.restartGame();
+			}
 			// Label soll erstellt werden // Tot - wanna restart?
 
 		}
@@ -218,7 +220,6 @@ public class Spielfigur {
 						Spielflaeche.bman.yPosition, 1, null);
 				new Bombe(zahl, zahl2, width, height, bomb, 3).start();
 				Spielflaeche.play.fill(zahl, zahl2, 4, Spielfeld.Bombe);
-				bombPlanted -= 1;
 
 			}
 
