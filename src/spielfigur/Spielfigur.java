@@ -2,7 +2,6 @@ package spielfigur;
 
 import game.Game;
 import game.Tutorial;
-import spielfeld.SpielfEinfuehrung;
 import spielfeld.Spielfeld;
 import spielfeld.Spielflaeche;
 import bombe.BombType;
@@ -218,9 +217,10 @@ public class Spielfigur {
 				int zahl2 = (int) (Math.random() * 20) + 1;
 				Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
 						Spielflaeche.bman.yPosition, 1, null);
-				new Bombe(zahl, zahl2, width, height, bomb, 3).start();
-				Spielflaeche.play.fill(zahl, zahl2, 4, Spielfeld.Bombe);
-
+				if (Spielflaeche.play.getObj(zahl, zahl2, 2) == null) {
+					new Bombe(zahl, zahl2, width, height, bomb, 3).start();
+					Spielflaeche.play.fill(zahl, zahl2, 4, Spielfeld.Bombe);
+				}
 			}
 
 		}
@@ -296,78 +296,15 @@ public class Spielfigur {
 				int zahl2 = (int) (Math.random() * 20) + 1;
 				Spielflaeche.play.fill(Spielflaeche.bman2.xPosition,
 						Spielflaeche.bman2.yPosition, 1, null);
-				new Bombe(zahl, zahl2, width, height, bomb, 3).start();
-				Spielflaeche.play.fill(zahl, zahl2, 4, Spielfeld.Bombe);
-				bombPlanted -= 1;
+				if (Spielflaeche.play.getObj(zahl, zahl2, 2) == null) {
+
+					new Bombe(zahl, zahl2, width, height, bomb, 3).start();
+					Spielflaeche.play.fill(zahl, zahl2, 4, Spielfeld.Bombe);
+				}
 
 			}
 
 		}
 	}// move2
-	public void moveTut(int x, int y) {
-
-		if (SpielfEinfuehrung.tutorial.getObj(xPosition + x, yPosition + y, 1) == Spielfeld.Ausgang
-				&& SpielfEinfuehrung.tutorial.getObj(xPosition + x, yPosition
-						+ y, 2) != Spielfeld.Kiste) {
-			xPosition = xPosition + x;
-			yPosition = yPosition + y;
-			Game.restartGame();
-
-		}
-		/*
-		 * Checkt ob Spieler 2 in eine Explo rennt
-		 */
-
-		else if (SpielfEinfuehrung.tutorial.equalsExplosion(xPosition + x,
-				yPosition + y, 3)) {
-			SpielfEinfuehrung.tutorial.fill(xPosition, yPosition, 3,
-					Spielfeld.Gras);
-			xPosition = xPosition + x;
-			yPosition = yPosition + y;
-			System.out.println("Player1 siegt");
-		}
-
-		// Label soll erstellt werden // Tot - wanna restart?
-
-		/*
-		 * 
-		 * Checkt ob das Feld auf das Player 2 rennen soll leer ist
-		 */
-		else if (SpielfEinfuehrung.tutorial.getObj(xPosition + x,
-				yPosition + y, 2) == null
-				&& SpielfEinfuehrung.tutorial.getObj(xPosition + x, yPosition
-						+ y, 4) == null
-				&& SpielfEinfuehrung.tutorial.equalsMauer(xPosition + x,
-						yPosition + y) == false) {
-
-			SpielfEinfuehrung.tutorial.fill(xPosition, yPosition, 3,
-					Spielfeld.Gras);
-
-			// Spielflaeche.play
-			// .fill(xPosition, yPosition, 4, Spielfeld.Bombe);
-
-			xPosition = xPosition + x;
-			yPosition = yPosition + y;
-
-			/**
-			 * Hier kommen die Item Effekte rein, muss auchnoch in move2 ergänzt
-			 * werden
-			 * 
-			 * 
-			 */
-		} else if (SpielfEinfuehrung.tutorial.getObj(
-				SpielfEinfuehrung.bman.xPosition,
-				SpielfEinfuehrung.bman.yPosition, 1) == Spielfeld.DummyItem) {
-			int zahl = (int) (Math.random() * 20) + 1;
-			int zahl2 = (int) (Math.random() * 20) + 1;
-			SpielfEinfuehrung.tutorial.fill(SpielfEinfuehrung.bman.xPosition,
-					SpielfEinfuehrung.bman.yPosition, 1, null);
-			new Bombe(zahl, zahl2, width, height, bomb, 3).start();
-			SpielfEinfuehrung.tutorial.fill(zahl, zahl2, 4, Spielfeld.Bombe);
-			bombPlanted -= 1;
-
-		}
-
-	}
 
 }

@@ -6,7 +6,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 
-import spielfeld.SpielfEinfuehrung;
 import spielfeld.Spielfeld;
 import spielfeld.Spielflaeche;
 
@@ -45,9 +44,7 @@ public class GameKeyListener implements KeyListener {
 		}
 		// Fall: Linkstaste gedrückt ==> Links bewegen
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			if (SpielfEinfuehrung.tutorialMode) {
-				SpielfEinfuehrung.bman.moveTut(-1, 0);
-			}
+
 			Spielflaeche.bman.move(-1, 0);
 			if (Tutorial.tutorialMode) {
 				Tutorial.moved2 = true;
