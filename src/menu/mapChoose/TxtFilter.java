@@ -23,8 +23,8 @@ public class TxtFilter extends FileFilter {
 			ext = fname.substring(i + 1).toLowerCase(); //
 		}
 
-		if (ext.equals("txt")) { // Datei soll angezeigt werden, wenn die Endung
-									// ".txt" lautet.
+		if (ext.equals("lv")) { // Datei soll angezeigt werden, wenn die Endung
+								// ".txt" lautet.
 			return true;
 		}
 		return false;
@@ -32,7 +32,7 @@ public class TxtFilter extends FileFilter {
 
 	@Override
 	public String getDescription() {
-		String d = ".txt";
+		String d = ".lv";
 		return d;
 	}
 }

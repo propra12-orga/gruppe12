@@ -336,7 +336,8 @@ public class Spielfeld extends JPanel {
 		xPos = Spielflaeche.bman.getxPosition();
 		yPos = Spielflaeche.bman.getyPosition();
 		char[][][] map = new char[21][21][5];
-
+		map[0][0][3] = (char) xPos;
+		map[1][1][3] = (char) yPos;
 		for (int y = 0; y < 21; y++) {
 			map[0][y][0] = '1';
 			map[20][y][0] = '1';
@@ -384,6 +385,8 @@ public class Spielfeld extends JPanel {
 		 */
 		File saveGame = new File("save.txt");
 		FileWriter speichern = new FileWriter(saveGame);
+		speichern.write(map[0][0][3]);
+		speichern.write("\n");
 		for (int i = 0; i < 20; i++) {
 
 			for (int j = 0; j < 20; j++) {

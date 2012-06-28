@@ -82,7 +82,9 @@ public class LoadMap {
 		 * gesamte Strings da sind. Einzelne werte werden in Array geschrieben
 		 * sichere DIMENSION 1
 		 */
-
+		// hole Header runter von Datei
+		br.readLine();
+		// fange an zu lesen
 		for (int i = 0; i < 20; i++) {
 			char[] c = br.readLine().toCharArray();
 			for (int j = 0; j < c.length; j++) {
@@ -226,13 +228,13 @@ public class LoadMap {
 		 * ist
 		 */
 
-		File ausgabe = new File("Tester.txt");
+		File ausgabe = new File("random.lvl");
 		FileWriter Schreiberling = new FileWriter(ausgabe);
 
 		/*
 		 * schreibe Dimension 1 in Zeile 1-20 auf. Blockweise.
 		 */
-
+		Schreiberling.write("LEVELDATEI\n");
 		for (int i = 0; i < 20; i++) {
 
 			for (int j = 0; j < 20; j++) {
@@ -269,7 +271,11 @@ public class LoadMap {
 		return randomMap;
 	}
 	// randomMap
-
+	/*
+	 * 
+	 * Methode um die Karte zu ueberpruefen. Ist der Ausgang fair?Gibt es einen
+	 * erreichbaren Ausgang?
+	 */
 	public static boolean consisCheck(char[][][] game, Spielfigur man1,
 			Spielfigur man2) {
 		boolean checkExit = false;

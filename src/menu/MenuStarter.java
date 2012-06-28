@@ -23,6 +23,7 @@ public class MenuStarter {
 		frame.setBounds(0, 0, screenSize.width, screenSize.height);
 		frame.setUndecorated(true);
 		frame.setVisible(true); // Sichtbarmachen
+
 	}
 
 	public MainMenu getFrame() {

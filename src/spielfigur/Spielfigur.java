@@ -140,7 +140,6 @@ public class Spielfigur {
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
 			Tutorial.restartTut();
-			System.out.println("ausgang");
 
 		}
 		/*

@@ -115,6 +115,7 @@ public class MainMenu extends JFrame implements ActionListener {
 		if (evt.getActionCommand().equals("randomMap") && gamerunning == false) {
 			try {
 				zufallsKarte.go();
+
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

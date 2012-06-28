@@ -1,15 +1,19 @@
 package spielfeld;
 
+import game.Game;
 import game.LoadMap;
 import game.Tutorial;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import spielfigur.Spielfigur;
-import tools.GameKeyListener;
+import tools.Framebutton;
 
 /* *** Update ***/
 /*
@@ -83,8 +87,7 @@ public class Spielflaeche extends JPanel {
 			play.fill(16, 16, 2, Spielfeld.Kiste);
 			play.fill(17, 17, 1, Spielfeld.DummyItem);
 			play.fill(17, 17, 2, Spielfeld.Kiste);
-			play.fill(1, 1, 1, Spielfeld.Ausgang);
-			play.fill(1, 1, 2, Spielfeld.Kiste);
+
 			bman = new Spielfigur(10, 10, 2, 1);
 
 		}
@@ -118,11 +121,16 @@ public class Spielflaeche extends JPanel {
 						Spielflaeche.bman2)) {
 
 					play.feldeinlesen(LoadMap.map);
-					System.out.println("Test erfolgreich.");
+
 				}
 
 				else {
-					System.out.println("Die Karte ist ungueltig.");
+					JDialog Fehler = new JDialog(Game.gameFrame);
+					Fehler.getContentPane().setBackground(Color.black);
+					Fehler.setBounds(500, 150, 300, 300);
+					Fehler.add(new JLabel(
+							"<html><body> Die Karte ist fehlerhaft.<br> Entweder war ein Spieler bevorteilt oder kein Ausgang existend.<body><html>"));
+					Fehler.setVisible(true);
 				}
 				/*
 				 * lese gespeicherte Datei ein.Mit der Bomberman Position aus
@@ -153,6 +161,10 @@ public class Spielflaeche extends JPanel {
 		// Anpassung der Spielfeldgröße an aktuelle Fenstergroesse
 		arrayWidth = getWidth() / 21 + 1;
 		arrayHeight = getHeight() / 21 + 1;
+
+		if (Framebutton.zaehler == 3) {
+			play.fill(1, 1, 1, Spielfeld.Ausgang);
+		}
 
 		// Laden der Bilder
 		gras = play.loadImg("/ressources/grafics/Floor2.gif");
@@ -257,16 +269,9 @@ public class Spielflaeche extends JPanel {
 			}
 		}
 		repaint();
-		if (GameKeyListener.boolSave == true) {
-			for (int i = 0; i < 20000; i++) {
-				g.drawString("Das Spiel wurde gespeichert.", 350, 200);
-				// System.out.println("bla");
 
-			}
-			// GameKeyListener.boolSave = false;
-			// GameKeyListener.boolSave = false;
-
-		}
+		// GameKeyListener.boolSave = false;
+		// GameKeyListener.boolSave = false;
 
 	}
 

@@ -51,28 +51,23 @@ public class GameKeyListener implements KeyListener {
 			Spielflaeche.bman.move(-1, 0);
 			Tutorial.moved2 = true;
 
-			System.out.println("moved 2 true");
-
 		}
 		// Fall: Rechtstaste gedrückt ==> Rechts bewegen
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			Spielflaeche.bman.move(1, 0);
 			Tutorial.moved3 = true;
 
-			System.out.println("moved 3 true");
 		}
 		// Fall: Runtertaste gedrückt ==> Runter bewegen
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			Spielflaeche.bman.move(0, 1);
 			Tutorial.moved4 = true;
 
-			System.out.println("moved 4 true");
 		}
 		// Fall: Leertaste gedrückt ==> Bombe legen
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			Spielflaeche.bman.bombeLegen();
 			Tutorial.bombeplan = true;
-			System.out.println("bombeplan true");
 		}
 		if (e.getKeyCode() == KeyEvent.VK_F5) {
 			try {

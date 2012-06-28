@@ -1,8 +1,15 @@
 package game;
 
+import java.awt.Color;
 import java.io.IOException;
 
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+
+import menu.MenuStarter;
+
 public class zufallsKarte {
+
 	public static void go() throws IOException {
 		/*
 		 * erzeugt eine Zufallskarte nach dem Prinzip von randomGen() aus
@@ -11,7 +18,14 @@ public class zufallsKarte {
 		 */
 		LoadMap.randomMap();
 
-		System.out
-				.println("Karte wurde erzeugt und unter Tester.txt im Verzeichnis gruppe12 gespeichert.");
-	};
-}
+		JDialog karteGeneriert = new JDialog(MenuStarter.frame, "Hinweis",
+				false);
+		karteGeneriert
+				.add(new JLabel(
+						"<html><body>Eine Zufallskarte wurde generiert.<br>Sie wurde unter random.lv gespeichert.<body><html>"));
+		karteGeneriert.setBounds(300, 200, 400, 400);
+		karteGeneriert.getContentPane().setBackground(Color.black);
+		karteGeneriert.setVisible(true);
+	}
+
+};
