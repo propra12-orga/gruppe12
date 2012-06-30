@@ -1,5 +1,6 @@
 package menu;
 
+import game.LoadMap;
 import game.RunGame;
 import game.RunTutorial;
 import game.zufallsKarte;
@@ -7,14 +8,17 @@ import game.zufallsKarte;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 import javax.swing.BoxLayout;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.xml.bind.JAXBException;
 
-import menu.mapChoose.MapChooser;
+import menu.settings.OpenSettings;
 
 public class MainMenu extends JFrame implements ActionListener {
 
@@ -31,7 +35,7 @@ public class MainMenu extends JFrame implements ActionListener {
 	MenuButton tutorial = new MenuButton("Tutorial");
 	MenuButton loadMap = new MenuButton("Lade Karte");
 	MenuButton randomMap = new MenuButton("Zufallskarte");
-	MenuButton sets = new MenuButton("Sets");
+	MenuButton sets = new MenuButton("Settings");
 	MenuButton exit = new MenuButton("Exit");
 
 	// ...ebenso das Titelpanel
@@ -94,8 +98,13 @@ public class MainMenu extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent evt) {
 		// Startet das Spiel
 		if (evt.getActionCommand().equals("start") && gamerunning == false) {
-			RunGame.go();
-			gamerunning = true;
+			try {
+				RunGame.go();
+				gamerunning = true;
+			} catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		// Startet den Tests (falls implementiert)
 		if (evt.getActionCommand().equals("tutorial")) {
@@ -105,11 +114,25 @@ public class MainMenu extends JFrame implements ActionListener {
 		}
 		// Startet Spiel mit vorgegebener Karte
 		if (evt.getActionCommand().equals("loadMap") && gamerunning == false) {
-			try {
-				MapChooser.go();
-			} catch (IOException e) {
-
-				e.printStackTrace();
+			JFileChooser mapC = new JFileChooser();
+			// LvFilter filter = new LvFilter();
+			// mapC.setFileFilter(filter);
+			mapC.setMultiSelectionEnabled(false);
+			int rVal = mapC.showOpenDialog(mapC);
+			if (rVal == JFileChooser.APPROVE_OPTION) {
+				File f = mapC.getSelectedFile();
+				try {
+					LoadMap.load(f);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				try {
+					RunGame.go();
+					gamerunning = true;
+				} catch (JAXBException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		if (evt.getActionCommand().equals("randomMap") && gamerunning == false) {
@@ -123,6 +146,12 @@ public class MainMenu extends JFrame implements ActionListener {
 		}
 		// Startet die Settings (2do)
 		if (evt.getActionCommand().equals("sets")) {
+			try {
+				OpenSettings.open();
+			} catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		// Beendet das Programm
 		if (evt.getActionCommand().equals("exit")) { // Beendet das Programm

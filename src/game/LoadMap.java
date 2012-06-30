@@ -21,7 +21,7 @@ public class LoadMap {
 	private static boolean loadtext = false;
 	public static char[][][] map;
 	/**
-	 * LoadMap liest eine Datei ein und schreibt damit eine Karpe (char [][][]
+	 * LoadMap liest eine Datei ein und schreibt damit eine Karte (char [][][]
 	 * map). Es ist eine Datei zu uebergeben, welche ein char-Array beinhaltet.
 	 * Diese Ziffernkombination wird in map reingeschrieben. Die Dimension 0 der
 	 * Uebersetzer-Karte wird explizit mit Gras und Mauer befuellt. Die

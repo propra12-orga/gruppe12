@@ -4,10 +4,10 @@ import java.io.File;
 
 import javax.swing.filechooser.FileFilter;
 
-public class TxtFilter extends FileFilter {
+public class LvFilter extends FileFilter {
 	/**
-	 * FileFilter, um für FileChooser alles außer Ordner und *.txt-Dateien aus
-	 * zu filtern.
+	 * FileFilter, um für FileChooser alles außer Ordner und *.lv-Dateien aus zu
+	 * filtern.
 	 */
 	@Override
 	public boolean accept(File f) {
