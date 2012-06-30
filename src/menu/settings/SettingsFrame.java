@@ -170,10 +170,10 @@ public class SettingsFrame extends JFrame
 	public void save() {
 		Settings sets = new Settings();
 		sets.setBombRange(bombRange.getValue());
-		sets.setBombSpawn(bombSpawn.isEnabled());
+		sets.setBombSpawn(bombSpawn.isSelected());
 		sets.setMaxBombs(maxBombs.getValue());
-		sets.setPlayer2(player2.isEnabled());
-		sets.setSwap(swap.isEnabled());
+		sets.setPlayer2(player2.isSelected());
+		sets.setSwap(swap.isSelected());
 		sets.setSavePath(null);
 		try {
 			new SaveSettings(sets);
@@ -184,9 +184,9 @@ public class SettingsFrame extends JFrame
 	}
 
 	public void refresh() {
-		player2.setEnabled(settings.isPlayer2());
-		swap.setEnabled(settings.isSwap());
-		bombSpawn.setEnabled(settings.isBombSpawn());
+		player2.setSelected(settings.isPlayer2());
+		swap.setSelected(settings.isSwap());
+		bombSpawn.setSelected(settings.isBombSpawn());
 		bombRange.setValue(settings.getBombRange());
 		maxBombs.setValue(settings.getMaxBombs());
 	}
