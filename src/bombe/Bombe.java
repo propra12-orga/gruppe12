@@ -75,13 +75,13 @@ public class Bombe extends Objekte {
 
 					if (Spielflaeche.bman.istPos(intBombeX + i, intBombeY)) {
 						System.out.println("Spieler 2 gewinnt.");
-						Game.restartGame();
+						Game.restartGame(2);
 						this.stop();
 					}
 					if (Tutorial.tutorialMode == false) {
 						if (Spielflaeche.bman2.istPos(intBombeX + i, intBombeY)) {
 							System.out.println("Spieler 1 gewinnt");
-							Game.restartGame();
+							Game.restartGame(1);
 							this.stop();
 						}
 					}
@@ -127,13 +127,13 @@ public class Bombe extends Objekte {
 					// gewinnt.
 					if (Spielflaeche.bman.istPos(intBombeX - i, intBombeY)) {
 						System.out.println("Spieler 2 gewinnt.");
-						Game.restartGame();
+						Game.restartGame(2);
 						this.stop();
 					}
 					if (Tutorial.tutorialMode == false) {
 						if (Spielflaeche.bman2.istPos(intBombeX - i, intBombeY)) {
 							System.out.println("Spieler 1 gewinnt");
-							Game.restartGame();
+							Game.restartGame(1);
 							this.stop();
 						}
 					}
@@ -177,13 +177,13 @@ public class Bombe extends Objekte {
 					// gewinnt.
 					if (Spielflaeche.bman.istPos(intBombeX, intBombeY + i)) {
 						System.out.println("Spieler 2 gewinnt.");
-						Game.restartGame();
+						Game.restartGame(2);
 						this.stop();
 					}
 					if (Tutorial.tutorialMode == false) {
 						if (Spielflaeche.bman2.istPos(intBombeX, intBombeY + i)) {
 							System.out.println("Spieler 1 gewinnt");
-							Game.restartGame();
+							Game.restartGame(1);
 							this.stop();
 						}
 					}
@@ -227,14 +227,14 @@ public class Bombe extends Objekte {
 
 					if (Spielflaeche.bman.istPos(intBombeX, intBombeY - i)) {
 						System.out.println("Spieler 2 gewinnt.");
-						Game.restartGame();
+						Game.restartGame(2);
 						this.stop();
 					}
 
 					if (Tutorial.tutorialMode == false) {
 						if (Spielflaeche.bman2.istPos(intBombeX, intBombeY - i)) {
 							System.out.println("Spieler 1 gewinnt");
-							Game.restartGame();
+							Game.restartGame(1);
 							this.stop();
 						}
 					}

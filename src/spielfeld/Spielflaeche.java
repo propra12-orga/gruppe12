@@ -101,6 +101,7 @@ public class Spielflaeche extends JPanel {
 		if (LoadMap.isLoadtext() == false && Tutorial.tutorialMode == false) {
 			play.feldfuellen();
 			bman = new Spielfigur(1, 1, 2, 1);
+
 			bman2 = new Spielfigur(19, 19, 2, 2);
 
 		} else if (Tutorial.tutorialMode == false) {
@@ -115,6 +116,7 @@ public class Spielflaeche extends JPanel {
 			// Routine zum Karten einlesen und pruefen
 			if (Spielfeld.booleanSave == false) {
 				bman = new Spielfigur(2, 1, 2, 1);
+
 				bman2 = new Spielfigur(18, 19, 2, 2);
 
 				if (LoadMap.consisCheck(LoadMap.map, Spielflaeche.bman,
@@ -178,8 +180,8 @@ public class Spielflaeche extends JPanel {
 		dummy = play.loadImg("/ressources/grafics/item_star.png");
 		wechsler = play.loadImg("/ressources/grafics/Wechsler.png");
 		/*
-		 * Zeichenschleife. sie implementiert eine gewisse Prioritätenliste. Die
-		 * Objekte der Dimension 1 werden nur gezeichnet: a) falls sie
+		 * Zeichenschleife. sie implementiert eine gewisse Prioritätenliste.
+		 * Die Objekte der Dimension 1 werden nur gezeichnet: a) falls sie
 		 * existieren und b) falls kein Objekt der Dimension 2 existiert (auf
 		 * den selben Koordinaten.). Wichtig: unter die Objekte(sprich zeitlich
 		 * davor!) muss Gras gesetzt werden sonst wird ein falscher Untergrund

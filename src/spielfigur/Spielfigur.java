@@ -28,6 +28,8 @@ public class Spielfigur {
 	private int newx;
 	private int newy;
 	private int radius = 3;
+	boolean wechsler = true;
+	boolean zfbombe = true;
 	final Lock lock = new ReentrantLock();
 
 	private BombType bomb = new NormalBomb();
@@ -140,7 +142,7 @@ public class Spielfigur {
 				&& Tutorial.tutorialMode == false) {
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
-			Game.restartGame();
+			Game.restartGame(1);
 
 		}
 		if (Spielflaeche.play.getObj(xPosition + x, yPosition + y, 1) == Spielfeld.Ausgang
@@ -164,7 +166,7 @@ public class Spielfigur {
 			yPosition = yPosition + y;
 			System.out.println("Player 2 siegt");
 			if (Tutorial.tutorialMode == false) {
-				Game.restartGame();
+				Game.restartGame(2);
 			}
 			// Label soll erstellt werden // Tot - wanna restart?
 
@@ -201,7 +203,8 @@ public class Spielfigur {
 			yPosition = yPosition + y;
 
 			if (Spielflaeche.play.getObj(Spielflaeche.bman.xPosition,
-					Spielflaeche.bman.yPosition, 1) == Spielfeld.Wechsler) {
+					Spielflaeche.bman.yPosition, 1) == Spielfeld.Wechsler
+					&& wechsler == true) {
 				Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
 						Spielflaeche.bman.yPosition, 1, null);
 				newx = Spielflaeche.bman.xPosition;
@@ -218,7 +221,8 @@ public class Spielfigur {
 				 * 
 				 */
 			} else if (Spielflaeche.play.getObj(Spielflaeche.bman.xPosition,
-					Spielflaeche.bman.yPosition, 1) == Spielfeld.DummyItem) {
+					Spielflaeche.bman.yPosition, 1) == Spielfeld.DummyItem
+					&& zfbombe == true) {
 				Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
 						Spielflaeche.bman.yPosition, 1, null);
 
@@ -249,7 +253,7 @@ public class Spielfigur {
 				&& Spielflaeche.play.getObj(xPosition + x, yPosition + y, 2) != Spielfeld.Kiste) {
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
-			Game.restartGame();
+			Game.restartGame(2);
 
 		}
 		/*
@@ -262,6 +266,7 @@ public class Spielfigur {
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
 			System.out.println("Player1 siegt");
+			Game.restartGame(1);
 		}
 
 		// Label soll erstellt werden // Tot - wanna restart?
@@ -283,10 +288,10 @@ public class Spielfigur {
 			yPosition = yPosition + y;
 
 			if (Spielflaeche.play.getObj(Spielflaeche.bman2.xPosition,
-					Spielflaeche.bman2.yPosition, 1) == Spielfeld.Wechsler) {
+					Spielflaeche.bman2.yPosition, 1) == Spielfeld.Wechsler
+					&& wechsler == true) {
 				Spielflaeche.play.fill(Spielflaeche.bman2.xPosition,
 						Spielflaeche.bman2.yPosition, 1, null);
-				newx = Spielflaeche.bman.xPosition;
 				newy = Spielflaeche.bman.yPosition;
 				Spielflaeche.bman.xPosition = Spielflaeche.bman2.xPosition;
 				Spielflaeche.bman.yPosition = Spielflaeche.bman2.yPosition;
@@ -302,7 +307,8 @@ public class Spielfigur {
 				 * 
 				 */
 			} else if (Spielflaeche.play.getObj(Spielflaeche.bman2.xPosition,
-					Spielflaeche.bman2.yPosition, 1) == Spielfeld.DummyItem) {
+					Spielflaeche.bman2.yPosition, 1) == Spielfeld.DummyItem
+					&& zfbombe == true) {
 
 				int zahl = (int) (Math.random() * 20) + 1;
 				int zahl2 = (int) (Math.random() * 20) + 1;
@@ -320,5 +326,30 @@ public class Spielfigur {
 
 		}
 	}// move2
+
+	public int getRadius() {
+		return radius;
+	}
+
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+
+	public boolean isWechsler() {
+		return wechsler;
+	}
+
+	public void setWechsler(boolean wechsler) {
+		this.wechsler = wechsler;
+	}
+
+	public boolean isZfbombe() {
+		return zfbombe;
+	}
+
+	public void setZfbombe(boolean zfbombe) {
+		this.zfbombe = zfbombe;
+
+	}
 
 }

@@ -1,6 +1,7 @@
 package game;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 import spielfeld.Spielflaeche;
@@ -18,7 +19,7 @@ public class Game extends Thread {
 	}
 
 	private static void go() { // Methode zum Spielstart
-		gameFrame = new JFrame("Graphicstester"); // Deklariert gameFrame zu
+		gameFrame = new JFrame("Bomberman"); // Deklariert gameFrame zu
 		// neuem Fenster
 		GameQuitter gQuit = new GameQuitter(gameFrame); // Erzeugt
 		// WindowListener gQuit
@@ -48,8 +49,20 @@ public class Game extends Thread {
 		SwingUtilities.invokeLater(gui); // wartet bis ausgefuehrt
 	}
 
-	public static void restartGame() { // Methode zum Spielneustart
+	public static void restartGame(int sieger) { // Methode zum Spielneustart
 		gameFrame.dispose(); // Frame wird geschlossen
-		go(); // Spiel wird gestartet
+		gameFrame = new JFrame("Ende");// Ende Fenster
+		gameFrame.setLocation(350, 20); // Stellt Position des Fensters ein
+		gameFrame.setSize(100, 100); // .. und die Größe
+		GameQuitter gQuit = new GameQuitter(gameFrame); // Erzeugt
+		// WindowListener gQuit
+		// und übergibt den
+		// Frame "gameFrame"
+		gameFrame.addWindowListener(gQuit); // fügt WindowListener gQuit dem
+		// Frame bei
+		JLabel j = new JLabel("Spieler " + sieger + " gewinnt.");
+		gameFrame.add(j);
+		gameFrame.setVisible(true);
+
 	}
 }
