@@ -13,6 +13,7 @@ import spielfeld.Spielflaeche;
 public class Bombe extends Objekte {
 	int intBombeX, intBombeY;
 	BombType bomb;
+
 	int vonSpieler;
 	/**
 	 * Erzeugt eine Bombe mit gegebenen Attributen
@@ -31,9 +32,10 @@ public class Bombe extends Objekte {
 	 *            legt fest welcher Spieler sie erzeugt
 	 */
 	public Bombe(int xPos, int yPos, int width, int height, BombType bomb,
-			int von) {
+			int von, int rad) {
 		super(xPos, yPos, width, height, bomb.picPath, bomb.type);
 		this.bomb = bomb;
+		this.bomb.setRadius(rad);
 		intBombeX = xPos;
 		intBombeY = yPos;
 		vonSpieler = von;
@@ -336,16 +338,18 @@ public class Bombe extends Objekte {
 			}
 
 		}
-
+		warten((int) (Math.random() * 50));
 		switch (vonSpieler) {// der legende Spieler darf wieder eine Bombe
 								// legen.
 			case 1 :
 				Spielflaeche.bman.setBombPlanted(Spielflaeche.bman
 						.getBombPlanted() + 1);
+
 				break;
 			case 2 :
 				Spielflaeche.bman2.setBombPlanted(Spielflaeche.bman2
 						.getBombPlanted() + 1);
+
 				break;
 		}
 

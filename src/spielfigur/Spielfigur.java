@@ -1,7 +1,10 @@
 package spielfigur;
-
 import game.Game;
 import game.Tutorial;
+
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 import spielfeld.Spielfeld;
 import spielfeld.Spielflaeche;
 import bombe.BombType;
@@ -24,6 +27,8 @@ public class Spielfigur {
 	private int playerNumber;
 	private int newx;
 	private int newy;
+	private int radius = 3;
+	final Lock lock = new ReentrantLock();
 
 	private BombType bomb = new NormalBomb();
 	/**
@@ -68,7 +73,9 @@ public class Spielfigur {
 	}
 
 	public synchronized int getBombPlanted() {
+
 		return bombPlanted;
+
 	}
 
 	public void setyPosition(int yPosition) {
@@ -80,7 +87,9 @@ public class Spielfigur {
 	}
 
 	public void setBombType(BombType bomb) {
+		lock.lock();
 		this.bomb = bomb;
+		lock.unlock();
 	}
 
 	public synchronized void setBombPlanted(int b) {
@@ -103,8 +112,8 @@ public class Spielfigur {
 	 */
 	public void bombeLegen() {
 		if (bombPlanted > 0) {
-			new Bombe(xPosition, yPosition, width, height, bomb, playerNumber)
-					.start();
+			new Bombe(xPosition, yPosition, width, height, bomb, playerNumber,
+					radius).start();
 			Spielflaeche.play.fill(xPosition, yPosition, 4, Spielfeld.Bombe);
 			bombPlanted -= 1;
 
@@ -218,9 +227,11 @@ public class Spielfigur {
 				Spielflaeche.play.fill(Spielflaeche.bman.xPosition,
 						Spielflaeche.bman.yPosition, 1, null);
 				if (Spielflaeche.play.getObj(zahl, zahl2, 2) == null) {
-					new Bombe(zahl, zahl2, width, height, bomb, 3).start();
+					new Bombe(zahl, zahl2, width, height, bomb, 3, 3).start();
 					Spielflaeche.play.fill(zahl, zahl2, 4, Spielfeld.Bombe);
 				}
+
+				// Spielflaeche.bman.radius++;
 			}
 
 		}
@@ -292,15 +303,18 @@ public class Spielfigur {
 				 */
 			} else if (Spielflaeche.play.getObj(Spielflaeche.bman2.xPosition,
 					Spielflaeche.bman2.yPosition, 1) == Spielfeld.DummyItem) {
+
 				int zahl = (int) (Math.random() * 20) + 1;
 				int zahl2 = (int) (Math.random() * 20) + 1;
 				Spielflaeche.play.fill(Spielflaeche.bman2.xPosition,
 						Spielflaeche.bman2.yPosition, 1, null);
 				if (Spielflaeche.play.getObj(zahl, zahl2, 2) == null) {
 
-					new Bombe(zahl, zahl2, width, height, bomb, 3).start();
+					new Bombe(zahl, zahl2, width, height, bomb, 3, 3).start();
 					Spielflaeche.play.fill(zahl, zahl2, 4, Spielfeld.Bombe);
 				}
+
+				// Spielflaeche.bman2.radius++;
 
 			}
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <settings>
-    <bombRange>3</bombRange>
+    <bombRange>9</bombRange>
     <bombSpawn>false</bombSpawn>
-    <maxBombs>6</maxBombs>
-    <player2>true</player2>
+    <maxBombs>4</maxBombs>
+    <player2>false</player2>
     <swap>false</swap>
 </settings>
