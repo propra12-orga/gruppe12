@@ -89,8 +89,8 @@ public class SettingsFrame extends JFrame
 		items.add(slider(bombRtext, "bombRange", "Reichweite der Bomben",
 				bombRange));
 
-		top.add(new JLabel("Multiplayer"));
-		top.add(mplayer);
+		// top.add(new JLabel("Multiplayer"));
+		// top.add(mplayer);
 		top.add(new JLabel("Items"));
 		top.add(items);
 		top.setBackground(Color.BLACK);
