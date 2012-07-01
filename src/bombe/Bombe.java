@@ -2,6 +2,12 @@ package bombe;
 
 import game.Game;
 import game.Tutorial;
+
+import java.awt.Color;
+
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+
 import spielfeld.Objekte;
 import spielfeld.Spielfeld;
 import spielfeld.Spielflaeche;
@@ -73,7 +79,8 @@ public class Bombe extends Objekte {
 					// Ist das Feld ein bomberman? wenn ja, welcher? Der Andere
 					// gewinnt.
 
-					if (Spielflaeche.bman.istPos(intBombeX + i, intBombeY)) {
+					if (Spielflaeche.bman.istPos(intBombeX + i, intBombeY)
+							&& Tutorial.tutorialMode == false) {
 						System.out.println("Spieler 2 gewinnt.");
 						Game.restartGame(2);
 						this.stop();
@@ -84,6 +91,16 @@ public class Bombe extends Objekte {
 							Game.restartGame(1);
 							this.stop();
 						}
+					}
+					if (Tutorial.tutorialMode
+							&& Spielflaeche.bman.istPos(intBombeX + i,
+									intBombeY)) {
+						JDialog boom = new JDialog(Tutorial.gameFrame, false);
+						boom.add(new JLabel("Boom!Bitte toete dich nicht."));
+						boom.getContentPane().setBackground(Color.black);
+						boom.setSize(200, 200);
+						boom.setLocation(600, 300);
+						boom.setVisible(true);
 					}
 
 					// Animation von Bombe + Bomberman stirbt + kiste geht
@@ -125,7 +142,8 @@ public class Bombe extends Objekte {
 					Spielflaeche.sollExplodieren[intBombeX - i][intBombeY] = true;
 					// Ist das Feld ein bomberman? wenn ja, welcher? Der Andere
 					// gewinnt.
-					if (Spielflaeche.bman.istPos(intBombeX - i, intBombeY)) {
+					if (Spielflaeche.bman.istPos(intBombeX - i, intBombeY)
+							&& Tutorial.tutorialMode == false) {
 						System.out.println("Spieler 2 gewinnt.");
 						Game.restartGame(2);
 						this.stop();
@@ -136,6 +154,16 @@ public class Bombe extends Objekte {
 							Game.restartGame(1);
 							this.stop();
 						}
+					}
+					if (Tutorial.tutorialMode
+							&& Spielflaeche.bman.istPos(intBombeX - i,
+									intBombeY)) {
+						JDialog boom = new JDialog(Tutorial.gameFrame, false);
+						boom.add(new JLabel("Boom!Bitte toete dich nicht."));
+						boom.getContentPane().setBackground(Color.black);
+						boom.setSize(200, 200);
+						boom.setLocation(600, 300);
+						boom.setVisible(true);
 					}
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt
@@ -175,7 +203,8 @@ public class Bombe extends Objekte {
 
 					// Ist das Feld ein bomberman? wenn ja, welcher? Der Andere
 					// gewinnt.
-					if (Spielflaeche.bman.istPos(intBombeX, intBombeY + i)) {
+					if (Spielflaeche.bman.istPos(intBombeX, intBombeY + i)
+							&& Tutorial.tutorialMode == false) {
 						System.out.println("Spieler 2 gewinnt.");
 						Game.restartGame(2);
 						this.stop();
@@ -186,6 +215,16 @@ public class Bombe extends Objekte {
 							Game.restartGame(1);
 							this.stop();
 						}
+					}
+					if (Tutorial.tutorialMode
+							&& Spielflaeche.bman.istPos(intBombeX, intBombeY
+									+ i)) {
+						JDialog boom = new JDialog(Tutorial.gameFrame, false);
+						boom.add(new JLabel("Boom!Bitte toete dich nicht."));
+						boom.getContentPane().setBackground(Color.black);
+						boom.setSize(200, 200);
+						boom.setLocation(600, 300);
+						boom.setVisible(true);
 					}
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt
@@ -225,7 +264,8 @@ public class Bombe extends Objekte {
 
 					// spiel beenden wenn ein bman getroffen wurde
 
-					if (Spielflaeche.bman.istPos(intBombeX, intBombeY - i)) {
+					if (Spielflaeche.bman.istPos(intBombeX, intBombeY - i)
+							&& Tutorial.tutorialMode == false) {
 						System.out.println("Spieler 2 gewinnt.");
 						Game.restartGame(2);
 						this.stop();
@@ -237,6 +277,16 @@ public class Bombe extends Objekte {
 							Game.restartGame(1);
 							this.stop();
 						}
+					}
+					if (Tutorial.tutorialMode
+							&& Spielflaeche.bman.istPos(intBombeX, intBombeY
+									- i)) {
+						JDialog boom = new JDialog(Tutorial.gameFrame, false);
+						boom.add(new JLabel("Boom!Bitte toete dich nicht."));
+						boom.getContentPane().setBackground(Color.black);
+						boom.setSize(200, 200);
+						boom.setLocation(600, 300);
+						boom.setVisible(true);
 					}
 					// Animation von Bombe + Bomberman stirbt + kiste geht
 					// kaputt

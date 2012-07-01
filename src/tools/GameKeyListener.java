@@ -38,7 +38,7 @@ public class GameKeyListener implements KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 
 			Spielflaeche.bman.move(0, -1);
-			if (Tutorial.tutorialMode) {
+			if (Tutorial.tutorialMode && Framebutton.zaehler == 1) {
 				Tutorial.moved1 = true;
 			}
 		}
@@ -46,28 +46,28 @@ public class GameKeyListener implements KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 
 			Spielflaeche.bman.move(-1, 0);
-			if (Tutorial.tutorialMode) {
+			if (Tutorial.tutorialMode && Framebutton.zaehler == 1) {
 				Tutorial.moved2 = true;
 			}
 		}
 		// Fall: Rechtstaste gedrückt ==> Rechts bewegen
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			Spielflaeche.bman.move(1, 0);
-			if (Tutorial.tutorialMode) {
+			if (Tutorial.tutorialMode && Framebutton.zaehler == 1) {
 				Tutorial.moved3 = true;
 			}
 		}
 		// Fall: Runtertaste gedrückt ==> Runter bewegen
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			Spielflaeche.bman.move(0, 1);
-			if (Tutorial.tutorialMode) {
+			if (Tutorial.tutorialMode && Framebutton.zaehler == 1) {
 				Tutorial.moved4 = true;
 			}
 		}
 		// Fall: Leertaste gedrückt ==> Bombe legen
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			Spielflaeche.bman.bombeLegen();
-			if (Tutorial.tutorialMode) {
+			if (Tutorial.tutorialMode && Framebutton.zaehler == 2) {
 				Tutorial.bombeplan = true;
 			}
 		}

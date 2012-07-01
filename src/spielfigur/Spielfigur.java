@@ -164,7 +164,6 @@ public class Spielfigur {
 			Spielflaeche.play.fill(xPosition, yPosition, 3, Spielfeld.Gras);
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
-			System.out.println("Player 2 siegt");
 			if (Tutorial.tutorialMode == false) {
 				Game.restartGame(2);
 			}
