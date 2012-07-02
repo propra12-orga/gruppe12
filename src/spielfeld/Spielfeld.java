@@ -331,7 +331,7 @@ public class Spielfeld extends JPanel {
 		return name1;
 
 	}
-	public static void save(Spielfeld game) throws IOException {
+	public static File save(Spielfeld game) throws IOException {
 		booleanSave = true;
 		xPos = Spielflaeche.bman.getxPosition();
 		yPos = Spielflaeche.bman.getyPosition();
@@ -411,6 +411,7 @@ public class Spielfeld extends JPanel {
 		speichern.flush();
 		speichern.close();
 		System.out.println("Das Spiel wurde gespeichert.");
+		return saveGame;
 	}
 	/*
 	 * Für jedes Objekt, welches im Register stehen kann gibt es eine Abfrage ob

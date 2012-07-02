@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
@@ -18,7 +20,7 @@ public class Game extends Thread {
 		go();
 	}
 
-	private static void go() { // Methode zum Spielstart
+	public static void go() { // Methode zum Spielstart
 		gameFrame = new JFrame("Bomberman"); // Deklariert gameFrame zu
 		// neuem Fenster
 		GameQuitter gQuit = new GameQuitter(gameFrame); // Erzeugt
@@ -53,7 +55,8 @@ public class Game extends Thread {
 		gameFrame.dispose(); // Frame wird geschlossen
 		gameFrame = new JFrame("Ende");// Ende Fenster
 		gameFrame.setLocation(350, 20); // Stellt Position des Fensters ein
-		gameFrame.setSize(100, 100); // .. und die Größe
+		gameFrame.setSize(400, 300); // .. und die Größe
+		gameFrame.getContentPane().setBackground(Color.black);
 		GameQuitter gQuit = new GameQuitter(gameFrame); // Erzeugt
 		// WindowListener gQuit
 		// und übergibt den
