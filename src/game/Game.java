@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
+import menu.MainMenu;
 import spielfeld.Spielflaeche;
 import tools.GameKeyListener;
 import tools.GameQuitter;
@@ -18,9 +19,11 @@ public class Game extends Thread {
 
 	public Game() { // Konstruktor erzeugt Frame mit Spielfeld
 		go();
+
 	}
 
 	public static void go() { // Methode zum Spielstart
+		System.out.println("bla");
 		gameFrame = new JFrame("Bomberman"); // Deklariert gameFrame zu
 		// neuem Fenster
 		GameQuitter gQuit = new GameQuitter(gameFrame); // Erzeugt
@@ -43,6 +46,7 @@ public class Game extends Thread {
 		Runnable gui = new Runnable() {
 			@Override
 			public void run() { // der Thread zeichnet durchgehend neu
+				MainMenu.gamerunning = true;
 				gameFrame.repaint();
 				gameFrame.setVisible(true);
 			}

@@ -28,7 +28,7 @@ public class LoadMap {
 	 * Dimensionen 1 und 2 jeweils getrennt von einander eingelesen.
 	 * 
 	 * 
-	 * @param f
+	 * @param file
 	 *            Die Methode nimmt File f entgegen. Das ist die Datei aus der
 	 *            das Feld gelesen wird.Typischerweise eine .txt Datei welche
 	 *            ein char Array beinhaltet
@@ -37,8 +37,9 @@ public class LoadMap {
 	 *             existiert.
 	 */
 
-	public static char[][][] load(File f) throws IOException {
+	public static char[][][] load(File file) throws IOException {
 		setLoadtext(true);
+		System.out.println("lol");
 		if (Spielfeld.booleanSave == true) {
 			Spielflaeche.bman.setxPosition(Spielfeld.xPos);
 			Spielflaeche.bman.setyPosition(Spielfeld.yPos);
@@ -50,7 +51,7 @@ public class LoadMap {
 		 * mehreren Ebenen.
 		 */
 		map = new char[21][21][5];
-		FileReader einlesen = new FileReader(f);
+		FileReader einlesen = new FileReader(file);
 		BufferedReader br = new BufferedReader(einlesen);
 		/*
 		 * schreibe auf Ebene 0 überall Gras also eine 0
@@ -136,7 +137,7 @@ public class LoadMap {
 	 * erstellt und in einer .txt Datei gespeichert. Sie kann danach wie gewohnt
 	 * geladen und gespielt werden.
 	 */
-	public static char[][][] randomMap() throws IOException {
+	public static File randomMap() throws IOException {
 
 		char[][][] randomMap = new char[21][21][3];
 
@@ -269,7 +270,7 @@ public class LoadMap {
 
 		Schreiberling.flush();
 		Schreiberling.close();
-		return randomMap;
+		return ausgabe;
 	}
 	// randomMap
 	/*

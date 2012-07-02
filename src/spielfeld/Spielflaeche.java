@@ -80,6 +80,13 @@ public class Spielflaeche extends JPanel {
 		/*
 		 * Routine um Tutorials zu starten
 		 */
+
+		if (network) {
+			bman = new Spielfigur(1, 1, 2, 1);
+
+			bman2 = new Spielfigur(19, 19, 2, 2);
+		}
+
 		if (network == false) {
 			if (Tutorial.tutorialMode) {
 				play.newTutorial();
