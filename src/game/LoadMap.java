@@ -37,7 +37,7 @@ public class LoadMap {
 	 *             existiert.
 	 */
 
-	public static void load(File f) throws IOException {
+	public static char[][][] load(File f) throws IOException {
 		setLoadtext(true);
 		if (Spielfeld.booleanSave == true) {
 			Spielflaeche.bman.setxPosition(Spielfeld.xPos);
@@ -111,6 +111,7 @@ public class LoadMap {
 
 			}
 		}
+		return map;
 
 	}
 	public static int randomInt() {

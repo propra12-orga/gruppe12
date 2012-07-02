@@ -39,6 +39,7 @@ public class Spielflaeche extends JPanel {
 	public static Spielfigur bman;
 	public static Spielfigur bman2;
 	public static boolean sollExplodieren[][];
+	public static boolean network = false;
 
 	private static final long serialVersionUID = 1L;
 	public int arrayWidth, arrayHeight;
@@ -79,68 +80,70 @@ public class Spielflaeche extends JPanel {
 		/*
 		 * Routine um Tutorials zu starten
 		 */
-		if (Tutorial.tutorialMode) {
-			play.newTutorial();
-			play.fill(15, 15, 1, Spielfeld.DummyItem);
-			play.fill(15, 15, 2, Spielfeld.Kiste);
-			play.fill(16, 16, 1, Spielfeld.DummyItem);
-			play.fill(16, 16, 2, Spielfeld.Kiste);
-			play.fill(17, 17, 1, Spielfeld.DummyItem);
-			play.fill(17, 17, 2, Spielfeld.Kiste);
+		if (network == false) {
+			if (Tutorial.tutorialMode) {
+				play.newTutorial();
+				play.fill(15, 15, 1, Spielfeld.DummyItem);
+				play.fill(15, 15, 2, Spielfeld.Kiste);
+				play.fill(16, 16, 1, Spielfeld.DummyItem);
+				play.fill(16, 16, 2, Spielfeld.Kiste);
+				play.fill(17, 17, 1, Spielfeld.DummyItem);
+				play.fill(17, 17, 2, Spielfeld.Kiste);
 
-			bman = new Spielfigur(10, 10, 2, 1);
+				bman = new Spielfigur(10, 10, 2, 1);
 
-		}
+			}
 
-		/*
-		 * falls keine Datei geladen wurde isLoadText()==false dann
-		 * ursprüngliche füllMethode per Zufall ansonsten liest er eine Karte
-		 * ein über LoadMap.load()
-		 */
-
-		if (LoadMap.isLoadtext() == false && Tutorial.tutorialMode == false) {
-			play.feldfuellen();
-			bman = new Spielfigur(1, 1, 2, 1);
-
-			bman2 = new Spielfigur(19, 19, 2, 2);
-
-		} else if (Tutorial.tutorialMode == false) {
 			/*
-			 * wenn nicht gespeichert wurde, werden die Spielfiguren explizit
-			 * gesetzt beide male wird einfach eine Karte eingelesen. prueft ob
-			 * die Karte gueltig ist und laedt sie auch nur genau dann, wenn
-			 * alle Bedingungen erfuellt sind. a) fair b) Ausgang
-			 * existiert/zugaenglich
+			 * falls keine Datei geladen wurde isLoadText()==false dann
+			 * ursprüngliche füllMethode per Zufall ansonsten liest er eine
+			 * Karte ein über LoadMap.load()
 			 */
 
-			// Routine zum Karten einlesen und pruefen
-			if (Spielfeld.booleanSave == false) {
-				bman = new Spielfigur(2, 1, 2, 1);
+			if (LoadMap.isLoadtext() == false && Tutorial.tutorialMode == false) {
+				play.feldfuellen();
+				bman = new Spielfigur(1, 1, 2, 1);
 
-				bman2 = new Spielfigur(18, 19, 2, 2);
+				bman2 = new Spielfigur(19, 19, 2, 2);
 
-				if (LoadMap.consisCheck(LoadMap.map, Spielflaeche.bman,
-						Spielflaeche.bman2)) {
-
-					play.feldeinlesen(LoadMap.map);
-
-				}
-
-				else {
-					JDialog Fehler = new JDialog(Game.gameFrame);
-					Fehler.getContentPane().setBackground(Color.black);
-					Fehler.setBounds(500, 150, 300, 300);
-					Fehler.add(new JLabel(
-							"<html><body> Die Karte ist fehlerhaft.<br> Entweder war ein Spieler bevorteilt oder kein Ausgang existend.<body><html>"));
-					Fehler.setVisible(true);
-				}
+			} else if (Tutorial.tutorialMode == false) {
 				/*
-				 * lese gespeicherte Datei ein.Mit der Bomberman Position aus
-				 * dem vorherigen Spiel
+				 * wenn nicht gespeichert wurde, werden die Spielfiguren
+				 * explizit gesetzt beide male wird einfach eine Karte
+				 * eingelesen. prueft ob die Karte gueltig ist und laedt sie
+				 * auch nur genau dann, wenn alle Bedingungen erfuellt sind. a)
+				 * fair b) Ausgang existiert/zugaenglich
 				 */
-			} else {
-				play.feldeinlesen(LoadMap.map);
-				bman = new Spielfigur(Spielfeld.xPos, Spielfeld.yPos, 2, 1);
+
+				// Routine zum Karten einlesen und pruefen
+				if (Spielfeld.booleanSave == false) {
+					bman = new Spielfigur(2, 1, 2, 1);
+
+					bman2 = new Spielfigur(18, 19, 2, 2);
+
+					if (LoadMap.consisCheck(LoadMap.map, Spielflaeche.bman,
+							Spielflaeche.bman2)) {
+
+						play.feldeinlesen(LoadMap.map);
+
+					}
+
+					else {
+						JDialog Fehler = new JDialog(Game.gameFrame);
+						Fehler.getContentPane().setBackground(Color.black);
+						Fehler.setBounds(500, 150, 300, 300);
+						Fehler.add(new JLabel(
+								"<html><body> Die Karte ist fehlerhaft.<br> Entweder war ein Spieler bevorteilt oder kein Ausgang existend.<body><html>"));
+						Fehler.setVisible(true);
+					}
+					/*
+					 * lese gespeicherte Datei ein.Mit der Bomberman Position
+					 * aus dem vorherigen Spiel
+					 */
+				} else {
+					play.feldeinlesen(LoadMap.map);
+					bman = new Spielfigur(Spielfeld.xPos, Spielfeld.yPos, 2, 1);
+				}
 			}
 		}
 	}// Konstruktor Ende
@@ -180,8 +183,8 @@ public class Spielflaeche extends JPanel {
 		dummy = play.loadImg("/ressources/grafics/item_star.png");
 		wechsler = play.loadImg("/ressources/grafics/Wechsla.png");
 		/*
-		 * Zeichenschleife. sie implementiert eine gewisse Prioritätenliste.
-		 * Die Objekte der Dimension 1 werden nur gezeichnet: a) falls sie
+		 * Zeichenschleife. sie implementiert eine gewisse Prioritätenliste. Die
+		 * Objekte der Dimension 1 werden nur gezeichnet: a) falls sie
 		 * existieren und b) falls kein Objekt der Dimension 2 existiert (auf
 		 * den selben Koordinaten.). Wichtig: unter die Objekte(sprich zeitlich
 		 * davor!) muss Gras gesetzt werden sonst wird ein falscher Untergrund
