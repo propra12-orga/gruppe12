@@ -1,0 +1,24 @@
+
+
+
+Menuefuehrer : Michael Janschek
+Figur: Markus Schöffel
+Gameengine: Tony Zerbes
+2d Lead art grafic designer: Benni Rose
+Bombenmann: Patrick Massing
+Netzwerk : Tony Zerbes & Michael janschek
+Settings: Michael Janschek & Patrick Massing
+Items : Markus Schöffel
+Handbuch : Benni Rose
+Jdoc : Tony Zerbes
+Objekte : Benni Rose
+Tutorial : Tony Zerbes
+
+Hotfixes = Alle
+
+
+Lead Producer and Community Manager : Michael Janschek
+I.E.B. Officer & doof : Markus Schöffel
+Space Officer: Benni Rose
+Leveldesigner : Tony Zerbes
+Drill Instructor: Patrick Massing
