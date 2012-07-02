@@ -72,7 +72,7 @@ public class NetworkMenu extends JFrame implements ActionListener {
 		top.add(titleL);
 
 		mid.add(hostPanel());
-		mid.add(getIPP);
+		// mid.add(getIPP);
 		mid.add(joinPanel());
 
 		bot.add(backB.getPanel());
@@ -179,11 +179,9 @@ public class NetworkMenu extends JFrame implements ActionListener {
 			}
 		}
 
-		if (e.getActionCommand().equals("getIP")) {
-
-			// Hier IP einfügen.
-			getIPTF.setText("123.456.789");
-		}
+		// if (e.getActionCommand().equals("getIP")) {
+		//
+		// }
 
 		if (e.getActionCommand().equals("host")) {
 			String portS = hostPortTF.getText();
