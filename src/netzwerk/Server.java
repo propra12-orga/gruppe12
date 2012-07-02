@@ -1,7 +1,5 @@
 package netzwerk;
 
-import game.Game;
-
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -9,9 +7,6 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
-
-import spielfeld.Spielfeld;
-import spielfeld.Spielflaeche;
 
 public class Server extends Thread {
 	ServerSocket server;
@@ -33,11 +28,11 @@ public class Server extends Thread {
 			DataInputStream in = new DataInputStream(client.getInputStream());
 			OutputStream out = client.getOutputStream();
 			ObjectOutputStream oos = new ObjectOutputStream(out);
-			Game.go();
-			oos.writeObject(Spielfeld.save(Spielflaeche.play));
+			// Game.go();
+			// oos.writeObject(Spielfeld.save(Spielflaeche.play));
 
 			System.out.println("Erfolgreich verbunden.");
-
+			System.out.println(in.readUTF());
 			server.close();
 
 			// System.out.println("Vom Client erhaltene Nummer: " + test);
