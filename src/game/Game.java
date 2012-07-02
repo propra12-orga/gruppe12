@@ -54,7 +54,7 @@ public class Game extends Thread {
 		gameFrame.dispose(); // Frame wird geschlossen
 		gameFrame = new JFrame("Ende");// Ende Fenster
 		gameFrame.setLocation(350, 20); // Stellt Position des Fensters ein
-		gameFrame.setSize(100, 150); // .. und die Größe
+		gameFrame.setSize(200, 150); // .. und die Größe
 		GameQuitter gQuit = new GameQuitter(gameFrame); // Erzeugt
 		// WindowListener gQuit
 		// und übergibt den

@@ -32,6 +32,7 @@ public class MainMenu extends JFrame implements ActionListener {
 
 	// Panels und zugehoerige Buttons initialisieren
 	MenuButton start = new MenuButton("Start");
+	MenuButton network = new MenuButton("Netzwerkspiel");
 	MenuButton tutorial = new MenuButton("Tutorial");
 	MenuButton loadMap = new MenuButton("Lade Karte");
 	MenuButton randomMap = new MenuButton("Zufallskarte");
@@ -60,6 +61,7 @@ public class MainMenu extends JFrame implements ActionListener {
 		buttons.setLayout(new BoxLayout(buttons, BoxLayout.Y_AXIS));
 		buttons.setBackground(null);
 		buttons.add(start.getPanel());
+		buttons.add(network.getPanel());
 		buttons.add(tutorial.getPanel());
 		buttons.add(loadMap.getPanel());
 		buttons.add(randomMap.getPanel());
@@ -77,6 +79,9 @@ public class MainMenu extends JFrame implements ActionListener {
 		// Buttons beim ActionListener registrieren
 		start.getButton().addActionListener(this);
 		start.getButton().setActionCommand("start");
+
+		network.getButton().addActionListener(this);
+		network.getButton().setActionCommand("network");
 
 		tutorial.getButton().addActionListener(this);
 		tutorial.getButton().setActionCommand("tutorial");
@@ -106,8 +111,11 @@ public class MainMenu extends JFrame implements ActionListener {
 				e.printStackTrace();
 			}
 		}
-		// Startet den Tests (falls implementiert)
-		if (evt.getActionCommand().equals("tutorial")) {
+		if (evt.getActionCommand().equals("network") && gamerunning == false) {
+			NetworkMenu.openFrame();
+		}
+		// Startet das Tutorial
+		if (evt.getActionCommand().equals("tutorial") && gamerunning == false) {
 			RunTutorial.go();
 			gamerunning = true;
 
