@@ -1,13 +1,20 @@
 package netzwerk;
 
+import game.Game;
+import game.LoadMap;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+
+import menu.MainMenu;
+import spielfeld.Spielflaeche;
 
 public class Server extends Thread {
 	ServerSocket server;
@@ -16,7 +23,7 @@ public class Server extends Thread {
 
 	public Server(int port) throws IOException {
 		server = new ServerSocket(3000);
-		server.setSoTimeout(10000);
+		// server.setSoTimeout(10000);
 	}
 
 	public void run() {
@@ -33,11 +40,18 @@ public class Server extends Thread {
 			ObjectOutputStream oos = new ObjectOutputStream(out);
 			DataOutputStream dout = new DataOutputStream(
 					client.getOutputStream());
+
 			// starte Spiel
 
-			// Game.go();
-			// MainMenu.gamerunning = true;
-			// Spielflaeche.network = true;
+			File f = LoadMap.randomMap();
+			// File f = new File("haumichtod.de");
+			oos.writeObject(f);
+
+			Spielflaeche.network = true;
+			Game.go();
+			Spielflaeche.play.feldeinlesen(LoadMap.load(f));
+			MainMenu.gamerunning = true;
+
 			// oos.writeObject(Spielfeld.save(Spielflaeche.play));
 			// dout.writeUTF("level_loaded");
 			//
@@ -47,7 +61,6 @@ public class Server extends Thread {
 
 			server.close();
 
-			// System.out.println("Vom Client erhaltene Nummer: " + test);
 		} catch (SocketTimeoutException s) {
 			System.out.println("Socket timed out!");
 
@@ -57,5 +70,4 @@ public class Server extends Thread {
 		}
 
 	}
-
 }

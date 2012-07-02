@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import menu.MainMenu;
 import spielfeld.Spielflaeche;
 import tools.Framebutton;
 import tools.GameKeyListener;
@@ -146,6 +147,6 @@ public class Tutorial extends Thread {
 				"<html><body>Wahnsinn du hast es geschafft!<br>Viel Spaß weiterhin.<body><html>"));
 		sieg.setVisible(true);
 		tutorialMode = false;
-
+		MainMenu.gamerunning = false;
 	}
 }
