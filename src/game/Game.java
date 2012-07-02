@@ -23,7 +23,7 @@ public class Game extends Thread {
 	}
 
 	public static void go() { // Methode zum Spielstart
-		System.out.println("bla");
+
 		gameFrame = new JFrame("Bomberman"); // Deklariert gameFrame zu
 		// neuem Fenster
 		GameQuitter gQuit = new GameQuitter(gameFrame); // Erzeugt
@@ -32,6 +32,10 @@ public class Game extends Thread {
 		// Frame "gameFrame"
 		game = new Spielflaeche(); // Deklariert game zu NEUER Spielflaeche (ein
 		// JPanel)
+		if (Spielflaeche.network) {
+
+		}
+
 		gameFrame.add(game); // Fügt game zum Fenster zu
 		gameFrame.setLocation(350, 20); // Stellt Position des Fensters ein
 		gameFrame.setSize(720, 720); // .. und die Größe
