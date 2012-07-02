@@ -178,7 +178,7 @@ public class Spielflaeche extends JPanel {
 		kiste = play.loadImg("/ressources/grafics/Kiste2.gif");
 		explo = play.loadImg("/ressources/grafics/Explode12.png");
 		dummy = play.loadImg("/ressources/grafics/item_star.png");
-		wechsler = play.loadImg("/ressources/grafics/Wechsler.png");
+		wechsler = play.loadImg("/ressources/grafics/Wechsla.png");
 		/*
 		 * Zeichenschleife. sie implementiert eine gewisse Prioritätenliste.
 		 * Die Objekte der Dimension 1 werden nur gezeichnet: a) falls sie

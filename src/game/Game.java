@@ -51,19 +51,24 @@ public class Game extends Thread {
 		SwingUtilities.invokeLater(gui); // wartet bis ausgefuehrt
 	}
 
-	public static void restartGame(int sieger) { // Methode zum Spielneustart
+	public static synchronized void restartGame(int sieger) { // Methode zum
+																// Spielneustart
 		gameFrame.dispose(); // Frame wird geschlossen
 		gameFrame = new JFrame("Ende");// Ende Fenster
 		gameFrame.setLocation(350, 20); // Stellt Position des Fensters ein
+
 		gameFrame.setSize(400, 300); // .. und die Größe
 		gameFrame.getContentPane().setBackground(Color.black);
+
 		GameQuitter gQuit = new GameQuitter(gameFrame); // Erzeugt
 		// WindowListener gQuit
 		// und übergibt den
 		// Frame "gameFrame"
 		gameFrame.addWindowListener(gQuit); // fügt WindowListener gQuit dem
 		// Frame bei
+		// ImageIcon i = new ImageIcon("/ressources/grafics/winner.png");
 		JLabel j = new JLabel("Spieler " + sieger + " gewinnt.");
+
 		gameFrame.add(j);
 		gameFrame.setVisible(true);
 

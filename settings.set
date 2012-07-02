@@ -4,5 +4,5 @@
     <bombSpawn>true</bombSpawn>
     <maxBombs>4</maxBombs>
     <player2>false</player2>
-    <swap>false</swap>
+    <swap>true</swap>
 </settings>
