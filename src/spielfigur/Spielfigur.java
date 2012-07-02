@@ -291,11 +291,14 @@ public class Spielfigur {
 					&& wechsler == true) {
 				Spielflaeche.play.fill(Spielflaeche.bman2.xPosition,
 						Spielflaeche.bman2.yPosition, 1, null);
+
+				newx = Spielflaeche.bman.xPosition;
 				newy = Spielflaeche.bman.yPosition;
 				Spielflaeche.bman.xPosition = Spielflaeche.bman2.xPosition;
 				Spielflaeche.bman.yPosition = Spielflaeche.bman2.yPosition;
 				Spielflaeche.bman2.xPosition = newx;
 				Spielflaeche.bman2.yPosition = newy;
+
 				int zahl = (int) Math.random() * 20;
 				System.out.println(zahl);
 
