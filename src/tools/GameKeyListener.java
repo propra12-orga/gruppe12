@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 
+import netzwerk.Server;
 import spielfeld.Spielfeld;
 import spielfeld.Spielflaeche;
 
@@ -37,31 +38,72 @@ public class GameKeyListener implements KeyListener {
 		// Fall: Hochtaste gedrückt ==> Hoch bewegen
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 
-			Spielflaeche.bman.move(0, -1);
-			if (Tutorial.tutorialMode && Framebutton.zaehler == 1) {
-				Tutorial.moved1 = true;
+			if (Spielflaeche.network) {
+				if (Server.netHost) {
+					Spielflaeche.bman.move(0, -1);
+				}
+				if (Server.netClient) {
+					Spielflaeche.bman2.move2(0, -1);
+				}
 			}
+			if (Spielflaeche.network == false) {
+				Spielflaeche.bman.move(0, -1);
+				if (Tutorial.tutorialMode && Framebutton.zaehler == 1) {
+					Tutorial.moved1 = true;
+				}
+			}
+
 		}
 		// Fall: Linkstaste gedrückt ==> Links bewegen
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-
-			Spielflaeche.bman.move(-1, 0);
-			if (Tutorial.tutorialMode && Framebutton.zaehler == 1) {
-				Tutorial.moved2 = true;
+			if (Spielflaeche.network) {
+				if (Server.netHost) {
+					Spielflaeche.bman.move(-1, 0);
+				}
+				if (Server.netClient) {
+					Spielflaeche.bman2.move2(-1, 0);
+				}
+			}
+			if (Spielflaeche.network == false) {
+				Spielflaeche.bman.move(-1, 0);
+				if (Tutorial.tutorialMode && Framebutton.zaehler == 1) {
+					Tutorial.moved2 = true;
+				}
 			}
 		}
 		// Fall: Rechtstaste gedrückt ==> Rechts bewegen
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			Spielflaeche.bman.move(1, 0);
-			if (Tutorial.tutorialMode && Framebutton.zaehler == 1) {
-				Tutorial.moved3 = true;
+			if (Spielflaeche.network) {
+				if (Server.netHost) {
+					Spielflaeche.bman.move(1, 0);
+				}
+				if (Server.netClient) {
+					Spielflaeche.bman2.move2(1, 0);
+				}
+			}
+			if (Spielflaeche.network == false) {
+				Spielflaeche.bman.move(1, 0);
+				if (Tutorial.tutorialMode && Framebutton.zaehler == 1) {
+					Tutorial.moved3 = true;
+				}
 			}
 		}
 		// Fall: Runtertaste gedrückt ==> Runter bewegen
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			Spielflaeche.bman.move(0, 1);
-			if (Tutorial.tutorialMode && Framebutton.zaehler == 1) {
-				Tutorial.moved4 = true;
+			if (Spielflaeche.network) {
+				if (Server.netHost) {
+					Spielflaeche.bman.move(0, 1);
+				}
+				if (Server.netClient) {
+					Spielflaeche.bman2.move2(0, 1);
+				}
+			}
+			if (Spielflaeche.network == false) {
+				Spielflaeche.bman.move(0, 1);
+
+				if (Tutorial.tutorialMode && Framebutton.zaehler == 1) {
+					Tutorial.moved4 = true;
+				}
 			}
 		}
 		// Fall: Leertaste gedrückt ==> Bombe legen

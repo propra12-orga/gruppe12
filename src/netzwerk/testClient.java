@@ -1,25 +1,24 @@
 package netzwerk;
 
 import game.Game;
-import game.LoadMap;
 
-import java.io.BufferedReader;
 import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
+import menu.MainMenu;
 import spielfeld.Spielflaeche;
 
 public class testClient {
 	public static void main(String[] args) throws ClassNotFoundException,
 			InterruptedException {
+
 		try {
-			Socket client = new Socket("192.168.0.100", 3000);
 			Spielflaeche.network = true;
+			Server.netClient = true;
+			Socket client = new Socket("192.168.2.104", 3000);
+
 			// schreiben
 			DataOutputStream out = new DataOutputStream(
 					client.getOutputStream());
@@ -27,16 +26,22 @@ public class testClient {
 			ObjectInputStream in = new ObjectInputStream(
 					client.getInputStream());
 
-			File map = (File) in.readObject();
-			FileReader f = new FileReader(map);
-			BufferedReader bitte = new BufferedReader(f);
-			File ausgabe = new File("plz.lv");
-			FileWriter bla = new FileWriter(ausgabe);
-			bla.write("HalloWelt");
-			System.out.println(ausgabe.getName());
-
+			// Starte Netzwerkspiel
 			Game.go();
-			Spielflaeche.play.feldeinlesen(LoadMap.load(ausgabe));
+			MainMenu.gamerunning = true;
+
+			while (MainMenu.gamerunning) {
+				if (in.readUTF() != null) {
+					Spielflaeche.bman.setxPosition(Integer.parseInt(in
+							.readUTF()));
+					Spielflaeche.bman.setyPosition(Integer.parseInt(in
+							.readUTF()));
+
+				}
+
+				out.writeUTF(String.valueOf(Spielflaeche.bman2.xPosition));
+				out.writeUTF(String.valueOf(Spielflaeche.bman2.yPosition));
+			}
 
 			// System.out.println(map.getName());
 			client.close();

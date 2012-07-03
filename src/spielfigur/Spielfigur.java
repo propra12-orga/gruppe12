@@ -234,7 +234,7 @@ public class Spielfigur {
 					Spielflaeche.play.fill(zahl, zahl2, 4, Spielfeld.Bombe);
 				}
 
-				// Spielflaeche.bman.radius++;
+				Spielflaeche.bman.radius++;
 			}
 
 		}
@@ -322,7 +322,7 @@ public class Spielfigur {
 					Spielflaeche.play.fill(zahl, zahl2, 4, Spielfeld.Bombe);
 				}
 
-				// Spielflaeche.bman2.radius++;
+				Spielflaeche.bman2.radius++;
 
 			}
 
