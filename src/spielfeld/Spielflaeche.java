@@ -60,8 +60,6 @@ public class Spielflaeche extends JPanel {
 	 * noch zu befuellendes Spielfeld. Falls keine Datei eingelesen wurde wird
 	 * ein Zufallsgenerator aktiviert,andernfalls die Karte eingelesen und
 	 * geoeffnet.
-	 * 
-	 * @see randomGen()
 	 */
 	public Spielflaeche() {
 		play = new Spielfeld(21, 21, 5);

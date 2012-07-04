@@ -22,9 +22,6 @@ import menu.settings.OpenSettings;
 
 public class MainMenu extends JFrame implements ActionListener {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	// Wahrheitswert sagt aus, ob bereits ein Spiel läuft
@@ -46,6 +43,9 @@ public class MainMenu extends JFrame implements ActionListener {
 	JLabel title = new JLabel("Ganz dolles Spiel");
 
 	// Konstruktor
+	/**
+	 * Menu wird konstruiert und Buttons werden mit Verlinkungen versehen.
+	 */
 	public MainMenu() {
 
 		getContentPane().setLayout(

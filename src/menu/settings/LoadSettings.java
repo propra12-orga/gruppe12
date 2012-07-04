@@ -6,6 +6,14 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+/**
+ * Klasse, um an beliebiger Stelle im Programm die Settings aus der Datei
+ * "settings.set" laden zu koennen.
+ * 
+ * @author garg
+ * 
+ */
+
 public class LoadSettings {
 	public static Settings load() throws JAXBException {
 		Settings sets;

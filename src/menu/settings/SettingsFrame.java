@@ -20,6 +20,14 @@ import javax.xml.bind.JAXBException;
 
 import menu.MenuButton;
 
+/**
+ * Settingsmenue wird erzeugt und verlinkt, um anschließend ins Hauptmenue
+ * integriert zu werden.
+ * 
+ * @author garg
+ * 
+ */
+
 public class SettingsFrame extends JFrame
 		implements
 			ActionListener,

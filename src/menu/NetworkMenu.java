@@ -12,6 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * Netzwerk-Menue wird konstruiert, und entsprechend gelinkt um die
+ * Funktionsfähigkeit zu garantieren, anschließend wird es als Untermenue vom
+ * Hauptmenue integriert.
+ * 
+ * @author garg
+ * 
+ */
 public class NetworkMenu extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;

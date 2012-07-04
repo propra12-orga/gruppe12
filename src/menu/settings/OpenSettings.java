@@ -6,6 +6,14 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+/**
+ * Liest Settings aus der Datei "settings.set", übergibt sie der Klasse
+ * SettingsFrame und startet ihre "go"-Methode.
+ * 
+ * @author garg
+ * 
+ */
+
 public class OpenSettings {
 	public static void open() throws JAXBException {
 

@@ -6,6 +6,13 @@ import menu.settings.LoadSettings;
 import menu.settings.Settings;
 import spielfeld.Spielflaeche;
 
+/**
+ * Ladet Settings, startet das Spiel und nimmt Einstellungen an dem Spiel vor.
+ * 
+ * @author garg
+ * 
+ */
+
 public class RunGame {
 	public static void go() throws JAXBException {
 		Settings settings;
