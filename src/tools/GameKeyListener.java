@@ -110,7 +110,15 @@ public class GameKeyListener implements KeyListener {
 		// Fall: Leertaste gedrückt ==> Bombe legen
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			bomb = true;
-			Spielflaeche.bman.bombeLegen();
+
+			if (Spielflaeche.network) {
+				if (Server.netHost) {
+					Spielflaeche.bman.bombeLegen();
+				}
+				if (Server.netClient) {
+					Spielflaeche.bman2.bombeLegen();
+				}
+			}
 			if (Tutorial.tutorialMode && Framebutton.zaehler == 2) {
 				Tutorial.bombeplan = true;
 			}
