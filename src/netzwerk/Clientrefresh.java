@@ -44,7 +44,7 @@ public class Clientrefresh extends Thread {
 				if (GameKeyListener.bomb) {
 					bombX1 = posX;
 					bombY1 = posY;
-
+					GameKeyListener.bomb = false;
 				}
 				out.writeUTF(String.valueOf(bombX1));
 				out.writeUTF(String.valueOf(bombY1));

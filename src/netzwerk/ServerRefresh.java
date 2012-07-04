@@ -50,7 +50,6 @@ public class ServerRefresh extends Thread {
 				if (GameKeyListener.bomb) {
 					bombX = posX;
 					bombY = posY;
-					System.out.println("X = " + bombX + " bX = " + bombY);
 					GameKeyListener.bomb = false;
 				}
 				bombX2 = Integer.parseInt(in.readUTF());
