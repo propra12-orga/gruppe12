@@ -33,26 +33,17 @@ public class Server extends Thread {
 			// Lesestroeme fuer eingehende - und verschickte Daten
 			// output zum schreiben , input zum empfangen
 			DataInputStream in = new DataInputStream(client.getInputStream());
-			DataOutputStream dout = new DataOutputStream(
+			DataOutputStream out = new DataOutputStream(
 					client.getOutputStream());
-			Spielflaeche.network = true;
-			netHost = true;
-			Game.go();
-			// starte Spiel
+
+			ServerRefresh servRef = new ServerRefresh(in, out);
 			MainMenu.gamerunning = true;
-			while (MainMenu.gamerunning) {
-				System.out.println("bla");
-				if (in.readUTF() != null) {
-					Spielflaeche.bman2.setxPosition(Integer.parseInt(in
-							.readUTF()));
-					Spielflaeche.bman2.setyPosition(Integer.parseInt(in
-							.readUTF()));
+			Spielflaeche.network = true;
+			Server.netHost = true;
 
-				}
+			Game.go();
 
-				dout.writeUTF(String.valueOf(Spielflaeche.bman.xPosition));
-				dout.writeUTF(String.valueOf(Spielflaeche.bman.yPosition));
-			}
+			servRef.run();
 
 			server.close();
 
