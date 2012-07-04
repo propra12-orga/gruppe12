@@ -8,9 +8,9 @@ import java.net.Socket;
 import spielfeld.Spielflaeche;
 
 public class Clientrefresh extends Thread {
-	public static Socket client;
-	public static DataInputStream in;
-	public static DataOutputStream out;
+	public Socket client;
+	public DataInputStream in;
+	public DataOutputStream out;
 
 	public Clientrefresh(DataInputStream in, DataOutputStream out) {
 		this.in = in;

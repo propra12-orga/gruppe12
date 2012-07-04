@@ -83,7 +83,7 @@ public class Spielflaeche extends JPanel {
 			bman = new Spielfigur(1, 1, 2, 1);
 
 			bman2 = new Spielfigur(19, 19, 2, 2);
-
+			play.fill(4, 1, 2, Spielfeld.Kiste);
 			for (int y = 0; y < 21; y++) {
 				play.fill(0, y, 0, Spielfeld.festeMauer);
 				play.fill(20, y, 0, Spielfeld.festeMauer);

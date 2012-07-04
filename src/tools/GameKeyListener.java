@@ -11,7 +11,7 @@ import spielfeld.Spielfeld;
 import spielfeld.Spielflaeche;
 
 public class GameKeyListener implements KeyListener {
-	public static boolean sichtbar, boolSave;
+	public static boolean sichtbar, boolSave, bombHost, bombClient;
 
 	/**
 	 * Die Funktion dieser Klasse ist die Bedienung des Programms mit Hilfe der
@@ -108,6 +108,12 @@ public class GameKeyListener implements KeyListener {
 		}
 		// Fall: Leertaste gedrückt ==> Bombe legen
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			if (Server.netHost) {
+				bombHost = true;
+			}
+			if (Server.netClient) {
+				bombClient = true;
+			}
 			Spielflaeche.bman.bombeLegen();
 			if (Tutorial.tutorialMode && Framebutton.zaehler == 2) {
 				Tutorial.bombeplan = true;
