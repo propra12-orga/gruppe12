@@ -2,9 +2,13 @@ package netzwerk;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.IOException;
 
+import spielfeld.Spielfeld;
 import spielfeld.Spielflaeche;
+import tools.GameKeyListener;
+import bombe.Bombe;
 
 public class ServerRefresh extends Thread {
 
@@ -23,6 +27,10 @@ public class ServerRefresh extends Thread {
 		int oldX = 0;
 		int oldY = 0;
 		int posY = 2;
+		int bombX;
+		int bombY;
+		int bombX2;
+		int bombY2;
 
 		while (true) {
 			try {
@@ -37,13 +45,38 @@ public class ServerRefresh extends Thread {
 				out.writeUTF(String.valueOf(posX));
 				out.writeUTF(String.valueOf(posY));
 
+				bombX = 0;
+				bombY = 0;
+				if (GameKeyListener.bomb) {
+					bombX = posX;
+					bombY = posY;
+					System.out.println("X = " + bombX + " bX = " + bombY);
+					GameKeyListener.bomb = false;
+				}
+				bombX2 = Integer.parseInt(in.readUTF());
+				bombY2 = Integer.parseInt(in.readUTF());
+
+				out.writeUTF(String.valueOf(bombX));
+				out.writeUTF(String.valueOf(bombY));
+
+				Spielflaeche.play.fill(bombX2, bombY2, 4, Spielfeld.Bombe);
+				new Bombe(bombX2, bombY2, 2, 2,
+						Spielflaeche.bman.getBombType(), 1, 3).start();
+				Spielflaeche.play.destroy(0, 0, 4);
+				// Spielflaeche.play.fill(bombX, bombY, 4, Spielfeld.Bombe);
+
+				// bombeschicken(x,y)
+			} catch (EOFException e) {
+				// TODO Auto-generated catch block
+				System.out.print("");
+				break;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				break;
 			}
 		}
 	}
-
 	public void moved(int oldX, int oldY, int newX, int newY) {
 		int x = newX - oldX;
 		int y = newY - oldY;
