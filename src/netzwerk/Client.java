@@ -10,6 +10,13 @@ import java.net.Socket;
 import menu.MainMenu;
 import spielfeld.Spielflaeche;
 
+/**
+ * Thread startet Clienten.
+ * 
+ * @author garg
+ * 
+ */
+
 public class Client extends Thread {
 
 	public String ip = "";

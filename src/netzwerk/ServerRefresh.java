@@ -10,6 +10,12 @@ import spielfeld.Spielflaeche;
 import tools.GameKeyListener;
 import bombe.Bombe;
 
+/**
+ * Thread, um staendig Clienten nach Information zu befragen.
+ * 
+ * @author garg
+ * 
+ */
 public class ServerRefresh extends Thread {
 
 	DataInputStream in;
@@ -69,7 +75,7 @@ public class ServerRefresh extends Thread {
 				break;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.print("");
 				break;
 			}
 		}

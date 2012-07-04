@@ -12,6 +12,13 @@ import java.net.SocketTimeoutException;
 import menu.MainMenu;
 import spielfeld.Spielflaeche;
 
+/**
+ * Thread startet Server.
+ * 
+ * @author garg
+ * 
+ */
+
 public class Server extends Thread {
 	ServerSocket server;
 	int port;
