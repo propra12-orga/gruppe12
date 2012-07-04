@@ -76,7 +76,6 @@ public class Game extends Thread {
 		// Frame bei
 		// ImageIcon i = new ImageIcon("/ressources/grafics/winner.png");
 		JLabel j = new JLabel("Spieler " + sieger + " gewinnt.");
-
 		gameFrame.add(j);
 		gameFrame.setVisible(true);
 
