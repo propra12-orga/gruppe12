@@ -8,6 +8,14 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
+/**
+ * WindowListener mit der Aufgabe, das Spielfenster fehlerfrei zu schließen und
+ * boolean-Werte korrekt zu setzen.
+ * 
+ * @author garg
+ * 
+ */
+
 public class GameQuitter extends WindowAdapter // WindowListener
 {
 	JFrame GamePan;

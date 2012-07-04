@@ -3,6 +3,13 @@ package menu;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/**
+ * Klasse, um allgemein Buttons fuer die Menues konstruieren zu koennen.
+ * 
+ * @author garg
+ * 
+ */
+
 public class MenuButton extends JPanel {
 	// initialisiere Variablen
 	JButton button;

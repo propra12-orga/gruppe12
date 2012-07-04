@@ -11,6 +11,10 @@ import spielfeld.Spielflaeche;
 import tools.GameKeyListener;
 import tools.GameQuitter;
 
+/**
+ * Klasse zum Spielstart.
+ */
+
 public class Game extends Thread {
 	// initialisiere Variablen
 	public static Spielflaeche game; // neue "leere" Spieflaeche
@@ -22,6 +26,10 @@ public class Game extends Thread {
 
 	}
 
+	/**
+	 * Methode zum Spielstart, es wird ein Fenster erzeugt und ein Thread der es
+	 * durchgehend neu zeichnet.
+	 */
 	public static void go() { // Methode zum Spielstart
 
 		gameFrame = new JFrame("Bomberman"); // Deklariert gameFrame zu
@@ -62,23 +70,24 @@ public class Game extends Thread {
 	public static synchronized void restartGame(int sieger) { // Methode zum
 																// Spielneustart
 		gameFrame.dispose(); // Frame wird geschlossen
-		gameFrame = new JFrame("Ende");// Ende Fenster
-		gameFrame.setLocation(350, 20); // Stellt Position des Fensters ein
+		JFrame EndFrame = new JFrame("Ende");// Ende Fenster
+		EndFrame.setLocation(350, 20); // Stellt Position des Fensters ein
 
-		gameFrame.setSize(400, 300); // .. und die Größe
-		gameFrame.getContentPane().setBackground(Color.black);
+		EndFrame.setSize(400, 300); // .. und die Größe
+		EndFrame.getContentPane().setBackground(Color.black);
 
 		GameQuitter gQuit = new GameQuitter(gameFrame); // Erzeugt
 		// WindowListener gQuit
 		// und übergibt den
 		// Frame "gameFrame"
-		gameFrame.addWindowListener(gQuit); // fügt WindowListener gQuit dem
+		EndFrame.addWindowListener(gQuit); // fügt WindowListener gQuit dem
 		// Frame bei
 		// ImageIcon i = new ImageIcon("/ressources/grafics/winner.png");
 		JLabel j = new JLabel("Spieler " + sieger + " gewinnt.");
+		j.setForeground(Color.WHITE);
 
-		gameFrame.add(j);
-		gameFrame.setVisible(true);
+		EndFrame.add(j);
+		EndFrame.setVisible(true);
 
 	}
 }

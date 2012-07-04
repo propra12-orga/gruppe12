@@ -6,6 +6,13 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
+/**
+ * Kriegt Settings übergeben und speichert sie in die XML-Datei "settings.set".
+ * 
+ * @author garg
+ * 
+ */
+
 public class SaveSettings {
 
 	Settings sets;

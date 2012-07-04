@@ -10,7 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JPanel;
-/*
+/**
  * Klasse um Spielfelder zu erzeugen.
  */
 public class Spielfeld extends JPanel {
@@ -85,7 +85,6 @@ public class Spielfeld extends JPanel {
 	 * Register geschrieben. Zufallsgenerator wird mit double 0.1 gestartet.
 	 * Startmethode, die mehrere Aktionen zusammenfasst.
 	 * 
-	 * @see randomGen()
 	 */
 
 	public void feldfuellen() {

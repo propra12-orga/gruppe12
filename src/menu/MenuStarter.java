@@ -5,8 +5,16 @@ import java.awt.Toolkit;
 
 import tools.WindowQuitter;
 
+/**
+ * Klasse, um Menue zu starten.
+ */
+
 public class MenuStarter {
 	public static MainMenu frame;
+
+	/**
+	 * Menue wird erzeugt, auf Vollbild gestellt und geoeffnet.
+	 */
 
 	public static void openmainmenu() {
 		frame = new MainMenu(); // Erzeugt ein Objekt von StartMenu

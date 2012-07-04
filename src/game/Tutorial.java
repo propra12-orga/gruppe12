@@ -16,6 +16,13 @@ import tools.Framebutton;
 import tools.GameKeyListener;
 import tools.GameQuitter;
 
+/**
+ * Konstruiert Tutorial-Spiel und wickelt es ab.
+ * 
+ * @author garg
+ * 
+ */
+
 public class Tutorial extends Thread {
 	public static Spielflaeche tut; // neue "leere" Spieflaeche
 	public static JFrame gameFrame; // neues "leeres" Fenster

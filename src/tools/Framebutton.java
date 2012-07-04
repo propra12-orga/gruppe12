@@ -12,7 +12,7 @@ public class Framebutton implements ActionListener {
 	// Zaehler um mit dem selben Knopf OK mehrere Ereignisse bearbeiten zu
 	// koennen.
 	public static int zaehler = 0;
-	/*
+	/**
 	 * Hier wird der Actionlistener fuer das Dialogfeld im Tutorial
 	 * implementiert. verbunden mit dem OK - Knopf wechselt er bei bestimmten
 	 * Handlungen die Textfelder aus.

@@ -2,7 +2,12 @@ package menu.settings;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-//==> Settings sollen in sets.xml gespeichert werden
+/**
+ * Klasse, um diverse Einstellungen abspeichern und abrufen zu können.
+ * 
+ * @author garg
+ * 
+ */
 @XmlRootElement
 public class Settings {
 
