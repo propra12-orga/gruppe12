@@ -187,19 +187,13 @@ public class NetworkMenu extends JFrame implements ActionListener {
 		}
 
 		if (e.getActionCommand().equals("join")) {
-			netRunning = true;
 			String ip = joinIPTF.getText();
 			if (ip.equals("") != true) {
 				try {
 					testClient.go(ip);
-				} catch (ClassNotFoundException e1) {
+				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-					netRunning = false;
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-					netRunning = false;
 				}
 			}
 		}
@@ -209,13 +203,11 @@ public class NetworkMenu extends JFrame implements ActionListener {
 		// }
 
 		if (e.getActionCommand().equals("host")) {
-			netRunning = true;
 			try {
 				testServer.go();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-				netRunning = false;
 			}
 		}
 	}

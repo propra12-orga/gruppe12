@@ -14,13 +14,11 @@ import spielfeld.Spielflaeche;
 
 public class Server extends Thread {
 	ServerSocket server;
-	DataInputStream in;
 	int port;
 	public static boolean netHost, netClient;
 
 	public Server() throws IOException {
 		server = new ServerSocket(3000);
-		// server.setSoTimeout(10000);
 	}
 
 	public void run() {
@@ -36,6 +34,7 @@ public class Server extends Thread {
 			DataOutputStream out = new DataOutputStream(
 					client.getOutputStream());
 			ServerRefresh servRef = new ServerRefresh(in, out);
+
 			MainMenu.gamerunning = true;
 			Spielflaeche.network = true;
 			Server.netHost = true;
