@@ -19,7 +19,7 @@ public class Server extends Thread {
 	public static boolean netHost, netClient;
 
 	public Server(int port) throws IOException {
-		server = new ServerSocket(3000);
+		server = new ServerSocket(port);
 		// server.setSoTimeout(10000);
 	}
 

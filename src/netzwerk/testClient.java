@@ -11,14 +11,14 @@ import menu.MainMenu;
 import spielfeld.Spielflaeche;
 
 public class testClient {
-	public static void go(String ip, int port) throws ClassNotFoundException,
+	public static void go(String ip) throws ClassNotFoundException,
 			InterruptedException {
 
 		try {
 			Spielflaeche.network = true;
 			Server.netClient = true;
 			MainMenu.gamerunning = true;
-			Socket client = new Socket(ip, port);
+			Socket client = new Socket(ip, 3000);
 
 			// schreiben
 			DataOutputStream write = new DataOutputStream(

@@ -187,9 +187,8 @@ public class NetworkMenu extends JFrame implements ActionListener {
 		if (e.getActionCommand().equals("join")) {
 			String ip = joinIPTF.getText();
 			if (ip.equals("") != true) {
-				int port = Integer.parseInt(joinPortTF.getText());
 				try {
-					testClient.go(ip, port);
+					testClient.go(ip);
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -206,10 +205,8 @@ public class NetworkMenu extends JFrame implements ActionListener {
 
 		if (e.getActionCommand().equals("host")) {
 			String portS = hostPortTF.getText();
-			if (portS.equals("") != true) {
-				int port = Integer.parseInt(portS);
 				try {
-					testServer.go(port);
+					testServer.go();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
