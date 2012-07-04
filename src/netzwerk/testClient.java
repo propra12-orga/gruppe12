@@ -17,7 +17,6 @@ public class testClient {
 		try {
 			Spielflaeche.network = true;
 			Server.netClient = true;
-			MainMenu.gamerunning = true;
 			Socket client = new Socket(ip, 3000);
 
 			// schreiben
@@ -31,6 +30,8 @@ public class testClient {
 
 			Game.go();
 			a.run();
+			MainMenu.gamerunning = true;
+
 			// System.out.println(map.getName());
 			client.close();
 		} catch (IOException e) {

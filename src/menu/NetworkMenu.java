@@ -204,15 +204,12 @@ public class NetworkMenu extends JFrame implements ActionListener {
 		// }
 
 		if (e.getActionCommand().equals("host")) {
-			String portS = hostPortTF.getText();
-				try {
-					testServer.go();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+			try {
+				testServer.go();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 		}
 	}
-
 }
