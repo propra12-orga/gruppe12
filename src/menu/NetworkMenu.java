@@ -35,6 +35,7 @@ public class NetworkMenu extends JFrame implements ActionListener {
 	private JTextField hostPortTF;
 	private JTextField joinIPTF;
 	private JTextField joinPortTF;
+	private boolean netRunning;
 
 	public static NetworkMenu nFrame;
 
@@ -181,10 +182,12 @@ public class NetworkMenu extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getActionCommand().equals("back")) {
-			nFrame.dispose();
+			if (!netRunning)
+				nFrame.dispose();
 		}
 
 		if (e.getActionCommand().equals("join")) {
+			netRunning = true;
 			String ip = joinIPTF.getText();
 			if (ip.equals("") != true) {
 				try {
@@ -192,9 +195,11 @@ public class NetworkMenu extends JFrame implements ActionListener {
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					netRunning = false;
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					netRunning = false;
 				}
 			}
 		}
@@ -204,11 +209,13 @@ public class NetworkMenu extends JFrame implements ActionListener {
 		// }
 
 		if (e.getActionCommand().equals("host")) {
+			netRunning = true;
 			try {
 				testServer.go();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+				netRunning = false;
 			}
 		}
 	}

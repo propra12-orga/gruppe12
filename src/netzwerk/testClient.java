@@ -17,7 +17,10 @@ public class testClient {
 		try {
 			Spielflaeche.network = true;
 			Server.netClient = true;
+			MainMenu.gamerunning = true;
 			Socket client = new Socket(ip, 3000);
+			System.out.println("Verbunden zu Server: "
+					+ client.getInetAddress().getHostAddress());
 
 			// schreiben
 			DataOutputStream write = new DataOutputStream(
@@ -26,14 +29,16 @@ public class testClient {
 			// lesen,
 			DataInputStream read = new DataInputStream(client.getInputStream());
 
-			Clientrefresh a = new Clientrefresh(read, write);
+			Clientrefresh clientRef = new Clientrefresh(read, write);
 
 			Game.go();
-			a.run();
-			MainMenu.gamerunning = true;
+			clientRef.start();
 
-			// System.out.println(map.getName());
+			while (client.isConnected()) {
+
+			}
 			client.close();
+			System.out.println("Verbindung getrennt.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

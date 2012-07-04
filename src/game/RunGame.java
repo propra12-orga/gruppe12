@@ -18,9 +18,8 @@ public class RunGame {
 		Settings settings;
 		settings = LoadSettings.load();
 
-		Game a = new Game(); // erstellt das Spielfeld
-		a.run();
-		a.start();
+		// erstellt das Spielfeld
+		Game.go();
 		Spielflaeche.bman.setBombPlanted(settings.getMaxBombs());
 		Spielflaeche.bman2.setBombPlanted(settings.getMaxBombs());
 		Spielflaeche.bman.setRadius(settings.getBombRange());

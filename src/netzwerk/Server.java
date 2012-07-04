@@ -18,8 +18,8 @@ public class Server extends Thread {
 	int port;
 	public static boolean netHost, netClient;
 
-	public Server(int port) throws IOException {
-		server = new ServerSocket(port);
+	public Server() throws IOException {
+		server = new ServerSocket(3000);
 		// server.setSoTimeout(10000);
 	}
 
@@ -35,17 +35,19 @@ public class Server extends Thread {
 			DataInputStream in = new DataInputStream(client.getInputStream());
 			DataOutputStream out = new DataOutputStream(
 					client.getOutputStream());
-
 			ServerRefresh servRef = new ServerRefresh(in, out);
 			MainMenu.gamerunning = true;
 			Spielflaeche.network = true;
 			Server.netHost = true;
 
 			Game.go();
+			servRef.start();
 
-			servRef.run();
+			while (client.isConnected() == true) {
 
+			}
 			server.close();
+			System.out.println("Server geschlossen.");
 
 		} catch (SocketTimeoutException s) {
 			System.out.println("Socket timed out!");

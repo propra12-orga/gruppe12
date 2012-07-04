@@ -63,9 +63,7 @@ public class ServerRefresh extends Thread {
 				new Bombe(bombX2, bombY2, 2, 2,
 						Spielflaeche.bman.getBombType(), 1, 3).start();
 				Spielflaeche.play.destroy(0, 0, 4);
-				// Spielflaeche.play.fill(bombX, bombY, 4, Spielfeld.Bombe);
 
-				// bombeschicken(x,y)
 			} catch (EOFException e) {
 				// TODO Auto-generated catch block
 				System.out.print("");
