@@ -5,12 +5,16 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import netzwerk.testClient;
+import netzwerk.testServer;
 
 /**
  * Netzwerk-Menue wird konstruiert, und entsprechend gelinkt um die
@@ -184,6 +188,15 @@ public class NetworkMenu extends JFrame implements ActionListener {
 			String ip = joinIPTF.getText();
 			if (ip.equals("") != true) {
 				int port = Integer.parseInt(joinPortTF.getText());
+				try {
+					testClient.go(ip, port);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 
@@ -195,6 +208,12 @@ public class NetworkMenu extends JFrame implements ActionListener {
 			String portS = hostPortTF.getText();
 			if (portS.equals("") != true) {
 				int port = Integer.parseInt(portS);
+				try {
+					testServer.go(port);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 	}
