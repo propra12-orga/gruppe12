@@ -43,7 +43,7 @@ public class GameKeyListener implements KeyListener {
 					Spielflaeche.bman.move(0, -1);
 				}
 				if (Server.netClient) {
-					Spielflaeche.bman2.move2(0, -1);
+					Spielflaeche.bman2.move(0, -1);
 				}
 			}
 			if (Spielflaeche.network == false) {
@@ -61,7 +61,7 @@ public class GameKeyListener implements KeyListener {
 					Spielflaeche.bman.move(-1, 0);
 				}
 				if (Server.netClient) {
-					Spielflaeche.bman2.move2(-1, 0);
+					Spielflaeche.bman2.move(-1, 0);
 				}
 			}
 			if (Spielflaeche.network == false) {
@@ -78,7 +78,7 @@ public class GameKeyListener implements KeyListener {
 					Spielflaeche.bman.move(1, 0);
 				}
 				if (Server.netClient) {
-					Spielflaeche.bman2.move2(1, 0);
+					Spielflaeche.bman2.move(1, 0);
 				}
 			}
 			if (Spielflaeche.network == false) {
@@ -95,7 +95,7 @@ public class GameKeyListener implements KeyListener {
 					Spielflaeche.bman.move(0, 1);
 				}
 				if (Server.netClient) {
-					Spielflaeche.bman2.move2(0, 1);
+					Spielflaeche.bman2.move(0, 1);
 				}
 			}
 			if (Spielflaeche.network == false) {

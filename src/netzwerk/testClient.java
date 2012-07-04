@@ -2,9 +2,9 @@ package netzwerk;
 
 import game.Game;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.Socket;
 
 import menu.MainMenu;
@@ -17,32 +17,20 @@ public class testClient {
 		try {
 			Spielflaeche.network = true;
 			Server.netClient = true;
-			Socket client = new Socket("192.168.2.104", 3000);
+			MainMenu.gamerunning = true;
+			Socket client = new Socket("192.168.0.100", 3000);
 
 			// schreiben
-			DataOutputStream out = new DataOutputStream(
+			DataOutputStream write = new DataOutputStream(
 					client.getOutputStream());
+
 			// lesen,
-			ObjectInputStream in = new ObjectInputStream(
-					client.getInputStream());
+			DataInputStream read = new DataInputStream(client.getInputStream());
 
-			// Starte Netzwerkspiel
+			Clientrefresh a = new Clientrefresh(read, write);
+
 			Game.go();
-			MainMenu.gamerunning = true;
-
-			while (MainMenu.gamerunning) {
-				if (in.readUTF() != null) {
-					Spielflaeche.bman.setxPosition(Integer.parseInt(in
-							.readUTF()));
-					Spielflaeche.bman.setyPosition(Integer.parseInt(in
-							.readUTF()));
-
-				}
-
-				out.writeUTF(String.valueOf(Spielflaeche.bman2.xPosition));
-				out.writeUTF(String.valueOf(Spielflaeche.bman2.yPosition));
-			}
-
+			a.run();
 			// System.out.println(map.getName());
 			client.close();
 		} catch (IOException e) {

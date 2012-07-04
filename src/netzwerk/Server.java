@@ -41,7 +41,7 @@ public class Server extends Thread {
 			// starte Spiel
 			MainMenu.gamerunning = true;
 			while (MainMenu.gamerunning) {
-				System.out.println("bla");
+				// System.out.println("bla");
 				if (in.readUTF() != null) {
 					Spielflaeche.bman2.setxPosition(Integer.parseInt(in
 							.readUTF()));
