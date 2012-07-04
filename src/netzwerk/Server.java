@@ -42,7 +42,8 @@ public class Server extends Thread {
 			Game.go();
 			servRef.start();
 
-			while (client.isConnected() == true) {
+			while (client.isConnected() && !Spielflaeche.bman.dead
+					&& !Spielflaeche.bman2.dead) {
 
 			}
 			server.close();

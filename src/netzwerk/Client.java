@@ -41,7 +41,8 @@ public class Client extends Thread {
 			Game.go();
 			clientRef.start();
 
-			while (client.isConnected()) {
+			while (client.isConnected() && !Spielflaeche.bman.dead
+					&& !Spielflaeche.bman2.dead) {
 
 			}
 			client.close();

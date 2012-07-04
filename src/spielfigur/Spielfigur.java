@@ -31,7 +31,7 @@ public class Spielfigur {
 	boolean wechsler = true;
 	boolean zfbombe = true;
 	final Lock lock = new ReentrantLock();
-	private boolean dead = false;
+	public boolean dead = false;
 
 	private BombType bomb = new NormalBomb();
 	/**
