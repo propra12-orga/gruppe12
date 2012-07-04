@@ -31,6 +31,7 @@ public class Spielfigur {
 	boolean wechsler = true;
 	boolean zfbombe = true;
 	final Lock lock = new ReentrantLock();
+	private boolean dead = false;
 
 	private BombType bomb = new NormalBomb();
 	/**
@@ -142,7 +143,10 @@ public class Spielfigur {
 				&& Tutorial.tutorialMode == false) {
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
-			Game.restartGame(1);
+			if (!dead) {
+				Game.restartGame(1);
+				dead = true;
+			}
 
 		}
 		if (Spielflaeche.play.getObj(xPosition + x, yPosition + y, 1) == Spielfeld.Ausgang
@@ -165,7 +169,10 @@ public class Spielfigur {
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
 			if (Tutorial.tutorialMode == false) {
-				Game.restartGame(2);
+				if (!dead) {
+					Game.restartGame(2);
+					dead = true;
+				}
 			}
 			// Label soll erstellt werden // Tot - wanna restart?
 
@@ -252,7 +259,10 @@ public class Spielfigur {
 				&& Spielflaeche.play.getObj(xPosition + x, yPosition + y, 2) != Spielfeld.Kiste) {
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
-			Game.restartGame(2);
+			if (!dead) {
+				Game.restartGame(2);
+				dead = true;
+			}
 
 		}
 		/*
@@ -265,7 +275,10 @@ public class Spielfigur {
 			xPosition = xPosition + x;
 			yPosition = yPosition + y;
 			System.out.println("Player1 siegt");
-			Game.restartGame(1);
+			if (!dead) {
+				Game.restartGame(1);
+				dead = true;
+			}
 		}
 
 		// Label soll erstellt werden // Tot - wanna restart?

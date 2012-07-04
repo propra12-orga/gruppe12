@@ -67,8 +67,8 @@ public class Game extends Thread {
 		SwingUtilities.invokeLater(gui); // wartet bis ausgefuehrt
 	}
 
-	public static synchronized void restartGame(int sieger) { // Methode zum
-																// Spielneustart
+	public static void restartGame(int sieger) { // Methode zum
+													// Spielneustart
 		gameFrame.dispose(); // Frame wird geschlossen
 		JFrame EndFrame = new JFrame("Ende");// Ende Fenster
 		EndFrame.setLocation(350, 20); // Stellt Position des Fensters ein
