@@ -15,9 +15,6 @@ public class testClient {
 			InterruptedException {
 
 		try {
-			Spielflaeche.network = true;
-			Server.netClient = true;
-			MainMenu.gamerunning = true;
 			Socket client = new Socket(ip, 3000);
 			System.out.println("Verbunden zu Server: "
 					+ client.getInetAddress().getHostAddress());
@@ -30,6 +27,10 @@ public class testClient {
 			DataInputStream read = new DataInputStream(client.getInputStream());
 
 			Clientrefresh clientRef = new Clientrefresh(read, write);
+
+			MainMenu.gamerunning = true;
+			Spielflaeche.network = true;
+			Server.netClient = true;
 
 			Game.go();
 			clientRef.start();
