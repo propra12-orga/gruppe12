@@ -84,10 +84,15 @@ public class Game extends Thread {
 		// Frame bei
 		// ImageIcon i = new ImageIcon("/ressources/grafics/winner.png");
 		JLabel j = new JLabel("Spieler " + sieger + " gewinnt.");
+<<<<<<< HEAD
+		gameFrame.add(j);
+		gameFrame.setVisible(true);
+=======
 		j.setForeground(Color.WHITE);
 
 		EndFrame.add(j);
 		EndFrame.setVisible(true);
+>>>>>>> a5859bffc505050fff8ee12db686e666454a2cf9
 
 	}
 }
