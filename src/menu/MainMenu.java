@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.xml.bind.JAXBException;
 
 import menu.settings.OpenSettings;
+import spielfeld.Spielflaeche;
 
 public class MainMenu extends JFrame implements ActionListener {
 
@@ -106,6 +107,7 @@ public class MainMenu extends JFrame implements ActionListener {
 			try {
 				RunGame.go();
 				gamerunning = true;
+				Spielflaeche.network = false;
 			} catch (JAXBException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
