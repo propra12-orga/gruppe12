@@ -119,8 +119,8 @@ public class NetworkMenu extends JFrame implements ActionListener {
 		hostB.getButton().addActionListener(this);
 		hostB.getButton().setActionCommand("host");
 
-		portP.add(portL);
-		portP.add(hostPortTF);
+		// portP.add(portL);
+		// portP.add(hostPortTF);
 
 		top.add(hostL);
 
@@ -166,8 +166,8 @@ public class NetworkMenu extends JFrame implements ActionListener {
 
 		mid.add(joinIPL);
 		mid.add(joinIPTF);
-		mid.add(joinPortL);
-		mid.add(joinPortTF);
+		// mid.add(joinPortL);
+		// mid.add(joinPortTF);
 
 		bot.add(joinB.getPanel());
 
